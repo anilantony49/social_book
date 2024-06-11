@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_book/home/home_screen.dart';
 import 'package:social_book/splash_screen.dart';
 
 void main() {
@@ -12,28 +13,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       debugShowCheckedModeBanner: false,
       title: 'SocialBook',
       theme: ThemeData(
-       scaffoldBackgroundColor:  const Color(0xFFEEF1F8),
+       scaffoldBackgroundColor:  Color.fromARGB(255, 231, 229, 229),
         primarySwatch: Colors.blue,
-         fontFamily: "Intel",
+        //  fontFamily: "Intel",
           elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(foregroundColor: Colors.white),
         ),
          inputDecorationTheme: const InputDecorationTheme(
           filled: true,
-          fillColor: Colors.white,
-          errorStyle: TextStyle(height: 0),
-          border: defaultInputBorder,
-          enabledBorder: defaultInputBorder,
-          focusedBorder: defaultInputBorder,
-          errorBorder: defaultInputBorder,
+          // fillColor: Colors.white,
+          // errorStyle: TextStyle(height: 0),
+          // border: defaultInputBorder,
+          // enabledBorder: defaultInputBorder,
+          // focusedBorder: defaultInputBorder,
+          // errorBorder: defaultInputBorder,
         ),
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen()
+      home: const HomeScreen()
     );
   }
 }

@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.18.0"
+  colorful_safe_area:
+    dependency: "direct main"
+    description:
+      name: colorful_safe_area
+      sha256: aed448f38de1bcd57f7c1dd4a18b259092c5c9cabf5da239e3e1dfa859ff0a20
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   crypto:
     dependency: transitive
     description:
@@ -65,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.3+1"
+  enefty_icons:
+    dependency: "direct main"
+    description:
+      name: enefty_icons
+      sha256: "59be0308964b2be29eb64707a1afcb991d2b27167a4b17b7ff9866aa22f9b9cc"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   fake_async:
     dependency: transitive
     description:
