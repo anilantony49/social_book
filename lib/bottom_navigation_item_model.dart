@@ -27,11 +27,11 @@ List<NavItemModel> bottomNavItems = [
           artboard: "TIMER",
           stateMachineName: "TIMER_Interactivity")),
   NavItemModel(
-      title: "Notification",
+      title: "Chat",
       rive: RiveModel(
           src: 'assets/RiveAssets/icons.riv',
-          artboard: "BELL",
-          stateMachineName: "BELL_Interactivity")),
+          artboard: "CHAT",
+          stateMachineName: "CHAT_Interactivity")),
   NavItemModel(
       title: "Profile",
       rive: RiveModel(

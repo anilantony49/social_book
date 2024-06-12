@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:social_book/bottom_navigation_item_model.dart';
 import 'package:social_book/core/utils/app_colors.dart';
+import 'package:social_book/home/home_screen.dart';
 
 class BottomNavWithAnimatedIcons extends StatefulWidget {
   const BottomNavWithAnimatedIcons({super.key});
@@ -15,11 +16,17 @@ class _BottomNavWithAnimatedIconsState
     extends State<BottomNavWithAnimatedIcons> {
   List<SMIBool> riveIconInputs = [];
 
-  List<StateMachineController?>controllers = [];
+  List<StateMachineController?> controllers = [];
 
   int selectedNavIndex = 0;
 
-  List<String>pages = ["Chat","Search","History","Notification","Profile"];
+  var pages = const [
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
 
   void animateTheIcon(int index) {
     riveIconInputs[index].change(true);
@@ -36,18 +43,18 @@ class _BottomNavWithAnimatedIconsState
     riveIconInputs.add(controller.findInput<bool>('active') as SMIBool);
   }
 
-
-@override
+  @override
   void dispose() {
-   for(var controller in controllers){
-    controller?.dispose();
-   }
+    for (var controller in controllers) {
+      controller?.dispose();
+    }
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text(pages[selectedNavIndex]),),
+      body: (pages[selectedNavIndex]),
       bottomNavigationBar: SafeArea(
         child: Container(
           // height: 58,s

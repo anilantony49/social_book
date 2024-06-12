@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:social_book/bottom_nav_with_animated_icons.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,9 +12,15 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
+  void initState() {
+    checkUserStatus();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromARGB(255, 255, 251, 251), 
+      // backgroundColor: Color.fromARGB(255, 255, 251, 251),
       body: Stack(
         children: [
           // First Circle
@@ -24,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             // bottom: 100,
             child: const CircleAvatar(
               radius: 60,
-              backgroundColor: Color(0xFFFEBEBE), 
+              backgroundColor: Color(0xFFFEBEBE),
             )
                 .animate()
                 .moveY(
@@ -47,10 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: -210,
             top: 200,
             child: const CircleAvatar(
-                    radius: 35,
-                    backgroundColor:
-                        Color(0xFF4B6EC8) 
-                    )
+                    radius: 35, backgroundColor: Color(0xFF4B6EC8))
                 .animate()
                 .moveY(
                   begin: 0,
@@ -71,10 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
             right: -15,
             bottom: 260,
             child: const CircleAvatar(
-                    radius: 40,
-                    backgroundColor:
-                        Color(0xFF63DEF7) 
-                    )
+                    radius: 40, backgroundColor: Color(0xFF63DEF7))
                 .animate()
                 .moveY(
                   begin: 0,
@@ -95,10 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: -5,
             bottom: 270,
             child: const CircleAvatar(
-                    radius: 25,
-                    backgroundColor:
-                        Color(0xFF597D85) 
-                    )
+                    radius: 25, backgroundColor: Color(0xFF597D85))
                 .animate()
                 .moveY(
                   begin: 0,
@@ -120,10 +118,7 @@ class _SplashScreenState extends State<SplashScreen> {
             left: -50,
             bottom: 70,
             child: const CircleAvatar(
-                    radius: 35,
-                    backgroundColor:
-                        Color(0xFFDB70E4) 
-                    )
+                    radius: 35, backgroundColor: Color(0xFFDB70E4))
                 .animate()
                 .moveY(
                   begin: 0,
@@ -143,28 +138,37 @@ class _SplashScreenState extends State<SplashScreen> {
             child: LetterAnimation(),
           ),
           Positioned(
-            top: 368,
-            right: 214,
-            child: TweenAnimationBuilder<double>(
-          tween: Tween<double>(begin: 0.0, end: 1.0),
-          duration: const Duration(milliseconds: 3500),
-          builder: (context, value, child) {
-            return Opacity(
-              opacity: value,
-              child: ColorFiltered(
-                colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(value),
-                  BlendMode.modulate,
-                ),
-                child: Image.asset(
-                  'assets/images/smile.png',
-                  width: 14,
-                  height: 14,
-                ),
-              ),
-          );
-    }))  ],
+              top: 368,
+              right: 214,
+              child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(begin: 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 3500),
+                  builder: (context, value, child) {
+                    return Opacity(
+                      opacity: value,
+                      child: ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          Colors.white.withOpacity(value),
+                          BlendMode.modulate,
+                        ),
+                        child: Image.asset(
+                          'assets/images/smile.png',
+                          width: 14,
+                          height: 14,
+                        ),
+                      ),
+                    );
+                  }))
+        ],
       ),
+    );
+  }
+
+  Future<void> checkUserStatus() async {
+    await Future.delayed(Duration(seconds: 7));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => BottomNavWithAnimatedIcons()),
     );
   }
 }
