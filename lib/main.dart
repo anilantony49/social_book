@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/bottom_nav_with_animated_icons.dart';
+import 'package:social_book/bottom_navigation.dart';
 import 'package:social_book/core/theme/app_theme.dart';
+import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/screens/explore/explore_screen.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
@@ -18,9 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SocialBook',
       theme: lightTheme,
-      home: const UserSigninScreen(),
+      home: const MainScreen(),
     );
   }
 }
-
-
