@@ -1,6 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:social_book/explore/widget/shimmer_animate.dart';
+import 'package:social_book/presentation/screens/explore/widget/shimmer_animate.dart';
 
 class FadeInAnimate extends StatelessWidget {
   const FadeInAnimate({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/explore/widget/fadein_animate.dart';
+import 'package:social_book/presentation/screens/explore/widget/fadein_animate.dart';
 
 class ImageTile extends StatelessWidget {
   const ImageTile({

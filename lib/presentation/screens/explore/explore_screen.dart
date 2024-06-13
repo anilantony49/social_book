@@ -1,9 +1,9 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
-import 'package:social_book/explore/widget/custom_search_field.dart';
-import 'package:social_book/explore/widget/explore_post.dart';
-import 'package:social_book/explore/widget/suggested_people.dart';
+import 'package:social_book/presentation/screens/explore/widget/custom_search_field.dart';
+import 'package:social_book/presentation/screens/explore/widget/explore_post.dart';
+import 'package:social_book/presentation/screens/explore/widget/suggested_people.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});

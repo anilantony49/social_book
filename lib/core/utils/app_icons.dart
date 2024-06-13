@@ -14,4 +14,6 @@ class AppIcons {
       IconData(0xe854, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData close =
       IconData(0xe81c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData eye_slash =
+      IconData(0xe82a, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

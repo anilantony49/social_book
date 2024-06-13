@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 import 'package:social_book/bottom_navigation_item_model.dart';
 import 'package:social_book/core/utils/app_colors.dart';
-import 'package:social_book/home/home_screen.dart';
+import 'package:social_book/presentation/screens/home/home_screen.dart';
 
 class BottomNavWithAnimatedIcons extends StatefulWidget {
   const BottomNavWithAnimatedIcons({super.key});
