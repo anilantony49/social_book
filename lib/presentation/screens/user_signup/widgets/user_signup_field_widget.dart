@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
-import 'package:social_book/presentation/screens/user_signup_screen/user_name_create_screen.dart';
+import 'package:social_book/presentation/screens/user_signup/user_name_create_screen.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
 

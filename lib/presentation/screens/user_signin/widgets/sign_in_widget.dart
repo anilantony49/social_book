@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/presentation/screens/user_signup_screen/user_signup_screen.dart';
+import 'package:social_book/presentation/screens/user_signup/user_signup_screen.dart';
 
 Widget signUpNavigate(context) {
   return InkWell(

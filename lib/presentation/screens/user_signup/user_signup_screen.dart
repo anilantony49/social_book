@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/presentation/screens/user_signup_screen/widgets/signup_field_widget.dart';
+import 'package:social_book/presentation/screens/user_signup/widgets/user_signup_field_widget.dart';
 
 class UserSignupScreen extends StatefulWidget {
   const UserSignupScreen({super.key});

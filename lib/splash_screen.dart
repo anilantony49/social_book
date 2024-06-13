@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:social_book/bottom_nav_with_animated_icons.dart';
+import 'package:social_book/presentation/screens/home/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -168,7 +169,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 7));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => BottomNavWithAnimatedIcons()),
+      MaterialPageRoute(builder: (context) => HomeScreen()),
     );
   }
 }

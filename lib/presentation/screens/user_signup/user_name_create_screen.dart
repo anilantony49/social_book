@@ -25,8 +25,8 @@ class _UserNameCreateScreenState extends State<UserNameCreateScreen> {
         body: SingleChildScrollView(
           child: Container(
             constraints: BoxConstraints(minHeight: mediaHeight),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 40, 0, 30),
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(0, 40, 0, 30),
               child: Stack(
                  alignment: Alignment.center,
                  children: [

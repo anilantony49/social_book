@@ -10,3 +10,14 @@ Future<dynamic> nextScreen(context, page) {
     ),
   );
 }
+
+Future<dynamic> nextScreenRemoveUntil(context, page) {
+  return Navigator.pushAndRemoveUntil(
+    context,
+    PageTransition(
+      child: page,
+      type: PageTransitionType.fade,
+    ),
+    (route) => false,
+  );
+}

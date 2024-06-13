@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_colors.dart';
+import 'package:social_book/presentation/screens/forgot_password/widget/forget_form_widget.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -11,10 +12,10 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.backgroundColor2,
-      extendBodyBehindAppBar: true,
-      // appBar: CustomAppbar.show(context, true),
+    return const Scaffold(
+      backgroundColor: Colors.white,
+      body:   ForgetFieldWidget(),
+    
     );
   }
 }
