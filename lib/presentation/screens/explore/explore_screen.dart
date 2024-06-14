@@ -1,6 +1,7 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
+import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/screens/explore/widget/custom_search_field.dart';
 import 'package:social_book/presentation/screens/explore/widget/explore_post.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people.dart';
@@ -20,24 +21,26 @@ class _ExploreScreenState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return ColorfulSafeArea(
-       color: theme.colorScheme.surface,
+        color: theme.colorScheme.surface,
         child: Scaffold(
-      appBar: Hidable(
-        controller: scrollController,
-        preferredWidgetSize: const Size.fromHeight(120),
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: CustomSearchField(
-            searchController: searchController,
+          appBar: Hidable(
+            controller: scrollController,
+            preferredWidgetSize: const Size.fromHeight(120),
+            child: Container(
+              margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: CustomSearchField(
+                heading: 'Explore',
+                searchController: searchController,
+              ),
+            ),
           ),
-        ),
-      ),
-      body: ListView(
-        children: const [
-           SuggestedPeople(),
-           ExplorePost(),
-        ],
-      ),
-    ));
+          body: ListView(
+            children: [
+             
+              SuggestedPeople(),
+              ExplorePost(),
+            ],
+          ),
+        ));
   }
 }

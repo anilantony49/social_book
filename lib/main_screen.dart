@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/bottom_navigation.dart';
+import 'package:social_book/presentation/screens/message/message_screen.dart';
 import 'package:social_book/presentation/screens/explore/explore_screen.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/post/create_post/create_post.dart';
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
       HomeScreen(),
       ExploreScreen(),
       CreatePostScreen(),
-      HomeScreen(),
+      MessageScreen(),
       HomeScreen(),
     ];
     super.initState();

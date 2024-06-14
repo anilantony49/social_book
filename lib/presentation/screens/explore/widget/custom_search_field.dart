@@ -9,12 +9,13 @@ class CustomSearchField extends StatelessWidget {
     super.key,
     required this.searchController,
     // required this.onChanged,
-    this.hintText,
+    this.hintText, required this.heading,
   });
 
   final TextEditingController searchController;
   // final void Function(String)? onChanged;
   final String? hintText;
+  final String heading;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class CustomSearchField extends StatelessWidget {
     return Column(
       children: [
         kHeight(15),
-        const Text(
-          'Explore',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+         Text(
+          heading,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         kHeight(10),
         CupertinoSearchTextField(
