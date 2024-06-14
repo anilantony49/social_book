@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/bottom_navigation.dart';
 import 'package:social_book/presentation/screens/explore/explore_screen.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
+import 'package:social_book/presentation/screens/post/create_post/create_post.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -17,7 +18,7 @@ class _MainScreenState extends State<MainScreen> {
     pages = const [
       HomeScreen(),
       ExploreScreen(),
-      HomeScreen(),
+      CreatePostScreen(),
       HomeScreen(),
       HomeScreen(),
     ];
