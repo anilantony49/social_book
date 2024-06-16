@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/bottom_nav_with_animated_icons.dart';
 import 'package:social_book/bottom_navigation.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/main_screen.dart';

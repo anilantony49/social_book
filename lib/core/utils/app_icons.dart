@@ -26,4 +26,6 @@ class AppIcons {
       IconData(0xe866, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData addPost =
       IconData(0xff6e, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_left_ios =
+      IconData(0xe80d, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

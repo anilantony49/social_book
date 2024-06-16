@@ -20,10 +20,11 @@ class _MessageUserCardState extends State<MessageUserCard> {
             Stack(
               children: [
                 CircleAvatar(
+                  backgroundImage: const AssetImage('assets/images/myself.jpg'),
                   radius: 28,
                   backgroundColor: theme.colorScheme.onSurface,
                 ),
-                Positioned(
+                const Positioned(
                     bottom: 4,
                     right: 2,
                     child: CircleAvatar(

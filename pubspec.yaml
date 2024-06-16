@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animate_do: ^3.3.4
+  autoscale_tabbarview: ^1.0.2
   colorful_safe_area: ^1.0.0
   cupertino_icons: ^1.0.6
   enefty_icons: ^1.0.7
@@ -60,7 +61,6 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/RiveAssets/
     - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
