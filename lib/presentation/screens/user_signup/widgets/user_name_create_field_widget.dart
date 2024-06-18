@@ -1,8 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
+import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
+import 'package:social_book/presentation/screens/user_signup/widgets/signin_navigate_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
 
@@ -24,6 +27,9 @@ class UserNameCreateFieldWidget extends StatefulWidget {
 class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController passWordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController otpController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey();
 
@@ -79,14 +85,52 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
                     ),
                   ),
                 ),
-                 kHeight(25),
-                 CustomButton(buttonText: 'Sign Up',
-                 onPressed: (){
-                  
-                 },)
+                kHeight(20),
+                CustomTextFormField(
+                  hintText: 'Confirm password',
+                  controller: confirmPasswordController,
+                  validator: (val) {
+                    if (!RegExp(passowrdRegexPattern).hasMatch(val!)) {
+                      return 'Passwords should be 8 characters, at least one number and one special character';
+                    }
+                    return null;
+                  },
+                  suffix: GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                      AppIcons.eye_slash,
+                      size: 20,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
+                ),
+                kHeight(25),
+                // Sign Up button
+                BlocListener<SignUpBloc, SignUpState>(
+                  listener: signUpListener,
+                  child: CustomButton(
+                    buttonText: 'Sign Up',
+                    onPressed: () {
+                      FocusScope.of(context).unfocus();
+                    },
+                  ),
+                )
               ],
             ),
           )),
     );
+  }
+
+  void signUpListener(BuildContext context, SignUpState state) {
+    if (state is UserOtpSuccessState) {
+      validateEmail(
+          context: context,
+          fullName: widget.fullName,
+          email: widget.email,
+          phoneNo: widget.phoneNo,
+          otpController: otpController,
+          username: userNameController.text,
+          password: passWordController.text);
+    }
   }
 }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/data/services/shared_preference/shared_preference.dart';
+import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
+import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -165,11 +169,20 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> checkUserStatus() async {
-    await Future.delayed(Duration(seconds: 7));
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
-    );
+    final userOnInitial = await UserAuthStatus.isUserOnInitial();
+    final userSignIn = await UserAuthStatus.getUserStatus();
+    if (userOnInitial == false) {
+      await Future.delayed(const Duration(seconds: 7));
+      nextScreenRemoveUntil(context, const UserSigninScreen());
+    } else {
+      if (userSignIn == false) {
+        await Future.delayed(const Duration(seconds: 7));
+        nextScreenRemoveUntil(context, const UserSigninScreen());
+      } else {
+        await Future.delayed(const Duration(seconds: 7));
+        nextScreenRemoveUntil(context, const MainScreen());
+      }
+    }
   }
 }
 

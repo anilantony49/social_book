@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:social_book/presentation/screens/user_signin/widgets/sign_in_widget.dart';
 import 'package:social_book/presentation/screens/user_signin/widgets/text_field.dart';
 
-class UserSigninScreen extends StatefulWidget {
+class UserSigninScreen extends StatelessWidget {
   const UserSigninScreen({super.key});
 
-  @override
-  State<UserSigninScreen> createState() => _UserSigninScreenState();
-}
-
-class _UserSigninScreenState extends State<UserSigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

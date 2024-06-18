@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:social_book/presentation/screens/user_signup/widgets/signin_navigate_widget.dart';
+import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 
 class UserNameCreateScreen extends StatefulWidget {
   const UserNameCreateScreen(
@@ -21,17 +23,24 @@ class _UserNameCreateScreenState extends State<UserNameCreateScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        extendBodyBehindAppBar: true,
+        // extendBodyBehindAppBar: true,
         body: SingleChildScrollView(
           child: Container(
             constraints: BoxConstraints(minHeight: mediaHeight),
-            child: const Padding(
-              padding: EdgeInsets.fromLTRB(0, 40, 0, 30),
+            child:  Padding(
+              padding: const EdgeInsets.fromLTRB(0, 40, 0, 30),
               child: Stack(
-                 alignment: Alignment.center,
-                 children: [
-                  
-                 ],
+                alignment: Alignment.center,
+                children: [
+                  UserNameCreateFieldWidget(
+                    email:widget.email,
+                    phoneNo: widget.phoneNo,
+                    fullName: widget.fullName,
+                  ), Positioned(
+                    bottom: 0,
+                    child: signInNavigate(context)
+                  ),
+                ],
               ),
             ),
           ),
