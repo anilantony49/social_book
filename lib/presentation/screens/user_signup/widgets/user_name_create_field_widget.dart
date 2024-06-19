@@ -1,10 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
+import 'package:social_book/presentation/screens/user_signup/otp_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/signin_navigate_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
@@ -67,42 +69,60 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
 
                 // Create password field
                 kHeight(20),
-                CustomTextFormField(
-                  hintText: 'Create password',
-                  controller: passWordController,
-                  validator: (val) {
-                    if (!RegExp(passowrdRegexPattern).hasMatch(val!)) {
-                      return 'Passwords should be 8 characters, at least one number and one special character';
-                    }
-                    return null;
+                BlocBuilder<PasswordVisibilityCubit, bool>(
+                  builder: (context, state) {
+                    return CustomTextFormField(
+                      hintText: 'Create password',
+                      controller: passWordController,
+                      validator: (val) {
+                        if (!RegExp(passowrdRegexPattern).hasMatch(val!)) {
+                          return 'Passwords should be 8 characters, at least one number and one special character';
+                        }
+                        return null;
+                      },
+                      obscureText: state,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          context
+                              .read<PasswordVisibilityCubit>()
+                              .toggleVisibility();
+                        },
+                        child: Icon(
+                          state ? AppIcons.eye_slash : AppIcons.eye,
+                          size: 20,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                    );
                   },
-                  suffix: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      AppIcons.eye_slash,
-                      size: 20,
-                      color: Colors.black,
-                    ),
-                  ),
                 ),
                 kHeight(20),
-                CustomTextFormField(
-                  hintText: 'Confirm password',
-                  controller: confirmPasswordController,
-                  validator: (val) {
-                    if (!RegExp(passowrdRegexPattern).hasMatch(val!)) {
-                      return 'Passwords should be 8 characters, at least one number and one special character';
-                    }
-                    return null;
+                BlocBuilder<PasswordVisibilityCubit, bool>(
+                  builder: (context, state) {
+                    return CustomTextFormField(
+                      hintText: 'Confirm password',
+                      controller: confirmPasswordController,
+                      validator: (val) {
+                        if (!RegExp(passowrdRegexPattern).hasMatch(val!)) {
+                          return 'Passwords should be 8 characters, at least one number and one special character';
+                        }
+                        return null;
+                      },
+                      obscureText: state,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          context
+                              .read<PasswordVisibilityCubit>()
+                              .toggleVisibility();
+                        },
+                        child: Icon(
+                          state ? AppIcons.eye_slash : AppIcons.eye,
+                          size: 20,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                      ),
+                    );
                   },
-                  suffix: GestureDetector(
-                    onTap: () {},
-                    child: Icon(
-                      AppIcons.eye_slash,
-                      size: 20,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
                 ),
                 kHeight(25),
                 // Sign Up button
@@ -112,6 +132,18 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
                     buttonText: 'Sign Up',
                     onPressed: () {
                       FocusScope.of(context).unfocus();
+                      if (passWordController.text ==
+                          confirmPasswordController.text) {
+                        if (formKey.currentState!.validate()) {
+                          context.read<SignUpBloc>().add(
+                              UserOtpVerificationEvent(email: widget.email));
+                        }
+                      } else {
+                        customSnackbar(
+                          context,
+                          "Passwords doesn't match",
+                        );
+                      }
                     },
                   ),
                 )
@@ -123,14 +155,23 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
 
   void signUpListener(BuildContext context, SignUpState state) {
     if (state is UserOtpSuccessState) {
-      validateEmail(
-          context: context,
-          fullName: widget.fullName,
-          email: widget.email,
-          phoneNo: widget.phoneNo,
-          otpController: otpController,
-          username: userNameController.text,
-          password: passWordController.text);
+      nextScreen(context, const OtpScreen());
+      // validateEmail(
+      //     context: context,
+      //     fullName: widget.fullName,
+      //     email: widget.email,
+      //     phoneNo: widget.phoneNo,
+      //     otpController: otpController,
+      //     username: userNameController.text,
+      //     password: passWordController.text);
     }
   }
+}
+
+class PasswordVisibilityCubit extends Cubit<bool> {
+  PasswordVisibilityCubit() : super(true);
+
+  void toggleVisibility() => emit(!state);
+
+  void reset() => emit(true);
 }

@@ -191,7 +191,7 @@ class LetterAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String text = 'SocialBook';
+    const String text = 'SocıalBook';
     const duration = Duration(milliseconds: 250);
     final totalDuration = duration * text.length;
 

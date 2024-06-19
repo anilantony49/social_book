@@ -9,4 +9,8 @@ class UserSignUpEvent extends SignUpEvent {
   UserSignUpEvent({required this.user});
 }
 
-class UserOtpVerificationEvent extends SignUpEvent {}
+class UserOtpVerificationEvent extends SignUpEvent {
+  final String email;
+
+  UserOtpVerificationEvent({required this.email});
+}

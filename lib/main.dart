@@ -7,6 +7,7 @@ import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/screens/explore/explore_screen.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/user_signup_screen.dart';
+import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 import 'package:social_book/splash_screen.dart';
 
 void main() {
@@ -21,7 +22,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>SignUpBloc())
+        BlocProvider(create: (context) => SignUpBloc()),
+        BlocProvider(create: (context) => PasswordVisibilityCubit())
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

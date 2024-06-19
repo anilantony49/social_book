@@ -21,7 +21,7 @@ class AuthRepo {
       debugPrint('User Sign Up Status: ${response.statusCode}');
       debugPrint('User Sign Up Body: ${response.body}');
 
-         if (response.statusCode == 201) {
+      if (response.statusCode == 201) {
         await UserAuthStatus.saveUserStatus(true);
         await UserToken.saveToken(jsonResponse['token']);
         await CurrentUserId.saveUserId(jsonResponse['userId']);
@@ -30,7 +30,7 @@ class AuthRepo {
       if (response.statusCode == 400) {
         return SignUpResult(status: 'invalid-otp', responseBody: null);
       }
-       if (response.statusCode == 409) {
+      if (response.statusCode == 409) {
         if (jsonResponse['error'] ==
             "Username Already Taken. Please Choose different one or login instead") {
           return SignUpResult(status: 'username-exists', responseBody: null);
@@ -42,10 +42,35 @@ class AuthRepo {
           return SignUpResult(status: 'phoneno-exists', responseBody: null);
         }
       }
-       return SignUpResult(status: 'error', responseBody: null);
+      return SignUpResult(status: 'error', responseBody: null);
     } catch (e) {
-       debugPrint('User Sign Up Error: $e');
-       return SignUpResult(status: 'error', responseBody: null);
+      debugPrint('User Sign Up Error: $e');
+      return SignUpResult(status: 'error', responseBody: null);
+    }
+  }
+
+  static Future<String> userVerifyOtp({required String email}) async {
+    var client = http.Client();
+    String signUpUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.userVerifyOtp}";
+    try {
+      var body = {"email": email};
+      var response = await client.post(
+        Uri.parse(signUpUrl),
+        body: body,
+      );
+      debugPrint('User Verify Otp Status: ${response.statusCode}');
+      debugPrint('User Verify Otp Body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        return 'success';
+      }
+      if (response.statusCode == 401) {
+        return 'already-exists';
+      }
+      return 'error';
+    } catch (e) {
+      debugPrint('User Verify Otp Error: $e');
+      return 'error';
     }
   }
 }

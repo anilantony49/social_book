@@ -28,4 +28,8 @@ class AppIcons {
       IconData(0xff6e, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData arrow_left_ios =
       IconData(0xe80d, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData shield_cross =
+      IconData(0xe859, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData eye =
+      IconData(0xe829, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

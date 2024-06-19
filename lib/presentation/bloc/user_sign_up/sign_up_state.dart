@@ -9,3 +9,12 @@ class UserSignUpSuccessState extends SignUpState {}
 
 class UserOtpSuccessState extends SignUpState {}
 
+class UserOtpErrorState extends SignUpState {}
+
+class UsernameExistsErrorState extends SignUpState {}
+
+class EmailExistsErrorState extends SignUpState {}
+
+class PhonenoExistsErrorState extends SignUpState {}
+
+class UserSignUpErrorState extends SignUpState {}
