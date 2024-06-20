@@ -12,14 +12,17 @@ import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
 
 class UserNameCreateFieldWidget extends StatefulWidget {
-  const UserNameCreateFieldWidget(
-      {super.key,
-      required this.email,
-      required this.phoneNo,
-      required this.fullName});
+  const UserNameCreateFieldWidget({
+    super.key,
+    required this.email,
+    required this.phoneNo,
+    required this.fullName,
+    required this.accountType,
+  });
   final String email;
   final String phoneNo;
   final String fullName;
+  final String accountType;
 
   @override
   State<UserNameCreateFieldWidget> createState() =>
@@ -155,15 +158,16 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
 
   void signUpListener(BuildContext context, SignUpState state) {
     if (state is UserOtpSuccessState) {
-      nextScreen(context, const OtpScreen());
-      // validateEmail(
-      //     context: context,
-      //     fullName: widget.fullName,
-      //     email: widget.email,
-      //     phoneNo: widget.phoneNo,
-      //     otpController: otpController,
-      //     username: userNameController.text,
-      //     password: passWordController.text);
+      // nextScreen(context, const OtpScreen());
+      validateEmail(
+          context: context,
+          fullName: widget.fullName,
+          email: widget.email,
+          phoneNo: widget.phoneNo,
+          accountType: widget.accountType,
+          otpController: otpController,
+          username: userNameController.text,
+          password: passWordController.text);
     }
   }
 }

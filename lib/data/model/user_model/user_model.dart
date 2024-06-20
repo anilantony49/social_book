@@ -4,6 +4,7 @@ class UserModel {
   final String? password;
   final String? email;
   final int? phoneNumber;
+  final String? accountType;
   final String? fullName;
   final String? otp;
 
@@ -13,6 +14,7 @@ class UserModel {
       this.password,
       this.email,
       this.phoneNumber,
+      this.accountType,
       this.fullName,
       this.otp});
 
@@ -22,6 +24,7 @@ class UserModel {
         password: json['password'],
         email: json['email'],
         phoneNumber: json['phonenumber'],
+        accountType: json['account_type'],
         fullName: json['fullname'],
         otp: json['otp'],
       );
@@ -32,6 +35,7 @@ class UserModel {
         "password": password,
         "email": email,
         "phonenumber": phoneNumber,
+        "account_type": accountType,
         "fullname": fullName,
         "otp": otp,
       };

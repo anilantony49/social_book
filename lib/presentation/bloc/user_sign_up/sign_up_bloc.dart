@@ -14,7 +14,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   Future<void> _userSignUpEvent(
       UserSignUpEvent event, Emitter<SignUpState> emit) async {
-    final response = await AuthRepo.userSignUp(user: event.user);
+    emit(UserSignUpLoadingState());
+    SignUpResult response = await AuthRepo.userSignUp(user: event.user);
     if (response.status == 'success') {
       emit(UserSignUpSuccessState());
     } else if (response.status == 'invalid-otp') {
@@ -32,7 +33,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   Future<void> _userOtpVerificationEvent(
       UserOtpVerificationEvent event, Emitter<SignUpState> emit) async {
-    final response = await AuthRepo.userVerifyOtp(email: event.email);
+    emit(UserOtpLoadingState());
+    String response = await AuthRepo.userVerifyOtp(email: event.email);
     if (response == 'success') {
       emit(UserOtpSuccessState());
     } else if (response == 'already-exists') {

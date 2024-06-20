@@ -32,4 +32,8 @@ class AppIcons {
       IconData(0xe859, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData eye =
       IconData(0xe829, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_up_outlined =
+      IconData(0xe816, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_bottom_outlined =
+      IconData(0xe803, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

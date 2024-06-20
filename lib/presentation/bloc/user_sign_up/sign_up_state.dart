@@ -18,3 +18,8 @@ class EmailExistsErrorState extends SignUpState {}
 class PhonenoExistsErrorState extends SignUpState {}
 
 class UserSignUpErrorState extends SignUpState {}
+
+class UserOtpLoadingState extends SignUpState {}
+
+class UserSignUpLoadingState extends SignUpState {}
+
