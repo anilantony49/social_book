@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/presentation/screens/profile/edit_profile/edit_profile_sreen.dart';
 import 'package:social_book/presentation/screens/profile/widgets/user_heading_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_button_profile.dart';
@@ -15,7 +17,7 @@ class ProfileDetailWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const CircleAvatar(
-            backgroundImage:AssetImage('assets/images/myself.jpg'),
+            backgroundImage: AssetImage('assets/images/myself.jpg'),
             backgroundColor: Colors.grey,
             radius: 35,
           ),
@@ -34,6 +36,7 @@ class ProfileDetailWidget extends StatelessWidget {
             buttonText: 'Edit profile',
             onPressed: () {
               FocusScope.of(context).unfocus();
+              nextScreen(context, const EditProfileSreen());
             },
           ),
           kHeight(10),
@@ -89,7 +92,6 @@ class ProfileDetailWidget extends StatelessWidget {
             ],
           ),
           //  kHeight(50),
-           
         ],
       ),
     );

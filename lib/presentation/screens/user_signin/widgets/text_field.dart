@@ -74,6 +74,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                     BlocBuilder<PasswordVisibilityCubit, bool>(
                       builder: (context, state) {
                         return CustomTextFormField(
+                          controller: passwordController,
                           hintText: 'Password',
                           suffix: GestureDetector(
                             onTap: () {
