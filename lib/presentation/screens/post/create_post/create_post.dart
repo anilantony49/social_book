@@ -1,6 +1,5 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
-import 'package:hidable/hidable.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
@@ -16,9 +15,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final TextEditingController _descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return ColorfulSafeArea(
-      color: theme.colorScheme.surface,
+      color: AppColors.lLightWhite,
       child: Scaffold(
         body: ListView(
           children: [
@@ -70,14 +68,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                              color: theme.colorScheme.primary, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.customBtnColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color:
-                                  theme.colorScheme.onSurface.withOpacity(0.5),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
                               width: 1.0,
                             ))),
                   ),
@@ -99,20 +96,22 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
-                          borderSide: BorderSide(
-                              color: theme.colorScheme.primary, width: 2.0),
+                          borderSide: const BorderSide(
+                              color: AppColors.customBtnColor, width: 2.0),
                         ),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            borderSide: BorderSide(
-                              color:
-                                  theme.colorScheme.onSurface.withOpacity(0.5),
+                            borderSide: const BorderSide(
+                              color: Colors.grey,
                               width: 1.0,
                             ))),
                   ),
                 ),
-                kHeight(10),
-                const CustomButton(buttonText: 'Upload')
+                kHeight(20),
+                 Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                  child: CustomButton(buttonText: 'Upload',onPressed: (){},),
+                ),
               ],
             ),
           ],

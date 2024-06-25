@@ -64,10 +64,9 @@ Widget suggestedPeoples(BuildContext context) {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-             backgroundImage: AssetImage('assets/images/myself.jpg'),
-                radius: 30,
-                // backgroundColor: Color.fromARGB(255, 136, 137, 140)
-                ),
+              backgroundImage: AssetImage('assets/images/myself.jpg'),
+              radius: 30,
+            ),
             // kHeight(15),
             Text(
               'Anil',

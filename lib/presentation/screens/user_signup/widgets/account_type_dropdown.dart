@@ -98,11 +98,11 @@ class AccountTypeDropDown extends StatelessWidget {
           ),
           iconStyleData: IconStyleData(
             openMenuIcon: Icon(
-              AppIcons.arrow_up_outlined,
+              AppIcons.arrowupoutlined,
               color: theme.colorScheme.secondary,
             ),
             icon: Icon(
-              AppIcons.arrow_bottom_outlined,
+              AppIcons.arrowbottomoutlined,
               color: theme.colorScheme.secondary,
             ),
             iconSize: 24,

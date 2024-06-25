@@ -1,6 +1,5 @@
-import 'package:colorful_safe_area/colorful_safe_area.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/screens/home/widgets/header_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post_widget.dart';

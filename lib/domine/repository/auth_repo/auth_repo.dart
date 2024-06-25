@@ -77,7 +77,7 @@ class AuthRepo {
   static Future<SignInResult> userSignIn(
       {required String username, required String password}) async {
     var client = http.Client();
-    String signUpUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.userSignIn}";
+    String signUpUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.userSignIn}";    
     try {
       var user = {
         "username": username,

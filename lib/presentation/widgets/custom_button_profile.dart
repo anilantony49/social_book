@@ -1,4 +1,3 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 
@@ -18,8 +17,8 @@ class CustomButtonProfile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        // padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-        color: AppColors.blackColor,
+      
+        color: AppColors.customBtnColor,
         onPressed: onPressed,
         child: Text(
           buttonText,

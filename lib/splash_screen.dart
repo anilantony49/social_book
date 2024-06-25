@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/main_screen.dart';
-import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -24,7 +23,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Color.fromARGB(255, 255, 251, 251),
       body: Stack(
         children: [
           // First Circle

@@ -30,7 +30,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       builder: (context, state) {
         return FadeInDown(
           delay: const Duration(milliseconds: 400),
-          duration: const Duration(milliseconds: 1000),
+          // duration: const Duration(milliseconds: 500),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
             child: Form(
@@ -46,7 +46,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                           const Text(
                             'Welcome back!',
                             style: TextStyle(
-                                fontSize: 20, fontVariations: fontWeightW700),
+                                fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           kHeight(10),
                           const Text(
@@ -83,9 +83,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                                   .toggleVisibility();
                             },
                             child: Icon(
-                              state ? AppIcons.eye_slash : AppIcons.eye,
+                              state ? AppIcons.eyeslash : AppIcons.eye,
                               size: 20,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Colors.grey
                             ),
                           ),
                           obscureText: state,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/presentation/screens/forgot_password/widget/forget_form_widget.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {

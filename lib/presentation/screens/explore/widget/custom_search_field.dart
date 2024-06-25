@@ -8,12 +8,12 @@ class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     super.key,
     required this.searchController,
-    // required this.onChanged,
-    this.hintText, required this.heading,
+    this.hintText,
+    required this.heading,
   });
 
   final TextEditingController searchController;
-  // final void Function(String)? onChanged;
+
   final String? hintText;
   final String heading;
 
@@ -23,7 +23,7 @@ class CustomSearchField extends StatelessWidget {
     return Column(
       children: [
         kHeight(15),
-         Text(
+        Text(
           heading,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
@@ -50,14 +50,14 @@ class CustomSearchField extends StatelessWidget {
             color: theme.colorScheme.secondary,
             fontSize: 14,
             fontFamily: mainFont,
-            fontVariations: fontWeightRegular,
+            fontWeight: FontWeight.w400,
             letterSpacing: 0.2,
           ),
           style: TextStyle(
             color: theme.colorScheme.primary,
             fontSize: 14,
             fontFamily: mainFont,
-            fontVariations: fontWeightRegular,
+            fontWeight: FontWeight.w400,
             letterSpacing: 0.2,
           ),
         ),

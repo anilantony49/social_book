@@ -16,7 +16,7 @@ class UserHeadingWidget extends StatelessWidget {
             radius: 13,
             backgroundColor: Colors.grey,
             child: Icon(
-              AppIcons.arrow_left_ios,
+              AppIcons.arrowleftios,
               size: 20,
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -24,11 +24,11 @@ class UserHeadingWidget extends StatelessWidget {
           kWidth(10),
           const Text(
             'username',
-            style: TextStyle(fontVariations: fontWeightW700),
+            style: TextStyle(fontWeight: FontWeight.w700),
           ),
           const Spacer(),
           PopupMenuButton(itemBuilder: (BuildContext context) {
-            return [PopupMenuItem(child: Text(''))];
+            return [const PopupMenuItem(child: Text(''))];
           })
         ],
       ),

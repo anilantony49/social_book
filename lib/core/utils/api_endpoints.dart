@@ -3,5 +3,8 @@ class ApiEndPoints {
   static String userSignUp = '/signup';
   static String userVerifyOtp = "/signup-send-otp";
   static String profile = '/me';
-    static String userSignIn = '/login';
+  static String userSignIn = '/login';
+  static String editUserProfile = '/profile/edit';
+  static String socketUrl = 'http://tweel.online';
+  static String changeAccountType = "/account/type";
 }

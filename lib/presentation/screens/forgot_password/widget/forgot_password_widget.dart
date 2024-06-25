@@ -19,32 +19,31 @@ class ForgotPasswordWidget {
             title: const Text(
               'Verification',
               style: TextStyle(
-                fontVariations: fontWeightW600,
+                fontWeight: FontWeight.normal,
               ),
             ),
             content: const Text(
                 'A 6 - Digit OTP has been sent to your email address, enter it below to continue'),
-                 actions: [
-            Column(
-              children: [
-                Form(
-                  key: formKey,
-                  child: CustomTextFormField(
-                    hintText: 'OTP',
-                    controller: otpController,
-                    validator: (val) {
-                      if (val!.length < 2) {
-                        return "Please enter a valid OTP";
-                      }
-                      return null;
-                    },
+            actions: [
+              Column(
+                children: [
+                  Form(
+                    key: formKey,
+                    child: CustomTextFormField(
+                      hintText: 'OTP',
+                      controller: otpController,
+                      validator: (val) {
+                        if (val!.length < 2) {
+                          return "Please enter a valid OTP";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-              ],
-            ),
-            kHeight(20),
-            // verifyOtp(formKey, otpController, context),
-          ],
+                ],
+              ),
+              kHeight(20),
+            ],
           );
         });
   }

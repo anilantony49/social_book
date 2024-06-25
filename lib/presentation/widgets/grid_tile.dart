@@ -6,13 +6,12 @@ class ImageTile extends StatelessWidget {
     super.key,
     required this.height,
     required this.image,
-    // required this.onTap,
+    
   });
 
   final double height;
   final String image;
-  // final void Function()? onTap;
-
+ 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);

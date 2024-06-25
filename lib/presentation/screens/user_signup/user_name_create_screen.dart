@@ -26,8 +26,8 @@ class _UserNameCreateScreenState extends State<UserNameCreateScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        // extendBodyBehindAppBar: true,
+        
+
         body: SingleChildScrollView(
           child: Container(
             constraints: BoxConstraints(minHeight: mediaHeight),

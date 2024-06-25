@@ -8,13 +8,12 @@ class AppIcons {
   static const String? _kFontPkg = null;
 
   static const IconData smile = Icons.sentiment_satisfied_alt; // Example icon
-  static const IconData notification_bing =
-      IconData(0xe847, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+
   static const IconData search_2 =
       IconData(0xe854, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData close =
       IconData(0xe81c, fontFamily: _fontFamily, fontPackage: _kFontPkg);
-  static const IconData eye_slash =
+  static const IconData eyeslash =
       IconData(0xe82a, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData home =
       IconData(0xe830, fontFamily: _fontFamily, fontPackage: _kFontPkg);
@@ -26,14 +25,20 @@ class AppIcons {
       IconData(0xe866, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData addPost =
       IconData(0xff6e, fontFamily: _fontFamily, fontPackage: _kFontPkg);
-  static const IconData arrow_left_ios =
+  static const IconData arrowleftios =
       IconData(0xe80d, fontFamily: _fontFamily, fontPackage: _kFontPkg);
-  static const IconData shield_cross =
+  static const IconData shieldcross =
       IconData(0xe859, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData eye =
       IconData(0xe829, fontFamily: _fontFamily, fontPackage: _kFontPkg);
-  static const IconData arrow_up_outlined =
+  static const IconData arrowupoutlined =
       IconData(0xe816, fontFamily: _fontFamily, fontPackage: _kFontPkg);
-  static const IconData arrow_bottom_outlined =
+  static const IconData arrowbottomoutlined =
       IconData(0xe803, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_down_ios =
+      IconData(0xe80a, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_right =
+      IconData(0xe80f, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData info_rugged =
+      IconData(0xe833, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

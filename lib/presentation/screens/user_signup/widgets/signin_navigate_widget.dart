@@ -1,8 +1,8 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/main_screen.dart';
@@ -15,20 +15,21 @@ import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
 
 Widget signInNavigate(context) {
   return FadeInUp(
-      delay: const Duration(milliseconds: 400),
-      duration: const Duration(milliseconds: 1000),
+      delay: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 500),
       child: InkWell(
         onTap: () {
           nextScreenRemoveUntil(context, const UserSigninScreen());
         },
-        child: Text.rich(TextSpan(children: [
+        child: const Text.rich(TextSpan(children: [
           TextSpan(
             text: "Already have an account? ",
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
+            style: TextStyle(color: Colors.grey),
           ),
-          const TextSpan(text: 'Sign In.'),
+          TextSpan(
+            text: 'Sign In.',
+            style: TextStyle(color: AppColors.customBtnColor),
+          ),
         ])),
       ));
 }
@@ -44,13 +45,13 @@ Future<dynamic> validateEmail({
   TextEditingController? otpController,
 }) {
   final GlobalKey<FormState> formKey = GlobalKey();
-  changeSystemThemeOnPopup(
-    context: context!,
-    color: Theme.of(context).colorScheme.surfaceContainerHighest,
-  );
+  // changeSystemThemeOnPopup(
+  //   context: context!,
+  //   color: Theme.of(context).colorScheme.surfaceContainerHighest,
+  // );
 
   return showDialog(
-      context: context,
+      context: context!,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Theme.of(context).colorScheme.surface,
@@ -60,7 +61,7 @@ Future<dynamic> validateEmail({
           title: Text(
             'Verification',
             style: TextStyle(
-                fontVariations: fontWeightW600,
+               fontWeight: FontWeight.normal,
                 color: Theme.of(context).colorScheme.primary),
           ),
           content: const Text(
@@ -121,8 +122,8 @@ Future<dynamic> validateEmail({
               },
             ),
             kHeight(20),
-            signUpButton(formKey, otpController,accountType, username, password, email,
-                fullName, phoneNo, context),
+            signUpButton(formKey, otpController, accountType, username,
+                password, email, fullName, phoneNo, context),
           ],
         );
       });

@@ -37,7 +37,7 @@ class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
                   const Text(
                     'Forgot your password?',
                     style:
-                        TextStyle(fontSize: 20, fontVariations: fontWeightW700),
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   kHeight(10),
                   const Text(

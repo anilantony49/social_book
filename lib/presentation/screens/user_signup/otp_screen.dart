@@ -24,6 +24,7 @@
 //   String? email;
 //   String? fullName;
 //   String? phoneNo;
+//   String? accountType;
 
 //   @override
 //   void initState() {
@@ -57,7 +58,7 @@
 //     return Scaffold(
 //         backgroundColor: Theme.of(context).colorScheme.surface,
 //         appBar: AppBar(
-//           leading: const Icon(AppIcons.arrow_left_ios),
+//           leading: const Icon(AppIcons.arrowleftios),
 //         ),
 //         body: Padding(
 //             padding: const EdgeInsets.all(16.0),
@@ -120,7 +121,7 @@
 //                             keyboardType: TextInputType.number,
 //                             textAlign: TextAlign.center,
 //                             maxLength: 1,
-//                             style: const TextStyle(fontSize: 24),  
+//                             style: const TextStyle(fontSize: 24),
 //                             decoration: const InputDecoration(
 //                               counterText: '',
 //                               border: OutlineInputBorder(),
@@ -147,6 +148,7 @@
 //                       email: email,
 //                       fullName: fullName,
 //                       phoneNo: phoneNo,
+//                       accountType: accountType,
 //                     )
 //                   ],
 //                 ),
@@ -163,17 +165,18 @@
 //   final String? email;
 //   final String? fullName;
 //   final String? phoneNo;
+//   final String? accountType;
 
-//   const SignUpButton({
-//     super.key,
-//     required this.formKey,
-//     required this.otpController,
-//     this.username,
-//     this.password,
-//     this.email,
-//     this.fullName,
-//     this.phoneNo,
-//   });
+//   const SignUpButton(
+//       {super.key,
+//       required this.formKey,
+//       required this.otpController,
+//       this.username,
+//       this.password,
+//       this.email,
+//       this.fullName,
+//       this.phoneNo,
+//       this.accountType});
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -186,6 +189,7 @@
 //               otpController.map((controller) => controller.text).join();
 //           print("Entered OTP is: $otp");
 //           final user = UserModel(
+//               accountType: accountType,
 //               username: username,
 //               password: password,
 //               email: email,

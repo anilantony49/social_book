@@ -12,18 +12,16 @@ class MessageScreen extends StatefulWidget {
 }
 
 class _MessageScreenState extends State<MessageScreen> {
-    final SearchController searchController = SearchController();
+  final SearchController searchController = SearchController();
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context).colorScheme;
     return ColorfulSafeArea(
-      color: theme.surface,
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
           resizeToAvoidBottomInset: true,
-          backgroundColor: theme.primaryContainer,
+          // backgroundColor: theme.primaryContainer,
           body: Center(
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
@@ -36,11 +34,11 @@ class _MessageScreenState extends State<MessageScreen> {
                 // ),
                 // kHeight(10),
                 MessageTextField(searchController: searchController),
-               Expanded(
-                 child: MessageListView(
-                  messagePageController:messagePageController ,
-                 ),
-               )
+                Expanded(
+                  child: MessageListView(
+                    messagePageController: messagePageController,
+                  ),
+                )
               ],
             ),
           ),

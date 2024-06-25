@@ -6,7 +6,6 @@ import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
-import 'package:social_book/presentation/screens/user_signup/otp_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/signin_navigate_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
@@ -48,8 +47,20 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Text(
+                  'Select a Username',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                kHeight(10),
+                const Text(
+                  'Help secure your account',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                kHeight(20),
                 // Username field
                 CustomTextFormField(
                   hintText: 'Username',
@@ -91,7 +102,7 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
                               .toggleVisibility();
                         },
                         child: Icon(
-                          state ? AppIcons.eye_slash : AppIcons.eye,
+                          state ? AppIcons.eyeslash : AppIcons.eye,
                           size: 20,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
@@ -119,7 +130,7 @@ class _UserNameCreateFieldWidgetState extends State<UserNameCreateFieldWidget> {
                               .toggleVisibility();
                         },
                         child: Icon(
-                          state ? AppIcons.eye_slash : AppIcons.eye,
+                          state ? AppIcons.eyeslash : AppIcons.eye,
                           size: 20,
                           color: Theme.of(context).colorScheme.secondary,
                         ),

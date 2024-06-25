@@ -7,16 +7,21 @@ class UserModel {
   final String? accountType;
   final String? fullName;
   final String? otp;
+  final String? bio;
+  final String? profilePicture;
 
-  UserModel(
-      {this.id,
-      this.username,
-      this.password,
-      this.email,
-      this.phoneNumber,
-      this.accountType,
-      this.fullName,
-      this.otp});
+  UserModel({
+    this.id,
+    this.username,
+    this.password,
+    this.email,
+    this.phoneNumber,
+    this.accountType,
+    this.fullName,
+    this.otp,
+    this.bio,
+    this.profilePicture,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json['_id'],
@@ -25,6 +30,8 @@ class UserModel {
         email: json['email'],
         phoneNumber: json['phonenumber'],
         accountType: json['account_type'],
+        profilePicture: json['profile_picture'],
+        bio: json['bio'],
         fullName: json['fullname'],
         otp: json['otp'],
       );
@@ -36,6 +43,8 @@ class UserModel {
         "email": email,
         "phonenumber": phoneNumber,
         "account_type": accountType,
+        "profile_picture": profilePicture,
+        "bio": bio,
         "fullname": fullName,
         "otp": otp,
       };

@@ -6,7 +6,6 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
 import 'package:social_book/presentation/screens/user_signup/user_name_create_screen.dart';
-import 'package:social_book/presentation/screens/user_signup/widgets/account_type_dropdown.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
 
@@ -28,7 +27,6 @@ class _SignupFieldWidgetState extends State<SignupFieldWidget> {
   Widget build(BuildContext context) {
     return FadeInDown(
       delay: const Duration(milliseconds: 400),
-      duration: const Duration(milliseconds: 1000),
       child: Form(
           key: formKey,
           child: Padding(
@@ -41,8 +39,8 @@ class _SignupFieldWidgetState extends State<SignupFieldWidget> {
                   children: [
                     const Text(
                       'Create an account',
-                      style: TextStyle(
-                          fontSize: 20, fontVariations: fontWeightW700),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     kHeight(10),
                     const Text(
@@ -93,10 +91,6 @@ class _SignupFieldWidgetState extends State<SignupFieldWidget> {
                   },
                 ),
                 kHeight(20),
-
-                // Account type field
-                // const AccountTypeDropDown(),
-                // kHeight(25),
 
                 // Continue button
                 BlocBuilder<DropdownCubit, DropdownState>(

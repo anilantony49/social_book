@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 
 class CustomTextButton extends StatelessWidget {
   final void Function()? onTap;
@@ -18,9 +18,9 @@ class CustomTextButton extends StatelessWidget {
         padding: const EdgeInsets.only(right: 10),
         child: Text(
           buttonText,
-          style: TextStyle(
-            fontVariations: fontWeightW500,
-            color: Theme.of(context).colorScheme.onPrimary,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+            color: AppColors.customBtnColor
           ),
         ),
       ),
