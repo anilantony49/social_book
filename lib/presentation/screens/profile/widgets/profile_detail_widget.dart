@@ -4,6 +4,7 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/screens/explore/widget/fadein_animate.dart';
 import 'package:social_book/presentation/screens/profile/edit_profile/edit_profile_sreen.dart';
+import 'package:social_book/presentation/screens/profile/widgets/profile_circle_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button_profile.dart';
 
 class ProfileDetailWidget extends StatelessWidget {
@@ -22,13 +23,17 @@ class ProfileDetailWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
+          ProfileCircleWidget(
             // backgroundImage: AssetImage('assets/images/myself.jpg'),
             // backgroundColor: Colors.grey,
-            radius: 35,
-            child: userModel.profilePicture == ""
-                ? Image.asset(profilePlaceholder)
-                : FadedImageLoading(imageUrl: userModel.profilePicture!,),
+            radius: 80,
+            imageWidget: userModel.profilePicture == ""
+                ? Image.asset(
+                    profilePlaceholder,
+                  )
+                : FadedImageLoading(
+                    imageUrl: userModel.profilePicture!,
+                  ),
           ),
           kHeight(10),
           Text(

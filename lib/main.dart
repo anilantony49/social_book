@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
+import 'package:social_book/presentation/bloc/post/post_bloc.dart';
+import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProfileLogicsBloc()),
         BlocProvider(create: (context) => MediaPickerBloc()),
         BlocProvider(create: (context) => SetProfileImageCubit()),
+        BlocProvider(create: (context) => PostBloc()),
+        BlocProvider(create: (context) => PostLogicsBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

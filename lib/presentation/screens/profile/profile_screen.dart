@@ -2,15 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tab_bar_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tabview_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_detail_widget.dart';
-import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

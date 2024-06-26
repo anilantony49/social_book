@@ -17,7 +17,7 @@ class _MainScreenState extends State<MainScreen> {
   List<Widget> pages = [];
   @override
   void initState() {
-    pages =  [
+    pages = const [
       HomeScreen(),
       ExploreScreen(),
       CreatePostScreen(),

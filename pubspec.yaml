@@ -32,6 +32,7 @@ dependencies:
   autoscale_tabbarview: ^1.0.2
   colorful_safe_area: ^1.0.0
   cupertino_icons: ^1.0.6
+  dio: ^5.4.3+1
   dropdown_button2: ^2.3.9
   enefty_icons: ^1.0.7
   flutter:

@@ -66,7 +66,8 @@ class _MediaPickerState extends State<MediaPicker> {
                     },
                     onPressed: () {
                       if (widget.screenType == ScreenType.post) {
-                        // nextScreen(context, CreatePostPage());
+                      Navigator.of(context).pop(selectedAssetList);
+                        // nextScreen(context, const CreatePostScreen());
                       } else if (widget.screenType == ScreenType.profile) {
                         context
                           .read<SetProfileImageCubit>()
@@ -91,6 +92,7 @@ class _MediaPickerState extends State<MediaPicker> {
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(horizontal: 2),
                       physics: const BouncingScrollPhysics(),
+                        itemCount: state.assetList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3),

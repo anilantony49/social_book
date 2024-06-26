@@ -41,4 +41,5 @@ class AppIcons {
       IconData(0xe80f, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData info_rugged =
       IconData(0xe833, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+      
 }

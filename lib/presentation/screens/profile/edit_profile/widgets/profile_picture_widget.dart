@@ -24,25 +24,21 @@ class ProfilePictureWidget extends StatelessWidget {
           ),
         );
       },
-      child: CircleAvatar(
-        radius: 80,
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        child: BlocBuilder<SetProfileImageCubit, SetProfileImageState>(
-          builder: (context, state) {
-            if (state is SetProfileImageSuccessState) {
-              return CircleAvatar(
-                radius: 63,
-                backgroundImage: AssetEntityImage(state.selectedImage[0]).image,
-              );
-            }
+      child: BlocBuilder<SetProfileImageCubit, SetProfileImageState>(
+        builder: (context, state) {
+          if (state is SetProfileImageSuccessState) {
             return CircleAvatar(
               radius: 63,
-              backgroundImage: widget.user.profilePicture == ""
-                  ? Image.asset(profilePlaceholder).image
-                  : NetworkImage(widget.user.profilePicture!),
+              backgroundImage: AssetEntityImage(state.selectedImage[0]).image,
             );
-          },
-        ),
+          }
+          return CircleAvatar(
+            radius: 63,
+            backgroundImage: widget.user.profilePicture == ""
+                ? Image.asset(profilePlaceholder).image
+                : NetworkImage(widget.user.profilePicture!),
+          );
+        },
       ),
     );
   }

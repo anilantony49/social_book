@@ -7,4 +7,6 @@ class ApiEndPoints {
   static String editUserProfile = '/profile/edit';
   static String socketUrl = 'http://tweel.online';
   static String changeAccountType = "/account/type";
+  static String allPosts = "/posts";
+  static String createPost = "/createpost";
 }
