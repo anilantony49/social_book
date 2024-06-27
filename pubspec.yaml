@@ -32,6 +32,7 @@ dependencies:
   autoscale_tabbarview: ^1.0.2
   colorful_safe_area: ^1.0.0
   cupertino_icons: ^1.0.6
+  custom_refresh_indicator: ^3.1.0
   dio: ^5.4.3+1
   dropdown_button2: ^2.3.9
   enefty_icons: ^1.0.7
@@ -39,6 +40,7 @@ dependencies:
     sdk: flutter
   flutter_animate: ^4.5.0
   flutter_bloc: ^8.1.6
+  flutter_spinkit: ^5.2.1
   flutter_staggered_grid_view: ^0.4.0
   google_fonts: ^5.0.0
   hidable: ^1.0.6

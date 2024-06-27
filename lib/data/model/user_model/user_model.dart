@@ -9,6 +9,7 @@ class UserModel {
   final String? otp;
   final String? bio;
   final String? profilePicture;
+  final String? createdAt;
 
   UserModel({
     this.id,
@@ -21,6 +22,7 @@ class UserModel {
     this.otp,
     this.bio,
     this.profilePicture,
+    this.createdAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -34,6 +36,7 @@ class UserModel {
         bio: json['bio'],
         fullName: json['fullname'],
         otp: json['otp'],
+        createdAt: json['createdAt'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -47,5 +50,6 @@ class UserModel {
         "bio": bio,
         "fullname": fullName,
         "otp": otp,
+        "createdAt": createdAt,
       };
 }

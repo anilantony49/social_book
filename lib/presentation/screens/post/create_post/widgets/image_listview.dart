@@ -17,8 +17,8 @@ class _ImageListviewState extends State<ImageListview> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 10),
-      height: 100,
+      padding: const EdgeInsets.only(bottom: 10,top: 10),
+      height: 130,
       width: double.infinity,
       color: Theme.of(context).colorScheme.surface,
       child: ListView.builder(

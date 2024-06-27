@@ -1,27 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/data/model/post_model/post_model.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 
-class PostWidget extends StatelessWidget {
-  const PostWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Column(
-        children: List.generate(
-            10,
-            (index) => const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: PostList(),
-                )),
-      ),
-    );
-  }
-}
-
-class PostList extends StatelessWidget {
-  const PostList({super.key});
+class PostListWidget extends StatelessWidget {
+  final PostModel postModel;
+  const PostListWidget({super.key, required this.postModel});
 
   @override
   Widget build(BuildContext context) {
@@ -40,58 +24,21 @@ class PostList extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                const SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/myself.jpg'),
-                    backgroundColor: Color(0xFFF2F2F2),
-                    // radius: 10,
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Anil Antony',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
-                    ),
-                    Text(
-                      '1hr ago',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-                    )
-                  ],
-                ),
-                const Spacer(),
-                PopupMenuButton(itemBuilder: (
-                  BuildContext context,
-                ) {
-                  return [const PopupMenuItem(child: Text(''))];
-                })
-              ],
+            // Posted User Details
+
+            kHeight(15),
+
+            // Post Description
+            kHeight(15),
+
+            // Post Image Section
+
+            PostImageWidget(
+              postModel: postModel,
+              height: MediaQuery.of(context).size.height / 2.2,
             ),
             kHeight(10),
-            const Text('Description'),
-            kHeight(10),
-            Container(
-              height: 250,
-              width: 310,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  // color: Colors.blue,
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/myself.jpg'),
-                    fit: BoxFit.cover,
-                  )),
-            ),
-            kHeight(10),
+
             const Row(
               children: [
                 Column(

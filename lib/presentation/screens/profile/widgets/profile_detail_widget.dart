@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
-import 'package:social_book/presentation/screens/explore/widget/fadein_animate.dart';
+import 'package:social_book/presentation/widgets/fadein_animate.dart';
 import 'package:social_book/presentation/screens/profile/edit_profile/edit_profile_sreen.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_circle_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button_profile.dart';
