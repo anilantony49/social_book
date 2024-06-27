@@ -21,6 +21,7 @@ class PostSection extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: PostListWidget(
                           postModel: state.posts[index],
+                          userModel: state.posts[index].user!,
                         ),
                       )),
             );

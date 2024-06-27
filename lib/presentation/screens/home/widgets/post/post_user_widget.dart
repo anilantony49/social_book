@@ -71,25 +71,25 @@ class _PostUserWidgetState extends State<PostUserWidget> {
                 style: const TextStyle(fontSize: 11, color: Colors.black),
               ),
             ),
-            // BlocBuilder<ProfileBloc, ProfileState>(
-            //   builder: (context, state) {
-            //     if (state is ProfileFetchingSucessState) {
-            //       return InkWell(
-            //         onTap: () {
-            //           PostMoreWidget.bottomSheet(
-            //             context: context,
-            //             postModel: widget.postModel,
-            //             userId: state.userDetails.id!,
-            //             postId: widget.userModel!.id!,
-            //             onDetail: widget.onDetail,
-            //           );
-            //         },
-            //         child: const Icon(AppIcons.more_vert),
-            //       );
-            //     }
-            //     return const Icon(AppIcons.more_vert);
-            //   },
-            // ),
+            BlocBuilder<ProfileBloc, ProfileState>(
+              builder: (context, state) {
+                if (state is ProfileFetchingSucessState) {
+                  return InkWell(
+                    onTap: () {
+                      // PostMoreWidget.bottomSheet(
+                      //   context: context,
+                      //   postModel: widget.postModel,
+                      //   userId: state.userDetails.id!,
+                      //   postId: widget.userModel!.id!,
+                      //   onDetail: widget.onDetail,
+                      // );
+                    },
+                    child: const Icon(AppIcons.more_vert),
+                  );
+                }
+                return const Icon(AppIcons.more_vert);
+              },
+            ),
           ],
         ),
       ],

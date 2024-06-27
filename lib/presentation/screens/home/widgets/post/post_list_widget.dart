@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
+import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';
+import 'package:social_book/presentation/widgets/description_widget.dart';
 
 class PostListWidget extends StatelessWidget {
   final PostModel postModel;
-  const PostListWidget({super.key, required this.postModel});
+  final UserModel userModel;
+  const PostListWidget(
+      {super.key, required this.postModel, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +31,20 @@ class PostListWidget extends StatelessWidget {
           children: [
             // Posted User Details
 
+            PostUserWidget(
+              postModel: postModel,
+              userModel: userModel,
+            ),
+
             kHeight(15),
 
             // Post Description
+
+            DescriptionWidget(
+              text: postModel.description,
+              postModel: postModel,
+              userModel: userModel,
+            ),
             kHeight(15),
 
             // Post Image Section
