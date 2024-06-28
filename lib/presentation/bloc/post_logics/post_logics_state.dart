@@ -16,3 +16,9 @@ class CreatePostSuccessState extends PostLogicsState {
 }
 
 class CreatePostErrorState extends PostLogicsState {}
+
+class RemovePostLoadingState extends PostLogicsState {}
+
+class RemovePostSuccessState extends PostLogicsState {}
+
+class RemovePostErrorState extends PostLogicsState {}

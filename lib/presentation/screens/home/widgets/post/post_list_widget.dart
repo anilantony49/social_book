@@ -18,7 +18,7 @@ class PostListWidget extends StatelessWidget {
       Center(
         child: Container(
           width: 340,
-          height: 480,
+          height: 470,
           decoration: const BoxDecoration(
               color: Color.fromARGB(255, 215, 214, 214),
               borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -30,30 +30,25 @@ class PostListWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Posted User Details
-
             PostUserWidget(
               postModel: postModel,
               userModel: userModel,
             ),
-
-            kHeight(15),
-
+            kHeight(10),
             // Post Description
-
             DescriptionWidget(
               text: postModel.description,
               postModel: postModel,
               userModel: userModel,
             ),
-            kHeight(15),
-
+            kHeight(10),
             // Post Image Section
 
             PostImageWidget(
               postModel: postModel,
               height: MediaQuery.of(context).size.height / 2.2,
             ),
-            kHeight(10),
+            kHeight(25),
 
             const Row(
               children: [

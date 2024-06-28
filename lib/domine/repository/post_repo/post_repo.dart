@@ -70,4 +70,28 @@ class PostRepo{
       return '';
     }
   }
+
+    static Future<String> removePost(String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String removePostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.removePost}$postId";
+    try {
+      var response = await dio.delete(removePostUrl,
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+          ));
+      debugPrint('Remove Post Status: ${response.statusCode}');
+      if (response.statusCode == 201) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Remove Post Error: $e');
+      return '';
+    }
+  }
 }

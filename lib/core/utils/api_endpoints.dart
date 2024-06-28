@@ -9,4 +9,5 @@ class ApiEndPoints {
   static String changeAccountType = "/account/type";
   static String allPosts = "/posts";
   static String createPost = "/createpost";
+  static String removePost = "/post/";
 }

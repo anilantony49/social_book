@@ -5,6 +5,7 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/post_more_widget.dart';
 import 'package:social_book/presentation/widgets/fadein_animate.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_circle_widget.dart';
 
@@ -76,13 +77,13 @@ class _PostUserWidgetState extends State<PostUserWidget> {
                 if (state is ProfileFetchingSucessState) {
                   return InkWell(
                     onTap: () {
-                      // PostMoreWidget.bottomSheet(
-                      //   context: context,
-                      //   postModel: widget.postModel,
-                      //   userId: state.userDetails.id!,
-                      //   postId: widget.userModel!.id!,
-                      //   onDetail: widget.onDetail,
-                      // );
+                      PostMoreWidget.bottomSheet(
+                        context: context,
+                        postModel: widget.postModel,
+                        userId: state.userDetails.id!,
+                        postId: widget.userModel!.id!,
+                        // onDetail: widget.onDetail,
+                      );
                     },
                     child: const Icon(AppIcons.more_vert),
                   );

@@ -9,9 +9,10 @@ part 'post_logics_state.dart';
 
 class PostLogicsBloc extends Bloc<PostLogicsEvent, PostLogicsState> {
   PostLogicsBloc() : super(PostLogicsInitial()) {
-     on<CreatePostEvent>(_createPostEvent);
+    on<CreatePostEvent>(_createPostEvent);
+    on<RemovePostEvent>(_removePostEvent);
   }
-    Future<void> _createPostEvent(
+  Future<void> _createPostEvent(
       CreatePostEvent event, Emitter<PostLogicsState> emit) async {
     emit(CreatePostLoadingState());
     String description = event.description;
@@ -24,6 +25,17 @@ class PostLogicsBloc extends Bloc<PostLogicsEvent, PostLogicsState> {
       emit(CreatePostSuccessState(imagePathList: imageUrlList));
     } else {
       emit(CreatePostErrorState());
+    }
+  }
+
+  Future<void> _removePostEvent(
+      RemovePostEvent event, Emitter<PostLogicsState> emit) async {
+    emit(RemovePostLoadingState());
+    String response = await PostRepo.removePost(event.postId);
+    if (response == 'success') {
+      emit(RemovePostSuccessState());
+    } else {
+      emit(RemovePostErrorState());
     }
   }
 }

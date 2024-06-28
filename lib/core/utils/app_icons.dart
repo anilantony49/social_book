@@ -43,4 +43,8 @@ class AppIcons {
       IconData(0xe833, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData more_vert =
       IconData(0xe845, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData edit =
+      IconData(0xe824, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData remove_2 =
+      IconData(0xe852, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

@@ -14,3 +14,11 @@ class CreatePostEvent extends PostLogicsEvent {
     required this.selectedAssets,
   });
 }
+
+class RemovePostEvent extends PostLogicsEvent {
+  final String postId;
+
+  RemovePostEvent({
+    required this.postId,
+  });
+}
