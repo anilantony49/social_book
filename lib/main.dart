@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
+import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
@@ -14,7 +18,17 @@ import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 import 'package:social_book/splash_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: const FirebaseOptions(
+              apiKey: 'AIzaSyBmEDmYU6_-ATThpcn5BH5V-_ci1cWTb9c',
+              appId: '1:857352775882:android:80384836889ee711726c33',
+              messagingSenderId: '857352775882',
+              projectId: 'authentication-c5353'))
+      : await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -41,7 +55,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'SocialBook',
         theme: lightTheme,
-        home: const HomeScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

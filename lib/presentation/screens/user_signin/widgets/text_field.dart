@@ -1,12 +1,16 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/screens/forgot_password/forgot_password_screen.dart';
+import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
@@ -22,6 +26,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey();
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +88,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                                   .toggleVisibility();
                             },
                             child: Icon(
-                              state ? AppIcons.eyeslash : AppIcons.eye,
-                              size: 20,
-                              color: Colors.grey
-                            ),
+                                state ? AppIcons.eyeslash : AppIcons.eye,
+                                size: 20,
+                                color: Colors.grey),
                           ),
                           obscureText: state,
                           validator: (value) {
@@ -127,6 +131,36 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                         ),
                       ),
                     ),
+                    kHeight(15),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 45,
+                          height: 45,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: ClipOval(
+                            child: Image.asset(
+                              'assets/images/Google__G__logo.svg.webp',
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              _signInWithGoogle();
+                            },
+                            child: const Text(
+                              'Sign in with Google',
+                              style: TextStyle(color: Colors.grey),
+                            ))
+                      ],
+                    ),
                   ],
                 )),
           ),
@@ -159,6 +193,26 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         context,
         'Please try again after some times',
       );
+    }
+  }
+
+  _signInWithGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+    try {
+      final GoogleSignInAccount? googleSignInAccount =
+          await _googleSignIn.signIn();
+      if (googleSignInAccount != null) {
+        final GoogleSignInAuthentication googleSignInAuthentication =
+            await googleSignInAccount.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+            idToken: googleSignInAuthentication.idToken,
+            accessToken: googleSignInAuthentication.accessToken);
+        await _firebaseAuth.signInWithCredential(credential);
+        nextScreen(context, HomeScreen());
+      }
+    } catch (e) {
+      print('error occured');
     }
   }
 }
