@@ -39,8 +39,7 @@ class PostModel {
       comments: json['comments'] is Map<String, dynamic>
           ? []
           : List<CommentModel>.from(json['comments']!
-              .map((comment) => CommentModel.fromJson(comment)))
-      ,
+              .map((comment) => CommentModel.fromJson(comment))),
       sComments: json['comments'] is String ? json['comments'] : [],
       createdDate: json['createdAt'],
       updatedDate: json['updatedAt'],
@@ -83,7 +82,9 @@ class CommentModel {
 
   factory CommentModel.fromJson(Map<String, dynamic> json) => CommentModel(
         id: json['_id'],
-        user: json['userId'] is Map<String, dynamic> ? UserModel.fromJson(json['userId']) : UserModel(),
+        user: json['userId'] is Map<String, dynamic>
+            ? UserModel.fromJson(json['userId'])
+            : UserModel(),
         comment: json['comment'],
         createdDate: json['createdAt'],
       );

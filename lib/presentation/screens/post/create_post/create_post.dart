@@ -26,8 +26,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   List<AssetEntity> selectedAssetList = [];
   final formKey = GlobalKey<FormState>();
 
-  
-
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -201,6 +199,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     ));
                                 locationController.clear();
                                 descriptionController.clear();
+                                // setState(() {
+                                //   selectedAssetList.clear();
+                                // });
                               }
                             },
                           );

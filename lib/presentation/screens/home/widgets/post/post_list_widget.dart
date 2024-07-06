@@ -14,43 +14,48 @@ class PostListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      Center(
-        child: Container(
-          width: 340,
-          height: 470,
-          decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 215, 214, 214),
-              borderRadius: BorderRadius.all(Radius.circular(10))),
-        ),
+    return Container(
+      margin: const EdgeInsets.only(
+        bottom: 20,
       ),
-      Padding(
-        padding: const EdgeInsets.fromLTRB(25, 10, 15, 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Posted User Details
-            PostUserWidget(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(0, 15, 0, 4),
+      decoration: const BoxDecoration(
+          color: Color.fromARGB(255, 242, 235, 235),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Posted User Details
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: PostUserWidget(
               postModel: postModel,
               userModel: userModel,
             ),
-            kHeight(10),
-            // Post Description
-            DescriptionWidget(
+          ),
+          kHeight(10),
+          // Post Description
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: DescriptionWidget(
               text: postModel.description,
               postModel: postModel,
               userModel: userModel,
             ),
-            kHeight(10),
-            // Post Image Section
+          ),
+          kHeight(10),
+          // Post Image Section
 
-            PostImageWidget(
-              postModel: postModel,
-              height: MediaQuery.of(context).size.height / 2.2,
-            ),
-            kHeight(25),
+          PostImageWidget(
+            postModel: postModel,
+            height: MediaQuery.of(context).size.height / 2.2,
+          ),
+          kHeight(25),
 
-            const Row(
+          const Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: Row(
               children: [
                 Column(
                   children: [Icon(Icons.favorite_outline), Text('100 Likes')],
@@ -77,8 +82,11 @@ class PostListWidget extends StatelessWidget {
                 )
               ],
             ),
-            kHeight(10),
-            RichText(
+          ),
+          kHeight(10),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: RichText(
               text: const TextSpan(
                 style: TextStyle(
                   fontSize: 16,
@@ -109,11 +117,14 @@ class PostListWidget extends StatelessWidget {
                 ],
               ),
             ),
-            kHeight(10),
-            const Text('View all 57 commenets')
-          ],
-        ),
+          ),
+          kHeight(10),
+          const Padding(
+            padding: EdgeInsets.only(left: 8),
+            child: Text('View all 57 commenets'),
+          )
+        ],
       ),
-    ]);
+    );
   }
 }

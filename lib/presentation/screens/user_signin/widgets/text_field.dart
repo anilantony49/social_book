@@ -209,7 +209,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
             idToken: googleSignInAuthentication.idToken,
             accessToken: googleSignInAuthentication.accessToken);
         await _firebaseAuth.signInWithCredential(credential);
-        nextScreen(context, HomeScreen());
+        nextScreen(context, const HomeScreen());
       }
     } catch (e) {
       print('error occured');

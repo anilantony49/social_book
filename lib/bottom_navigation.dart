@@ -25,31 +25,26 @@ class BottomNavigation extends StatelessWidget {
             context: context,
             index: 0,
             icon: AppIcons.home,
-        
           ),
           kIconButton(
             context: context,
             index: 1,
             icon: AppIcons.search,
-          
           ),
           kIconButton(
             context: context,
             index: 2,
             icon: Iconsax.add_square4,
-          
           ),
           kIconButton(
             context: context,
             index: 3,
             icon: AppIcons.message,
-          
           ),
           kIconButton(
             context: context,
             index: 4,
             icon: AppIcons.user,
-           
           ),
         ],
       ),

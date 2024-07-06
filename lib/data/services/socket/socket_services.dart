@@ -18,10 +18,17 @@ class SocketServices {
         IO.OptionBuilder().setTransports(['websocket']).build());
     if (_context != null) {
       log('From here it is calling');
-      // _context!.read<GetChatBloc>().add(FetchAllUserChatsEvent());
-      // _listenMessage(_context);
-      // _getOnlineUsers(_context);
-      // _makeUserActive(username);
     }
+  }
+
+  disconnectSocket() {
+    socket.onDisconnect((data) {
+      log('Is Socket Disconnected: ${socket.disconnected}');
+    });
+    socket.disconnect();
+    socket.clearListeners();
+    socket.close();
+    socket.dispose();
+    log('Is Socket Active: ${socket.active}');
   }
 }

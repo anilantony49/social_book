@@ -47,4 +47,12 @@ class AppIcons {
       IconData(0xe824, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData remove_2 =
       IconData(0xe852, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData logout_2 =
+      IconData(0xe838, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData about =
+      IconData(0xe800, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData settings =
+      IconData(0xe858, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_left =
+      IconData(0xe80b, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

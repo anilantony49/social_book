@@ -1,7 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/core/utils/validations.dart';
+import 'package:social_book/presentation/bloc/forget_password/forget_password_bloc.dart';
+import 'package:social_book/presentation/screens/forgot_password/reset_password_screen.dart';
 import 'package:social_book/presentation/screens/user_signin/widgets/sign_in_widget.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/custom_text_form_field.dart';
@@ -15,13 +19,12 @@ class ForgetFieldWidget extends StatefulWidget {
 
 class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
   final TextEditingController emailController = TextEditingController();
-
+  final TextEditingController otpController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return FadeInDown(
       delay: const Duration(milliseconds: 400),
-      duration: const Duration(milliseconds: 1000),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
         child: Form(
@@ -36,8 +39,7 @@ class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
                 children: [
                   const Text(
                     'Forgot your password?',
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                   ),
                   kHeight(10),
                   const Text(
@@ -46,16 +48,19 @@ class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
               ),
               kHeight(25),
               // Username field
-              CustomTextFormField(
-                controller: emailController,
-                hintText: 'Email address',
-                validator: (value) {
-                  if (!RegExp(emailRegexPattern).hasMatch(value!) ||
-                      value.isEmpty) {
-                    return 'Enter a valid email';
-                  }
-                  return null;
-                },
+              BlocListener<ForgetPasswordBloc, ForgetPasswordState>(
+                listener: forgetPasswordListener,
+                child: CustomTextFormField(
+                  controller: emailController,
+                  hintText: 'Email address',
+                  validator: (value) {
+                    if (!RegExp(emailRegexPattern).hasMatch(value!) ||
+                        value.isEmpty) {
+                      return 'Enter a valid email';
+                    }
+                    return null;
+                  },
+                ),
               ),
               kHeight(25),
 
@@ -63,7 +68,13 @@ class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
 
               CustomButton(
                 buttonText: 'Send OTP',
-                onPressed: () {},
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    context
+                        .read<ForgetPasswordBloc>()
+                        .add(ForgetSentOtpEvent(email: emailController.text));
+                  }
+                },
               ),
               kHeight(10),
               const Spacer(),
@@ -73,5 +84,22 @@ class _ForgetFieldWidgetState extends State<ForgetFieldWidget> {
         ),
       ),
     );
+  }
+
+  void forgetPasswordListener(BuildContext context, ForgetPasswordState state) {
+    if (state is ForgetSentOtpSuccessState) {
+      nextScreen(
+        context,
+        ResetPasswordScreen(
+          emailController: emailController,
+        ),
+      );
+    }
+    if (state is ForgetUserNotExistState) {
+      customSnackbar(
+        context,
+        'User not found with the email',
+      );
+    }
   }
 }

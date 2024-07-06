@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/main_screen.dart';
+import 'package:social_book/presentation/bloc/forget_password/forget_password_bloc.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
+import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_index.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
@@ -45,9 +47,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProfileBloc()),
         BlocProvider(create: (context) => DropdownCubit()),
         BlocProvider(create: (context) => SignInBloc()),
+        BlocProvider(create: (context) => ForgetPasswordBloc()),
         BlocProvider(create: (context) => ProfileLogicsBloc()),
         BlocProvider(create: (context) => MediaPickerBloc()),
         BlocProvider(create: (context) => SetProfileImageCubit()),
+        BlocProvider(create: (context) => PostImageIndexCubit()),
         BlocProvider(create: (context) => PostBloc()),
         BlocProvider(create: (context) => PostLogicsBloc()),
       ],

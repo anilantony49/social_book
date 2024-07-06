@@ -1,14 +1,19 @@
 import 'dart:developer';
 
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_icons.dart';
+import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tab_bar_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tabview_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_detail_widget.dart';
+import 'package:social_book/presentation/screens/profile/widgets/profile_menu.dart';
+import 'package:social_book/presentation/screens/settings/settings.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -37,24 +42,33 @@ class _ProfileScreenState extends State<ProfileScreen>
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Log Out'),
-          content: const Text('Are you sure you want to log out?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                // Navigator.of(context).pop(); // dismiss the dialog
-                nextScreen(context, UserSigninScreen());
-              },
-              child: const Text('Cancel'),
-            ),
-            TextButton(
-              onPressed: () {
-                // Add your logout logic here
-                Navigator.of(context).pop(); // dismiss the dialog
-              },
-              child: const Text('Log Out'),
-            ),
+        return ProfileMenu(
+          leading: const [
+            AppIcons.settings,
+            AppIcons.about,
+            AppIcons.logout_2,
+          ],
+          buttonLabel: const ["Settings", "About Us", "Logout"],
+          ontap: [
+            () {
+              // nextScreen(
+              //   context,
+              //   SettingsPage(accountType: userModel.accountType!),
+              // ).then((value) => Navigator.pop(context));
+            },
+            () {
+              // nextScreen(context, const AboutUsPage()).then(
+              //   (value) => Navigator.pop(context),
+              // );
+            },
+            ()async {
+               UserAuthStatus.saveUserStatus(false);
+               SocketServices().disconnectSocket();
+                await nextScreenRemoveUntil(
+                context,
+                const UserSigninScreen(),
+              );
+            }
           ],
         );
       },
@@ -71,77 +85,80 @@ class _ProfileScreenState extends State<ProfileScreen>
             _handleRefresh();
           }
         },
-        child: Scaffold(
-          body: RefreshIndicator(
-            onRefresh: _handleRefresh,
-            child: BlocConsumer<ProfileBloc, ProfileState>(
-              listener: (context, state) {
-                if (state is ProfileFetchingSucessState) {
-                  // ============ Connecting user to socket.io server ============
-                  String currentUsername = state.userDetails.username!;
-                  log('Current User After SignIn $currentUsername');
-                  SocketServices().connectSocket(currentUsername, context);
-                }
-              },
-              builder: (context, state) {
-                if (state is ProfileFetchingLoadingState) {
-                  // return const ProfilePageLoading();
-                }
-
-                if (state is ProfileFetchingSucessState) {
-                  return Column(
-                    children: [
-                      const SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Expanded(
-                            child: Center(
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 60),
-                                child: Text(
-                                  'My Profile',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
+        child: ColorfulSafeArea(
+          color: Colors.white,
+          child: Scaffold(
+            body: RefreshIndicator(
+              onRefresh: _handleRefresh,
+              child: BlocConsumer<ProfileBloc, ProfileState>(
+                listener: (context, state) {
+                  if (state is ProfileFetchingSucessState) {
+                    // ============ Connecting user to socket.io server ============
+                    String currentUsername = state.userDetails.username!;
+                    log('Current User After SignIn $currentUsername');
+                    SocketServices().connectSocket(currentUsername, context);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is ProfileFetchingSucessState) {
+                    return Column(
+                      children: [
+                        const SizedBox(height: 15),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Expanded(
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 60),
+                                  child: Text(
+                                    'My Profile',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          PopupMenuButton<String>(onSelected: (String value) {
-                            if (value == 'Log Out') {
-                              showLogoutDialog();
-                            }
-                          }, itemBuilder: (BuildContext context) {
-                            return [
-                              const PopupMenuItem<String>(
-                                  value: 'Log Out', child: Text('Log Out'))
-                            ];
-                          })
-                        ],
-                      ),
-                      Expanded(
-                        child: ListView(
-                          physics: const AlwaysScrollableScrollPhysics(),
-                          children: [
-                            ProfileDetailWidget(
-                              userModel: state.userDetails,
-                              isCurrentUser: false,
-                            ),
-                            CustomTabBarWidget(tabController: tabController),
-                            const SizedBox(height: 15),
-                            CustomTabviewWidget(
-                              tabController: tabController,
-                            ),
+                            PopupMenuButton<String>(onSelected: (String value) {
+                              if (value == 'Log Out') {
+                                showLogoutDialog();
+                              }
+                            }, itemBuilder: (BuildContext context) {
+                              return [
+                                const PopupMenuItem<String>(
+                                    value: 'Settings', child: Text('Settings')),
+                                const PopupMenuItem<String>(
+                                    value: 'About Us', child: Text('About Us')),
+                                const PopupMenuItem<String>(
+                                    value: 'Log Out', child: Text('Log Out'))
+                              ];
+                            })
                           ],
                         ),
-                      ),
-                    ],
-                  );
-                }
+                        Expanded(
+                          child: ListView(
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            children: [
+                              ProfileDetailWidget(
+                                userModel: state.userDetails,
+                                isCurrentUser: false,
+                              ),
+                              CustomTabBarWidget(tabController: tabController),
+                              const SizedBox(height: 15),
+                              CustomTabviewWidget(
+                                tabController: tabController,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  }
 
-                return Container();
-              },
+                  return Container();
+                },
+              ),
             ),
           ),
         ),

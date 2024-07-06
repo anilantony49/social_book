@@ -10,4 +10,6 @@ class ApiEndPoints {
   static String allPosts = "/posts";
   static String createPost = "/createpost";
   static String removePost = "/post/";
+  static String forgetSendOtp = "/forget-send-otp";
+  static String resetPassword = "/forget-password";
 }

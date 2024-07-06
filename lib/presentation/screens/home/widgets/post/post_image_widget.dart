@@ -14,6 +14,7 @@ class PostImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
+      // width: double.infinity,
       child: PageView.builder(
           itemCount: postModel.mediaURL!.length,
           itemBuilder: (context, index) {
@@ -48,18 +49,22 @@ class PostImageWidget extends StatelessWidget {
                     right: 10,
                     top: 10,
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(5),
+                      width: 36,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 63, 56, 56),
+                        shape: BoxShape.circle,
                       ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 6,
                         vertical: 3,
                       ),
-                      child: Text(
-                        '${index + 1} / ${postModel.mediaURL!.length}',
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 11),
+                      child: Center(
+                        child: Text(
+                          '${index + 1} / ${postModel.mediaURL!.length}',
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 11),
+                        ),
                       ),
                     ),
                   )

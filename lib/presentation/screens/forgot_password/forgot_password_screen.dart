@@ -13,8 +13,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   Widget build(BuildContext context) {
     return const Scaffold(
       backgroundColor: Colors.white,
-      body:   ForgetFieldWidget(),
-    
+      body: ForgetFieldWidget(),
     );
   }
 }

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:social_book/presentation/screens/forgot_password/widget/reset_field_widget.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/signin_navigate_widget.dart';
 
-class ReserPasswordScreen extends StatefulWidget {
-  const ReserPasswordScreen({super.key, required this.emailController});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key, required this.emailController});
   final TextEditingController emailController;
 
   @override
-  State<ReserPasswordScreen> createState() => _ReserPasswordScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ReserPasswordScreenState extends State<ReserPasswordScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaHeight = MediaQuery.of(context).size.height;
