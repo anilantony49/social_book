@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/presentation/bloc/comment/comment_bloc.dart';
 import 'package:social_book/presentation/bloc/like_unlike/like_unlike_bloc.dart';
+import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 import 'package:social_book/presentation/widgets/custom_icon_button.dart';
 
 class PostActionButtons extends StatefulWidget {
@@ -59,10 +62,10 @@ class _PostActionButtonsState extends State<PostActionButtons> {
           title: '${widget.postModel.likes!.length} likes',
           color: widget.postModel.likes!.contains(widget.userModel.id)
               ? Colors.red
-              : Colors.blue,
+              : Colors.black,
           icon: widget.postModel.likes!.contains(widget.userModel.id)
-              ? Icons.favorite_border
-              : Icons.favorite,
+              ? Icons.favorite
+              : Icons.favorite_border,
           onTap: () {
             if (widget.postModel.likes!.contains(widget.userModel.id)) {
               widget.postModel.likes!.remove(widget.userModel.id.toString());
@@ -86,18 +89,18 @@ class _PostActionButtonsState extends State<PostActionButtons> {
   Widget commentButton(BuildContext context) {
     return BlocBuilder<CommentBloc, CommentState>(
       builder: (context, state) {
-        return CustomIconBtn(
+        return CustomIconButton(
           title: '${widget.postModel.comments!.length} comments',
-          icon: Ktweel.comment,
+          icon: Icons.comment,
           onTap: () {
             debugPrint('Comment pressed');
             nextScreen(
               context,
-              PostDetailPage(
+              PostDetailsScreen(
                 postModel: widget.postModel,
                 userModel: widget.userModel,
               ),
-            ).then((value) => mySystemTheme(context));
+            );
           },
         );
       },

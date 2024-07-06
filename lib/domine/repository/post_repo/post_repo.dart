@@ -142,4 +142,63 @@ class PostRepo {
       return '';
     }
   }
+
+    static Future<CommentModel?> addComment(String comment, String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String addCommentUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.addComment}";
+    var data = {
+      "postId": postId,
+      "comment": comment,
+    };
+    try {
+      var response = await dio.post(
+        addCommentUrl,
+        data: data,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Add Comment Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        var jsonResponse = response.data['data'];
+        CommentModel commentModel = CommentModel.fromJson(jsonResponse);
+        return commentModel;
+      }
+      return null;
+    } catch (e) {
+      debugPrint('Add Comment Error: $e');
+      return null;
+    }
+  }
+
+    static Future<String> deleteComment(String commentId, String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String deleteCommentUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.deleteComment}";
+    var data = {
+      "postId": postId,
+      "commentId": commentId,
+    };
+    try {
+      var response = await dio.post(
+        deleteCommentUrl,
+        data: data,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Delete Comment Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Delete Comment Status: $e');
+      return '';
+    }
+  }
 }

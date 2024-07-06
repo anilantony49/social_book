@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/main_screen.dart';
+import 'package:social_book/presentation/bloc/comment/comment_bloc.dart';
 import 'package:social_book/presentation/bloc/forget_password/forget_password_bloc.dart';
+import 'package:social_book/presentation/bloc/like_unlike/like_unlike_bloc.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
@@ -54,6 +56,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => PostImageIndexCubit()),
         BlocProvider(create: (context) => PostBloc()),
         BlocProvider(create: (context) => PostLogicsBloc()),
+        BlocProvider(create: (context) => LikeUnlikeBloc()),
+        BlocProvider(create: (context) => CommentBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -15,4 +15,9 @@ class ApiEndPoints {
 
   static String likePost = "/post/like/";
   static String unlikePost = "/post/unlike/";
+
+  static String addComment = "/post/comment/add";
+  static String deleteComment = "/post/comment/delete";
+
+  static String user = '/user/';
 }

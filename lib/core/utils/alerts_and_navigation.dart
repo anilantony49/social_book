@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:social_book/core/utils/app_colors.dart';
@@ -45,6 +47,26 @@ void customSnackbar(
         ],
       )));
 }
+
+customToast(BuildContext context) {
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(30),
+      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.2),
+    ),
+    clipBehavior: Clip.antiAlias,
+    child: BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      child: const Text(
+        "Sorry, this feature is currently \nunder development",
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+      ),
+    ),
+  );
+}
+
 
 class CustomAlertDialog extends StatelessWidget {
   final String? title;
