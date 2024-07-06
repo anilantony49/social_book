@@ -4,8 +4,8 @@ import 'package:social_book/core/utils/api_endpoints.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 
-class PostRepo{
-    static Future<List<PostModel>> fetchAllPosts() async {
+class PostRepo {
+  static Future<List<PostModel>> fetchAllPosts() async {
     final dio = Dio();
     String token = await UserToken.getToken();
     String postListUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.allPosts}";
@@ -38,7 +38,7 @@ class PostRepo{
     }
   }
 
-    static Future<String> createPost(
+  static Future<String> createPost(
       String location, String description, List<String> imageUrlList) async {
     final dio = Dio();
     String token = await UserToken.getToken();
@@ -71,7 +71,7 @@ class PostRepo{
     }
   }
 
-    static Future<String> removePost(String postId) async {
+  static Future<String> removePost(String postId) async {
     final dio = Dio();
     String token = await UserToken.getToken();
     String removePostUrl =
@@ -91,6 +91,54 @@ class PostRepo{
       return '';
     } catch (e) {
       debugPrint('Remove Post Error: $e');
+      return '';
+    }
+  }
+
+  static Future<String> likePost(String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String likePostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.likePost}$postId";
+    try {
+      var response = await dio.patch(
+        likePostUrl,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Like Post Status: ${response.statusCode}');
+      if (response.statusCode == 201) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Like Post Error: $e');
+      return '';
+    }
+  }
+
+  static Future<String> unlikePost(String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String likePostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.unlikePost}$postId";
+    try {
+      var response = await dio.patch(
+        likePostUrl,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Unlike Post Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Unlike Post Error: $e');
       return '';
     }
   }

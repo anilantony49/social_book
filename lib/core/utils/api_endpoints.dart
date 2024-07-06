@@ -12,4 +12,7 @@ class ApiEndPoints {
   static String removePost = "/post/";
   static String forgetSendOtp = "/forget-send-otp";
   static String resetPassword = "/forget-password";
+
+  static String likePost = "/post/like/";
+  static String unlikePost = "/post/unlike/";
 }

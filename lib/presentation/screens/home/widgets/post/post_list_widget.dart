@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/post_action_button_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';
 import 'package:social_book/presentation/widgets/description_widget.dart';
@@ -51,38 +52,12 @@ class PostListWidget extends StatelessWidget {
             postModel: postModel,
             height: MediaQuery.of(context).size.height / 2.2,
           ),
-          kHeight(25),
-
-          const Padding(
-            padding: EdgeInsets.only(left: 8),
-            child: Row(
-              children: [
-                Column(
-                  children: [Icon(Icons.favorite_outline), Text('100 Likes')],
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.comment_outlined),
-                    Text('100 Comments')
-                  ],
-                ),
-                SizedBox(
-                  width: 90,
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.bookmark_border),
-                    SizedBox(
-                      height: 20,
-                    )
-                  ],
-                )
-              ],
-            ),
+          kHeight(15),
+          PostActionButtons(
+            postModel: postModel,
+            userModel: userModel,
           ),
+
           kHeight(10),
           Padding(
             padding: const EdgeInsets.only(left: 8),
