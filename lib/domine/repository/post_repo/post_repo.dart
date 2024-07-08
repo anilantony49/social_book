@@ -71,6 +71,37 @@ class PostRepo {
     }
   }
 
+    static Future<String> editPost(PostModel post) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String editPostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.editPost}${post.id}";
+    try {
+      var data = {
+        "description": post.description,
+        'image': post.mediaURL,
+        "location": post.location,
+      };
+      var response = await dio.patch(editPostUrl,
+          data: data,
+          options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+          ));
+      debugPrint('Edit Post Status: ${response.statusCode}');
+
+      if (response.statusCode == 201) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Edit Post Error: $e');
+      return '';
+    }
+  }
+
   static Future<String> removePost(String postId) async {
     final dio = Dio();
     String token = await UserToken.getToken();

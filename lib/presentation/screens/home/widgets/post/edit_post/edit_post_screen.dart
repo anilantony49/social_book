@@ -5,7 +5,9 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
+import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/screens/post/create_post/widgets/image_listview.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
@@ -16,14 +18,14 @@ class EditPostScreen extends StatefulWidget {
   final String description;
   final List imageUrlList;
   final String postId;
-  final bool onDetail;
+  // final bool onDetail;
   const EditPostScreen({
     super.key,
     required this.location,
     required this.description,
     required this.imageUrlList,
     required this.postId,
-    required this.onDetail,
+    // required this.onDetail,
   });
 
   @override
@@ -50,10 +52,10 @@ class _EditPostScreenState extends State<EditPostScreen> {
       child: Scaffold(
         body: BlocListener<PostLogicsBloc, PostLogicsState>(
           listener: (context, state) {
-            if (state is CreatePostSuccessState) {
+            if (state is EditPostSuccessState) {
               customSnackbar(
                 context,
-                'New post uploaded successfully',
+                'post edit successfully',
               );
               context.read<PostBloc>().add(PostInitialFetchEvent());
               // context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
@@ -68,62 +70,63 @@ class _EditPostScreenState extends State<EditPostScreen> {
                   children: [
                     kHeight(15),
                     const Text(
-                      'Post',
+                      'Edit Post details',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.0),
-                            child: Text('Select Image(s)'))),
-                    kHeight(10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 280,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                border: Border.all(
-                                    style: BorderStyle.solid, width: 2)),
-                            child: ImageListview(
-                                selectedAssetList: selectedAssetList),
-                          ),
-                          IconButton(
-                              onPressed: () async {
-                                final result = await nextScreen(
-                                    context,
-                                    const MediaPicker(
-                                        maxCount: 10,
-                                        requestType: RequestType.common,
-                                        screenType: ScreenType.post));
-                                if (result != null &&
-                                    result is List<AssetEntity>) {
-                                  setState(() {
-                                    selectedAssetList = result;
-                                  });
-                                } else {
-                                  const Center(
-                                    child: Text('No images selected'),
-                                  );
-                                }
-                              },
-                              icon: const Icon(
-                                Icons.add_box_outlined,
-                                size: 40,
-                              )),
-                        ],
-                      ),
-                    ),
+                    // const Align(
+                    //     alignment: Alignment.centerLeft,
+                    //     child: Padding(
+                    //         padding: EdgeInsets.symmetric(horizontal: 25.0),
+                    //         child: Text('Select Image(s)'))),
+                    // kHeight(10),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 25),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //     children: [
+                    //       Container(
+                    //         width: 280,
+                    //         decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(5),
+                    //             border: Border.all(
+                    //                 style: BorderStyle.solid, width: 2)),
+                    //         child: ImageListview(
+                    //             selectedAssetList: selectedAssetList),
+                    //       ),
+                    //       IconButton(
+                    //           onPressed: () async {
+                    //             final result = await nextScreen(
+                    //                 context,
+                    //                 const MediaPicker(
+                    //                     maxCount: 10,
+                    //                     requestType: RequestType.common,
+                    //                     screenType: ScreenType.post));
+                    //             if (result != null &&
+                    //                 result is List<AssetEntity>) {
+                    //               setState(() {
+                    //                 selectedAssetList = result;
+                    //               });
+                    //             } else {
+                    //               const Center(
+                    //                 child: Text('No images selected'),
+                    //               );
+                    //             }
+                    //           },
+                    //           icon: const Icon(
+                    //             Icons.add_box_outlined,
+                    //             size: 40,
+                    //           )),
+                    //     ],
+                    //   ),
+                    // ),
                     kHeight(10),
                     const Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 25.0),
                             child: Text('Add Location'))),
+                    kHeight(10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
@@ -192,7 +195,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
                       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                       child: BlocBuilder<PostLogicsBloc, PostLogicsState>(
                         builder: (context, state) {
-                          if (state is CreatePostLoadingState) {
+                          if (state is EditPostLoadingState) {
                             return Container(
                               height: 15,
                               width: 15,
@@ -204,16 +207,21 @@ class _EditPostScreenState extends State<EditPostScreen> {
                             );
                           }
                           return CustomButton(
-                            buttonText: 'Upload',
+                            buttonText: 'Save Changes',
                             onPressed: () {
                               if (formKey.currentState!.validate()) {
-                                context
-                                    .read<PostLogicsBloc>()
-                                    .add(CreatePostEvent(
-                                      location: locationController.text,
-                                      description: descriptionController.text,
-                                      selectedAssets: selectedAssetList,
-                                    ));
+                                context.read<PostEditBloc>().add(
+                                      EditPostEvent(
+                                        postModel: PostModel(
+                                          id: widget.postId,
+                                          description:
+                                              descriptionController.text,
+                                          location: locationController.text,
+                                          mediaURL: widget.imageUrlList,
+                                        ),
+                                      ),
+                                    );
+
                                 locationController.clear();
                                 descriptionController.clear();
                               }

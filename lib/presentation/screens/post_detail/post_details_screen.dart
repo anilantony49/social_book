@@ -30,7 +30,7 @@ class PostDetailsScreen extends StatelessWidget {
             preferredSize: const Size.fromHeight(56),
             child: CustomAppbar(
               backgroundColor: Colors.white,
-              title: 'Post',
+              title: 'Comments',
               onPressed: () {
                 Navigator.of(context).pop(true);
               },
@@ -45,34 +45,34 @@ class PostDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(20, 5, 20, 0),
                 children: [
                   // ============= Posted User Detial =============
-                  PostUserWidget(
-                    postModel: postModel,
-                    userModel: userModel,
-                  ),
-                  kHeight(20),
+                  // PostUserWidget(
+                  //   postModel: postModel,
+                  //   userModel: userModel,
+                  // ),
+                  // kHeight(20),
 
                   // ============= Post Description =============
-                  Text(
-                    postModel.description,
-                    textAlign: TextAlign.start,
-                    style: const TextStyle(fontSize: 13),
-                  ),
-                  kHeight(10),
+                  // Text(
+                  //   postModel.description,
+                  //   textAlign: TextAlign.start,
+                  //   style: const TextStyle(fontSize: 13),
+                  // ),
+                  // kHeight(10),
 
                   // ============= Post Image Widget =============
 
-                  PostImageWidget(
-                    postModel: postModel,
-                    height: size.height * 0.5,
-                    // onDetail: true,
-                  ),
-                  kHeight(5),
+                  // PostImageWidget(
+                  //   postModel: postModel,
+                  //   height: size.height * 0.5,
+                  //   // onDetail: true,
+                  // ),
+                  // kHeight(5),
 
                   // ============= Post Action Buttons =============
-                  PostActionButtons(
-                    postModel: postModel,
-                    userModel: userModel!,
-                  ),
+                  // PostActionButtons(
+                  //   postModel: postModel,
+                  //   userModel: userModel!,
+                  // ),
 
                   // ============= Comments View Section =============
                   CommentsSectionWidget(postModel: postModel),

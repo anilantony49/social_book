@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_action_button_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';
+import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 import 'package:social_book/presentation/widgets/description_widget.dart';
 
 class PostListWidget extends StatelessWidget {
@@ -62,30 +64,30 @@ class PostListWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8),
             child: RichText(
-              text: const TextSpan(
-                style: TextStyle(
+              text: TextSpan(
+                style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black,
                   fontWeight: FontWeight.normal,
                 ),
                 children: <TextSpan>[
-                  TextSpan(
+                  const TextSpan(
                     text: 'Liked by ',
                     style: TextStyle(fontWeight: FontWeight.normal),
                   ),
                   TextSpan(
-                    text: 'Anil',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    text: '${userModel.username}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: ' and ',
                     style: TextStyle(fontWeight: FontWeight.normal),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: '100',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  TextSpan(
+                  const TextSpan(
                     text: ' Others',
                     style: TextStyle(fontWeight: FontWeight.normal),
                   ),
@@ -94,9 +96,21 @@ class PostListWidget extends StatelessWidget {
             ),
           ),
           kHeight(10),
-          const Padding(
-            padding: EdgeInsets.only(left: 8),
-            child: Text('View all 57 commenets'),
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: GestureDetector(
+                onTap: () {
+                  debugPrint('Comment pressed');
+                  nextScreen(
+                    context,
+                    PostDetailsScreen(
+                      postModel: postModel,
+                      userModel: userModel,
+                    ),
+                  );
+                },
+                child:
+                    Text('View all ${postModel.comments!.length} commenets')),
           )
         ],
       ),

@@ -55,4 +55,6 @@ class AppIcons {
       IconData(0xe858, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData arrow_left =
       IconData(0xe80b, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData danger =
+      IconData(0xe81f, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
@@ -6,6 +7,7 @@ import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/edit_post/edit_post_screen.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/edit_post_widget.dart';
 
 class PostMoreBottomSheet extends StatefulWidget {
@@ -42,7 +44,7 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
           (widget.postModel.user!.id ?? widget.postId) == widget.userId
               ? Column(
                   children: [
-                    editPostWidget(context),
+                    editPostWidget(),
                     removePostWidget(context),
                   ],
                 )
@@ -51,9 +53,7 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
           // =========== else ===========
           (widget.postModel.user!.id ?? widget.postId) != widget.userId
               ? Column(
-                  children: [
-                    // reportPostWidget(), viewAccountWidget()
-                    ],
+                  children: [reportPostWidget(), viewAccountWidget()],
                 )
               : const SizedBox(),
         ],
@@ -61,7 +61,43 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
     );
   }
 
-    Widget removePostWidget(BuildContext context) {
+  // =========== View Account ===========
+
+  Widget viewAccountWidget() {
+    return ListTile(
+      leading: const Icon(AppIcons.user, size: 22),
+      title: const Text('View account'),
+      onTap: () {
+        debugPrint('Go to profile');
+        // nextScreen(
+        //     context,
+        //     UserProfileScreen(
+        //       userId: widget.postModel.user!.id!,
+        //       isCurrentUser: false,
+        //     ));
+      },
+    );
+  }
+
+  // =========== Report Post ===========
+
+  Widget reportPostWidget() {
+    return ListTile(
+      leading: const Icon(
+        AppIcons.danger,
+        size: 22,
+      ),
+      title: const Text('Report'),
+      onTap: () {
+        //  nextScreen(
+        //   context,
+        //   ReportPage(postId: widget.postModel.id!),
+        // );
+      },
+    );
+  }
+
+  Widget removePostWidget(BuildContext context) {
     return BlocListener<PostLogicsBloc, PostLogicsState>(
       listener: (context, state) {
         if (state is RemovePostSuccessState) {
@@ -121,6 +157,27 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
           // });
         },
       ),
+    );
+  }
+
+  // =========== Edit Post Button ===========
+
+  Widget editPostWidget() {
+    return ListTile(
+      leading: const Icon(AppIcons.edit),
+      title: const Text('Edit post'),
+      onTap: () {
+        nextScreen(
+          context,
+          EditPostScreen(
+            description: widget.postModel.description,
+            location: widget.postModel.location,
+            imageUrlList: widget.postModel.mediaURL!,
+            postId: widget.postModel.id!,
+            // onDetail: widget.onDetail,
+          ),
+        );
+      },
     );
   }
 }
