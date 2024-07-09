@@ -8,7 +8,6 @@ import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/edit_post/edit_post_screen.dart';
-import 'package:social_book/presentation/screens/home/widgets/post/edit_post_widget.dart';
 
 class PostMoreBottomSheet extends StatefulWidget {
   final PostModel postModel;

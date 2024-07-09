@@ -9,6 +9,8 @@ import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
+import 'package:social_book/presentation/screens/home/home_screen.dart';
+import 'package:social_book/presentation/screens/home/widgets/post/edit_post/widgets/edit_post_widget.dart';
 import 'package:social_book/presentation/screens/post/create_post/widgets/image_listview.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/media_picker_page.dart';
@@ -35,7 +37,6 @@ class EditPostScreen extends StatefulWidget {
 class _EditPostScreenState extends State<EditPostScreen> {
   final locationController = TextEditingController();
   final descriptionController = TextEditingController();
-  List<AssetEntity> selectedAssetList = [];
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -74,52 +75,47 @@ class _EditPostScreenState extends State<EditPostScreen> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    // const Align(
-                    //     alignment: Alignment.centerLeft,
-                    //     child: Padding(
-                    //         padding: EdgeInsets.symmetric(horizontal: 25.0),
-                    //         child: Text('Select Image(s)'))),
-                    // kHeight(10),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(horizontal: 25),
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //     children: [
-                    //       Container(
-                    //         width: 280,
-                    //         decoration: BoxDecoration(
-                    //             borderRadius: BorderRadius.circular(5),
-                    //             border: Border.all(
-                    //                 style: BorderStyle.solid, width: 2)),
-                    //         child: ImageListview(
-                    //             selectedAssetList: selectedAssetList),
-                    //       ),
-                    //       IconButton(
-                    //           onPressed: () async {
-                    //             final result = await nextScreen(
-                    //                 context,
-                    //                 const MediaPicker(
-                    //                     maxCount: 10,
-                    //                     requestType: RequestType.common,
-                    //                     screenType: ScreenType.post));
-                    //             if (result != null &&
-                    //                 result is List<AssetEntity>) {
-                    //               setState(() {
-                    //                 selectedAssetList = result;
-                    //               });
-                    //             } else {
-                    //               const Center(
-                    //                 child: Text('No images selected'),
-                    //               );
-                    //             }
-                    //           },
-                    //           icon: const Icon(
-                    //             Icons.add_box_outlined,
-                    //             size: 40,
-                    //           )),
-                    //     ],
-                    //   ),
-                    // ),
+                    const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 25.0),
+                            child: Text('Select Image(s)'))),
+                    kHeight(10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                              width: 280,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  border: Border.all(
+                                      style: BorderStyle.solid, width: 2)),
+                              child: EditImageListview(
+                                  imageUrlList: widget.imageUrlList)),
+                          // IconButton(
+                          //     onPressed: () async {
+                          //       final result = await nextScreen(
+                          //           context,
+                          //           const MediaPicker(
+                          //               maxCount: 10,
+                          //               requestType: RequestType.common,
+                          //               screenType: ScreenType.post));
+                          //       if (result != null &&
+                          //           result is List<AssetEntity>) {
+                          //         setState(() {
+                          //           selectedAssetList = result;
+                          //         });
+                          //       }
+                          //     },
+                          //     icon: const Icon(
+                          //       Icons.add_box_outlined,
+                          //       size: 40,
+                          //     )),
+                        ],
+                      ),
+                    ),
                     kHeight(10),
                     const Align(
                         alignment: Alignment.centerLeft,
@@ -193,7 +189,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
                     kHeight(20),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
-                      child: BlocBuilder<PostLogicsBloc, PostLogicsState>(
+                      child: BlocBuilder<PostEditBloc, PostEditState>(
                         builder: (context, state) {
                           if (state is EditPostLoadingState) {
                             return Container(
@@ -225,6 +221,7 @@ class _EditPostScreenState extends State<EditPostScreen> {
                                 locationController.clear();
                                 descriptionController.clear();
                               }
+                              // nextScreenRemoveUntil(context, HomeScreen());
                             },
                           );
                         },
