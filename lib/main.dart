@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/bloc/comment/comment_bloc.dart';
+import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
 import 'package:social_book/presentation/bloc/forget_password/forget_password_bloc.dart';
 import 'package:social_book/presentation/bloc/like_unlike/like_unlike_bloc.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
@@ -14,6 +15,8 @@ import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
+import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
@@ -60,6 +63,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => PostLogicsBloc()),
         BlocProvider(create: (context) => LikeUnlikeBloc()),
         BlocProvider(create: (context) => CommentBloc()),
+        BlocProvider(create: (context) => UserBloc()),
+        BlocProvider(create: (context) => UserByIdBloc()),
+        BlocProvider(create: (context) => FollowUnfollowUserBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

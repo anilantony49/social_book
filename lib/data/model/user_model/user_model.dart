@@ -10,6 +10,9 @@ class UserModel {
   final String? bio;
   final String? profilePicture;
   final String? createdAt;
+  final bool? isBlocked;
+  final List? followers;
+  final List? following;
 
   UserModel({
     this.id,
@@ -23,6 +26,9 @@ class UserModel {
     this.bio,
     this.profilePicture,
     this.createdAt,
+    this.isBlocked,
+    this.followers,
+    this.following,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -37,6 +43,9 @@ class UserModel {
         fullName: json['fullname'],
         otp: json['otp'],
         createdAt: json['createdAt'],
+        isBlocked: json['isBlocked'],
+        followers: json['followers'],
+        following: json['following'],
       );
 
   Map<String, dynamic> toJson() => {
@@ -51,5 +60,8 @@ class UserModel {
         "fullname": fullName,
         "otp": otp,
         "createdAt": createdAt,
+        "isBlocked": isBlocked,
+        "followers": followers,
+        "following": following,
       };
 }

@@ -20,5 +20,9 @@ class ApiEndPoints {
   static String addComment = "/post/comment/add";
   static String deleteComment = "/post/comment/delete";
 
+  static String allUsers = '/users';
   static String user = '/user/';
+
+  static String followUser = "/follow/";
+  static String unfollowUser = "/unfollow/";
 }

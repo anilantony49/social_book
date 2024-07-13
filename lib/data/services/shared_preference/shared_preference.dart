@@ -14,6 +14,12 @@ class UserToken {
 }
 
 class CurrentUserId {
+  static Future<String> getUserId() async {
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String? bearer = preferences.getString('USERID');
+    return bearer!;
+  }
+
   static saveUserId(String userId) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('USERID', userId);

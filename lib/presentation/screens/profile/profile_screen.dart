@@ -110,7 +110,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                             const Expanded(
                               child: Center(
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 60),
+                                  padding: EdgeInsets.only(left:  60),
                                   child: Text(
                                     'My Profile',
                                     style: TextStyle(

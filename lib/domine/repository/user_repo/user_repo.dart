@@ -5,8 +5,43 @@ import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 
-class UserRepo{
-    static Future<UserDetailsModel?> fetchUserDetailsById(String userId) async {
+class UserRepo {
+  static Future<List<UserModel>> fetchUserDetails() async {
+    Dio dio = Dio();
+    String token = await UserToken.getToken();
+    String userId = await CurrentUserId.getUserId();
+    String userListUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.allUsers}";
+    List<UserModel> users = [];
+    try {
+      var response = await dio.get(
+        userListUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      debugPrint('Fetch User Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = response.data;
+        List userList = responseData['user'];
+        for (int i = 0; i < userList.length; i++) {
+          UserModel user = UserModel.fromJson(userList[i]);
+          if (user.id != userId && !user.isBlocked!) {
+            users.add(user);
+          }
+        }
+        return users;
+      }
+      return [];
+    } catch (e) {
+      debugPrint('Fetch User Error: ${e.toString()}');
+      return [];
+    }
+  }
+
+  static Future<UserDetailsModel?> fetchUserDetailsById(String userId) async {
     Dio dio = Dio();
     String token = await UserToken.getToken();
     String userDetailUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.user}$userId";
@@ -40,6 +75,76 @@ class UserRepo{
       return null;
     }
   }
+
+  static Future<FollowUnfollowModel> followUser(String userId) async {
+    Dio dio = Dio();
+    String token = await UserToken.getToken();
+    String followUserUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.followUser}$userId";
+    try {
+      var response = await dio.patch(
+        followUserUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      debugPrint('Follow User Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        var jsonResponse = response.data;
+        List followersIdList = jsonResponse['newUser']['followers'];
+        List followingIdList = jsonResponse['newUser']['following'];
+        return FollowUnfollowModel(
+          message: 'success',
+          followers: [...followersIdList],
+          following: [...followingIdList],
+        );
+      }
+      return FollowUnfollowModel(
+          message: 'failure', followers: [], following: []);
+    } catch (e) {
+      debugPrint('Follow User Error: $e');
+      return FollowUnfollowModel(
+          message: 'failure', followers: [], following: []);
+    }
+  }
+
+  static Future<FollowUnfollowModel> unfollowUser(String userId) async {
+    Dio dio = Dio();
+    String token = await UserToken.getToken();
+    String followUserUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.unfollowUser}$userId";
+    try {
+      var response = await dio.patch(
+        followUserUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      debugPrint('Unfollow User Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        var jsonResponse = response.data;
+        List followersIdList = jsonResponse['newUser']['followers'];
+        List followingIdList = jsonResponse['newUser']['following'];
+        return FollowUnfollowModel(
+          message: 'success',
+          followers: [...followersIdList],
+          following: [...followingIdList],
+        );
+      }
+      return FollowUnfollowModel(
+          message: 'failure', followers: [], following: []);
+    } catch (e) {
+      debugPrint('Unfollow User Status: $e');
+      return FollowUnfollowModel(
+          message: 'failure', followers: [], following: []);
+    }
+  }
 }
 
 class UserDetailsModel {
@@ -49,5 +154,17 @@ class UserDetailsModel {
   UserDetailsModel({
     required this.user,
     required this.posts,
+  });
+}
+
+class FollowUnfollowModel {
+  final String message;
+  final List<String> followers;
+  final List<String> following;
+
+  FollowUnfollowModel({
+    required this.message,
+    required this.followers,
+    required this.following,
   });
 }
