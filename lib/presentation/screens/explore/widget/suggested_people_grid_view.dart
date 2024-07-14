@@ -7,6 +7,7 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
+import 'package:social_book/presentation/screens/explore/widget/loading_flw_btn.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_circle_widget.dart';
 import 'package:social_book/presentation/screens/user/widgets/follow_button_widget.dart';
 import 'package:social_book/presentation/widgets/fadein_animate.dart';
@@ -79,7 +80,7 @@ class SuggestedPeopleGridView extends StatelessWidget {
                   ),
                 ),
                 kHeight(10),
-                // _followBtn(index)
+                _followBtn(index)
               ],
             ),
           ),
@@ -112,7 +113,7 @@ class SuggestedPeopleGridView extends StatelessWidget {
             ),
           );
         }
-        return Container();
+        return LoadingFollowBtn();
       },
     );
   }

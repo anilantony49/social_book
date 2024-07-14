@@ -8,11 +8,13 @@ class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
     super.key,
     required this.searchController,
+    required this.onChanged,
     this.hintText,
     required this.heading,
   });
 
   final TextEditingController searchController;
+  final void Function(String)? onChanged;
 
   final String? hintText;
   final String heading;
@@ -30,7 +32,7 @@ class CustomSearchField extends StatelessWidget {
         kHeight(10),
         CupertinoSearchTextField(
           controller: searchController,
-          // onChanged: onChanged,
+          onChanged: onChanged,
           padding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
           backgroundColor: const Color.fromARGB(255, 220, 215, 215),
           prefixInsets: const EdgeInsetsDirectional.only(start: 10),

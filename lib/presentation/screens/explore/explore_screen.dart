@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hidable/hidable.dart';
+import 'package:social_book/data/services/search_debouncer/debouncer.dart';
 import 'package:social_book/presentation/screens/explore/widget/custom_search_field.dart';
 import 'package:social_book/presentation/screens/explore/widget/explore_post.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people.dart';
@@ -14,6 +15,9 @@ class ExploreScreen extends StatefulWidget {
 class _ExploreScreenState extends State<ExploreScreen> {
   final scrollController = ScrollController();
   final TextEditingController searchController = TextEditingController();
+  final Debouncer debouncer =
+      Debouncer(delay: const Duration(milliseconds: 300));
+  bool isSearchResult = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +30,10 @@ class _ExploreScreenState extends State<ExploreScreen> {
           child: CustomSearchField(
             heading: 'Explore',
             searchController: searchController,
+            
           ),
         ),
+        
       ),
       body: ListView(
         children: const [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton({
@@ -20,16 +21,16 @@ class CustomOutlinedButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor: AppColors.customBtnColor,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: const EdgeInsets.symmetric(horizontal: 10),
       ),
       onPressed: onPressed,
       child: Text(
         btnText,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w400,
-          color: theme.textTheme.labelLarge!.color,
+          color: Colors.white,
           fontSize: 10,
         ),
       ),

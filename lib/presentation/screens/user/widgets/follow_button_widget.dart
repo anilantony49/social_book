@@ -23,10 +23,25 @@ class _FollowButtonState extends State<FollowButton> {
   Set followersIds = {};
   Set followingIds = {};
   @override
+  void initState() {
+    followersIds = widget.userModel!.followers!
+        .map((user) => user is Map<String, dynamic>
+            ? user['_id'].toString()
+            : user.toString())
+        .toSet();
+    followingIds = widget.userModel!.following!
+        .map((user) => user is Map<String, dynamic>
+            ? user['_id'].toString()
+            : user.toString())
+        .toSet();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiBlocBuilder(
         blocs: [
-          // context.watch<FollowUnfollowUserBloc>(),
+          context.watch<FollowUnfollowUserBloc>(),
           context.watch<ProfileBloc>()
         ],
         builder: (context, state) {

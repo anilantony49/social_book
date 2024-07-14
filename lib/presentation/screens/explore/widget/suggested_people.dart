@@ -20,11 +20,13 @@ class SuggestedPeople extends StatelessWidget {
           context.read<UserBloc>().add(FetchAllUserEvent());
         }
 
-        // if (state is UserDetailFetchingLoadingState) {
-        //   return Column(
-        //     children: [suggestedHeading(), SuggestedPeopleLoading()],
-        //   );
-        // }
+        if (state is UserDetailFetchingLoadingState) {
+          return Column(
+            children: [suggestedHeading(context),
+            //  SuggestedPeopleLoading()
+             ],
+          );
+        }
         if (state is UserDetailFetchingSuccessState) {
           return Column(
             children: [

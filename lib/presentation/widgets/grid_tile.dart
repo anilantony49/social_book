@@ -6,17 +6,18 @@ class ImageTile extends StatelessWidget {
     super.key,
     required this.height,
     required this.image,
-    
+    required this.onTap,
   });
 
   final double height;
   final String image;
- 
+  final void Function() onTap;
+
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return GestureDetector(
-      // onTap: onTap,
+      onTap: onTap,
       child: Container(
         height: height,
         decoration: BoxDecoration(
@@ -26,7 +27,7 @@ class ImageTile extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(6),
           child: FadeInAnimate(
-            child: Image.asset(
+            child: Image.network(
               image,
               fit: BoxFit.cover,
             ),
