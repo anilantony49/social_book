@@ -39,6 +39,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 'New post uploaded successfully',
               );
               context.read<PostBloc>().add(PostInitialFetchEvent());
+              locationController.clear();
+              descriptionController.clear();
+              setState(() {
+                selectedAssetList.clear();
+              });
               // context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
             }
           },
@@ -197,11 +202,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                       description: descriptionController.text,
                                       selectedAssets: selectedAssetList,
                                     ));
-                                locationController.clear();
-                                descriptionController.clear();
-                                // setState(() {
-                                //   selectedAssetList.clear();
-                                // });
+                                // locationController.clear();
+                                // descriptionController.clear();
+                                // selectedAssetList.clear();
                               }
                             },
                           );
