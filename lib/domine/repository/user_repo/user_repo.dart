@@ -145,6 +145,46 @@ class UserRepo {
           message: 'failure', followers: [], following: []);
     }
   }
+
+    static Future<List<UserModel>> searchUsers(
+      String value, bool onMessage) async {
+    Dio dio = Dio();
+    String token = await UserToken.getToken();
+    String currentUserId = await CurrentUserId.getUserId();
+    String searchUserUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.userSearch}?query=$value";
+    List<UserModel> users = [];
+    try {
+      var response = await dio.get(
+        searchUserUrl,
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+      debugPrint('Search Users Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = response.data;
+        List userList = responseData['users'];
+        for (int i = 0; i < userList.length; i++) {
+          UserModel user = UserModel.fromJson(userList[i]);
+          if (!user.isBlocked!) {
+            users.add(user);
+          }
+          if (onMessage && user.id == currentUserId) {
+            users.remove(user);
+          }
+        }
+        return users;
+      }
+      return [];
+    } catch (e) {
+      debugPrint('Search Users Error: $e');
+      return [];
+    }
+  }
 }
 
 class UserDetailsModel {

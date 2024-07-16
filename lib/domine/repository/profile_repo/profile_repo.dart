@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/api_endpoints.dart';
+import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
@@ -11,6 +12,7 @@ class ProfileRepo {
     var client = http.Client();
     String token = await UserToken.getToken();
     String userDetailUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.profile}";
+    List<PostModel> posts = [];
     try {
       var response = await client.get(
         Uri.parse(userDetailUrl),
@@ -23,7 +25,7 @@ class ProfileRepo {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         UserModel user = UserModel.fromJson(responseData['user']);
-        return ProfileDetailsModel(user: user);
+        return ProfileDetailsModel(user: user, posts: posts);
       }
       return null;
     } catch (e) {
@@ -31,7 +33,8 @@ class ProfileRepo {
       return null;
     }
   }
-    static Future<String> updateUserDetails(UserModel initialUser,
+
+  static Future<String> updateUserDetails(UserModel initialUser,
       UserModel updatedUser, String updateProfilePicture) async {
     var client = http.Client();
     String token = await UserToken.getToken();
@@ -74,7 +77,7 @@ class ProfileRepo {
     }
   }
 
-    static Future<String> changeAccountType(String accountType) async {
+  static Future<String> changeAccountType(String accountType) async {
     var client = http.Client();
     String token = await UserToken.getToken();
     String updateDetailUrl =
@@ -102,10 +105,12 @@ class ProfileRepo {
   }
 }
 
-
-
 class ProfileDetailsModel {
   final UserModel user;
+  final List<PostModel> posts;
 
-  ProfileDetailsModel({required this.user});
+  ProfileDetailsModel({
+    required this.user,
+    required this.posts,
+  });
 }

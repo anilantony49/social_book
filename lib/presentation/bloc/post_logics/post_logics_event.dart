@@ -22,3 +22,19 @@ class RemovePostEvent extends PostLogicsEvent {
     required this.postId,
   });
 }
+
+class SavePostEvent extends PostLogicsEvent {
+  final String postId;
+
+  SavePostEvent({
+    required this.postId,
+  });
+}
+
+class UnsavePostEvent extends PostLogicsEvent {
+  final String postId;
+
+  UnsavePostEvent({
+    required this.postId,
+  });
+}

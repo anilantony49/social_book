@@ -57,4 +57,10 @@ class AppIcons {
       IconData(0xe80b, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData danger =
       IconData(0xe81f, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData add =
+      IconData(0xe801, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData bookmark =
+      IconData(0xe818, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData unbookmark =
+      IconData(0xe864, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

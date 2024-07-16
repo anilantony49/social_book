@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_action_button_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';
@@ -12,11 +14,13 @@ import 'package:social_book/presentation/widgets/description_widget.dart';
 class PostListWidget extends StatelessWidget {
   final PostModel postModel;
   final UserModel userModel;
+
   const PostListWidget(
       {super.key, required this.postModel, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
+    // List<PostModel> savedPostList = [];
     return Container(
       margin: const EdgeInsets.only(
         bottom: 20,
@@ -55,9 +59,22 @@ class PostListWidget extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 2.2,
           ),
           kHeight(15),
-          PostActionButtons(
-            postModel: postModel,
-            userModel: userModel,
+          BlocBuilder<SavedPostsBloc, SavedPostsState>(
+            builder: (context, state) {
+              if (state is FetchAllSavedPostSuccessState) {
+                List<PostModel> savedPostList = state.savedPosts;
+                return PostActionButtons(
+                  postModel: postModel,
+                  userModel: userModel,
+                  savedPostList: savedPostList,
+                );
+              }
+              List<PostModel> savedPostList = [];
+              return PostActionButtons(
+                  postModel: postModel,
+                  userModel: userModel,
+                  savedPostList: savedPostList);
+            },
           ),
 
           kHeight(10),

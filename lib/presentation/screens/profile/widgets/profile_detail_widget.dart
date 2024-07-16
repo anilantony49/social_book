@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
@@ -13,12 +14,14 @@ import 'package:social_book/presentation/screens/profile/widgets/profile_circle_
 import 'package:social_book/presentation/widgets/custom_button_profile.dart';
 
 class ProfileDetailWidget extends StatelessWidget {
+  final List<PostModel> postsList;
   final UserModel userModel;
   final bool isCurrentUser;
   const ProfileDetailWidget({
     super.key,
     required this.userModel,
     required this.isCurrentUser,
+    required this.postsList,
   });
 
   @override
@@ -57,17 +60,17 @@ class ProfileDetailWidget extends StatelessWidget {
             },
           ),
           kHeight(10),
-          const Row(
+           Row(
             children: [
               Expanded(
                 child: Column(
                   children: [
-                    Text('87', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text('Posts')
+                    Text("${postsList.length}", style: const TextStyle(fontWeight: FontWeight.bold)),
+                    const Text('Posts')
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 child: VerticalDivider(
                   color: Colors.black,
@@ -77,7 +80,7 @@ class ProfileDetailWidget extends StatelessWidget {
                   endIndent: 10,
                 ),
               ),
-              Expanded(
+               const Expanded(
                 child: Column(
                   children: [
                     Text('870', style: TextStyle(fontWeight: FontWeight.bold)),
@@ -85,7 +88,7 @@ class ProfileDetailWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
                 child: VerticalDivider(
                   color: Colors.black,
@@ -95,7 +98,7 @@ class ProfileDetailWidget extends StatelessWidget {
                   endIndent: 10,
                 ),
               ),
-              Expanded(
+              const Expanded(
                 child: Column(
                   children: [
                     Text(

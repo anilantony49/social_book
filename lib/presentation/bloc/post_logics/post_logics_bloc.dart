@@ -11,6 +11,8 @@ class PostLogicsBloc extends Bloc<PostLogicsEvent, PostLogicsState> {
   PostLogicsBloc() : super(PostLogicsInitial()) {
     on<CreatePostEvent>(_createPostEvent);
     on<RemovePostEvent>(_removePostEvent);
+    on<SavePostEvent>(_savePostEvent);
+    on<UnsavePostEvent>(_unsavePostEvent);
   }
   Future<void> _createPostEvent(
       CreatePostEvent event, Emitter<PostLogicsState> emit) async {
@@ -36,6 +38,22 @@ class PostLogicsBloc extends Bloc<PostLogicsEvent, PostLogicsState> {
       emit(RemovePostSuccessState());
     } else {
       emit(RemovePostErrorState());
+    }
+  }
+
+  Future<void> _savePostEvent(
+      SavePostEvent event, Emitter<PostLogicsState> emit) async {
+    String response = await PostRepo.savePost(event.postId);
+    if (response == 'success') {
+      emit(SavedPostSuccessState());
+    }
+  }
+
+  Future<void> _unsavePostEvent(
+      UnsavePostEvent event, Emitter<PostLogicsState> emit) async {
+    String response = await PostRepo.unsavePost(event.postId);
+    if (response == 'success') {
+      emit(UnsavePostSuccessState());
     }
   }
 }

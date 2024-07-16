@@ -15,12 +15,15 @@ import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
+import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
+import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
 import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_index.dart';
+import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
@@ -66,6 +69,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => UserBloc()),
         BlocProvider(create: (context) => UserByIdBloc()),
         BlocProvider(create: (context) => FollowUnfollowUserBloc()),
+        BlocProvider(create: (context) => SearchUserBloc()),
+        BlocProvider(create: (context) => SavedPostsBloc()),
+        BlocProvider(create: (context) => OnSearchCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

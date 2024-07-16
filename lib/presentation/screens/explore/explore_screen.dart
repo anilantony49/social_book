@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidable/hidable.dart';
+import 'package:multi_bloc_builder/builders/multi_bloc_builder.dart';
+import 'package:social_book/bottom_navigation.dart';
 import 'package:social_book/data/services/search_debouncer/debouncer.dart';
+import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
+import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/screens/explore/widget/custom_search_field.dart';
 import 'package:social_book/presentation/screens/explore/widget/explore_post.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people.dart';
+import 'package:social_book/presentation/screens/explore/widget/user_search_result_view.dart';
 
 class ExploreScreen extends StatefulWidget {
   const ExploreScreen({super.key});
@@ -30,16 +36,58 @@ class _ExploreScreenState extends State<ExploreScreen> {
           child: CustomSearchField(
             heading: 'Explore',
             searchController: searchController,
-            
+            onChanged: (value) {
+              if (value.isNotEmpty) {
+                debouncer.run(() {
+                  context
+                      .read<SearchUserBloc>()
+                      .add(SearchUserEvent(query: value));
+                });
+                context.read<OnSearchCubit>().onSearchChange(true);
+              } else {
+                context.read<OnSearchCubit>().onSearchChange(false);
+              }
+            },
           ),
         ),
-        
       ),
-      body: ListView(
-        children: const [
-          SuggestedPeople(),
-          ExplorePost(),
+      body: MultiBlocBuilder(
+        blocs: [
+          context.watch<OnSearchCubit>(),
+          context.watch<SearchUserBloc>()
         ],
+        builder: (context, state) {
+          var state1 = state[0];
+          var state2 = state[1];
+
+          if (state1 == false) {
+            return ListView(
+              controller: explorePageController,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              children: const [
+                SuggestedPeople(),
+                ExplorePost(),
+              ],
+            );
+          } else {
+            if (state2 is SearchResultLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.black,
+                  strokeWidth: 2,
+                ),
+              );
+            }
+
+            if (state2 is SearchResultSuccessState) {
+              return UserSearchResultView(state2: state2);
+            }
+
+            return const Center(
+              child: Text('User Not Found!'),
+            );
+          }
+        },
       ),
     );
   }

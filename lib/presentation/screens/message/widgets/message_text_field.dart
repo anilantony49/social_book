@@ -28,7 +28,7 @@ class _MessageTextFieldState extends State<MessageTextField> {
                     child: CustomSearchField(
                       heading: 'Chats',
                       searchController: widget.searchController,
-                      hintText: 'Search chat here...',
+                      hintText: 'Search chat here...', onChanged: (String ) {  },
                     ))
               ],
             ),

@@ -71,7 +71,7 @@ class PostRepo {
     }
   }
 
-    static Future<String> editPost(PostModel post) async {
+  static Future<String> editPost(PostModel post) async {
     final dio = Dio();
     String token = await UserToken.getToken();
     String editPostUrl =
@@ -174,7 +174,55 @@ class PostRepo {
     }
   }
 
-    static Future<CommentModel?> addComment(String comment, String postId) async {
+  static Future<String> savePost(String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String savePostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.savePost}$postId";
+    try {
+      var response = await dio.post(
+        savePostUrl,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Save Post Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Save Post Error: $e');
+      return '';
+    }
+  }
+
+  static Future<String> unsavePost(String postId) async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String unsavePostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.unsavePost}$postId";
+    try {
+      var response = await dio.patch(
+        unsavePostUrl,
+        options: Options(headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token'
+        }),
+      );
+      debugPrint('Unsave Post Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        return 'success';
+      }
+      return '';
+    } catch (e) {
+      debugPrint('Unsave Post Error: $e');
+      return '';
+    }
+  }
+
+  static Future<CommentModel?> addComment(String comment, String postId) async {
     final dio = Dio();
     String token = await UserToken.getToken();
     String addCommentUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.addComment}";
@@ -204,7 +252,7 @@ class PostRepo {
     }
   }
 
-    static Future<String> deleteComment(String commentId, String postId) async {
+  static Future<String> deleteComment(String commentId, String postId) async {
     final dio = Dio();
     String token = await UserToken.getToken();
     String deleteCommentUrl =
@@ -230,6 +278,41 @@ class PostRepo {
     } catch (e) {
       debugPrint('Delete Comment Status: $e');
       return '';
+    }
+  }
+
+  static Future<List<PostModel>> fetchAllSavedPost() async {
+    final dio = Dio();
+    String token = await UserToken.getToken();
+    String fetchAllSavedPostUrl =
+        "${ApiEndPoints.baseUrl}${ApiEndPoints.allSavedPosts}";
+    List<PostModel> savedPosts = [];
+    try {
+      var response = await dio.get(
+        fetchAllSavedPostUrl,
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+          },
+        ),
+      );
+      debugPrint('Fetch Saved Status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        if (response.data['saved-posts'] != null) {
+          var responseData = response.data['saved-posts']['posts'];
+          List savedPostsList = responseData;
+          for (int i = 0; i < savedPostsList.length; i++) {
+            PostModel savedPost = PostModel.fromJson(savedPostsList[i]);
+            savedPosts.add(savedPost);
+          }
+          return savedPosts;
+        }
+      }
+      return [];
+    } catch (e) {
+      debugPrint('Fetch Saved Error: $e');
+      return [];
     }
   }
 }

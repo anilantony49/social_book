@@ -24,7 +24,7 @@ class CustomSearchField extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return Column(
       children: [
-        kHeight(15),
+        kHeight(20),
         Text(
           heading,
           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
