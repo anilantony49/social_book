@@ -28,7 +28,6 @@ class AllSuggestedUsersPage extends StatelessWidget {
         ),
       ),
       body: SuggestedPeopleGridView(
-        // theme: theme,
         state: state,
         isDetail: true,
         reverse: false,

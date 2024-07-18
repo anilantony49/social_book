@@ -15,14 +15,12 @@ import 'package:social_book/presentation/widgets/fadein_animate.dart';
 class SuggestedPeopleGridView extends StatelessWidget {
   const SuggestedPeopleGridView({
     super.key,
-    // required this.theme,
     required this.state,
     this.maxCount,
     this.isDetail = false,
     required this.reverse,
   });
 
-  // final ThemeData theme;
   final UserDetailFetchingSuccessState state;
   final int? maxCount;
   final bool isDetail;
@@ -36,7 +34,6 @@ class SuggestedPeopleGridView extends StatelessWidget {
           : const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
       shrinkWrap: true,
-      reverse: reverse,
       crossAxisCount: 2,
       staggeredTileBuilder: (index) => const StaggeredTile.fit(1),
       itemCount: maxCount ?? state.users.length,
@@ -44,12 +41,12 @@ class SuggestedPeopleGridView extends StatelessWidget {
         return GestureDetector(
           onTap: () {
             debugPrint('Go to profile');
-            // nextScreen(
-            //     context,
-            //     UserProfileScreen(
-            //       userId: state.users[index].id!,
-            //       isCurrentUser: false,
-            //     ));
+            nextScreen(
+                context,
+                UserProfilePage(
+                  userId: state.users[index].id!,
+                  isCurrentUser: false,
+                ));
           },
           child: Container(
             decoration: BoxDecoration(

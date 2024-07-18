@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
@@ -65,7 +64,7 @@ GridView _postGridView(
       crossAxisCount: 2,
       mainAxisSpacing: 8.0,
       crossAxisSpacing: 8.0,
-      childAspectRatio: 0.75, // Adjust the aspect ratio as needed
+      childAspectRatio: 0.75, 
     ),
     itemCount: state.posts.length,
     itemBuilder: (context, index) {

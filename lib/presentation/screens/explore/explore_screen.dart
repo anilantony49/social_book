@@ -37,58 +37,58 @@ class _ExploreScreenState extends State<ExploreScreen> {
             heading: 'Explore',
             searchController: searchController,
             onChanged: (value) {
-              if (value.isNotEmpty) {
-                debouncer.run(() {
-                  context
-                      .read<SearchUserBloc>()
-                      .add(SearchUserEvent(query: value));
-                });
-                context.read<OnSearchCubit>().onSearchChange(true);
-              } else {
-                context.read<OnSearchCubit>().onSearchChange(false);
-              }
-            },
+                if (value.isNotEmpty) {
+                  debouncer.run(() {
+                    context
+                        .read<SearchUserBloc>()
+                        .add(SearchUserEvent(query: value));
+                  });
+                  context.read<OnSearchCubit>().onSearchChange(true);
+                } else {
+                  context.read<OnSearchCubit>().onSearchChange(false);
+                }
+              },
+            ),
           ),
         ),
-      ),
-      body: MultiBlocBuilder(
-        blocs: [
-          context.watch<OnSearchCubit>(),
-          context.watch<SearchUserBloc>()
-        ],
-        builder: (context, state) {
-          var state1 = state[0];
-          var state2 = state[1];
+        body: MultiBlocBuilder(
+          blocs: [
+            context.watch<OnSearchCubit>(),
+            context.watch<SearchUserBloc>()
+          ],
+          builder: (context, state) {
+            var state1 = state[0];
+            var state2 = state[1];
 
-          if (state1 == false) {
-            return ListView(
-              controller: explorePageController,
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              children: const [
-                SuggestedPeople(),
-                ExplorePost(),
-              ],
-            );
-          } else {
-            if (state2 is SearchResultLoadingState) {
+            if (state1 == false) {
+              return ListView(
+                controller: explorePageController,
+                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                children: const [
+                  SuggestedPeople(),
+                  ExplorePost(),
+                ],
+              );
+            } else {
+              if (state2 is SearchResultLoadingState) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.black,
+                    strokeWidth: 2,
+                  ),
+                );
+              }
+
+              if (state2 is SearchResultSuccessState) {
+                return UserSearchResultView(state2: state2);
+              }
+
               return const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.black,
-                  strokeWidth: 2,
-                ),
+                child: Text('User Not Found!'),
               );
             }
-
-            if (state2 is SearchResultSuccessState) {
-              return UserSearchResultView(state2: state2);
-            }
-
-            return const Center(
-              child: Text('User Not Found!'),
-            );
-          }
-        },
-      ),
+          },
+        ),
     );
   }
 }

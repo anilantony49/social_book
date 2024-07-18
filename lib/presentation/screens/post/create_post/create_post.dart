@@ -202,9 +202,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                       description: descriptionController.text,
                                       selectedAssets: selectedAssetList,
                                     ));
-                                // locationController.clear();
-                                // descriptionController.clear();
-                                // selectedAssetList.clear();
                               }
                             },
                           );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
 import 'package:social_book/presentation/widgets/user_list_tile.dart';
 
@@ -13,7 +12,6 @@ class UserSearchResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Theme.of(context);
     return ListView.builder(
       itemCount: state2.users.length,
       itemBuilder: (context, index) {
@@ -24,15 +22,7 @@ class UserSearchResultView extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: UserListTile(
-            onTap: () {
-              // nextScreen(
-              //   context,
-              //   UserProfile(
-              //     userId: state2.users[index].id!,
-              //     isCurrentUser: false,
-              //   ),
-              // );
-            },
+            onTap: () {},
             profileUrl: state2.users[index].profilePicture!,
             fullname: state2.users[index].fullName!,
             username: state2.users[index].username!,

@@ -146,7 +146,7 @@ class UserRepo {
     }
   }
 
-    static Future<List<UserModel>> searchUsers(
+  static Future<List<UserModel>> searchUsers(
       String value, bool onMessage) async {
     Dio dio = Dio();
     String token = await UserToken.getToken();
