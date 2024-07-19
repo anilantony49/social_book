@@ -16,6 +16,7 @@ import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart'
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
+import 'package:social_book/presentation/bloc/search_follower/search_follower_bloc.dart';
 import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SearchUserBloc()),
         BlocProvider(create: (context) => SavedPostsBloc()),
         BlocProvider(create: (context) => OnSearchCubit()),
+        BlocProvider(create: (context) => SearchBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

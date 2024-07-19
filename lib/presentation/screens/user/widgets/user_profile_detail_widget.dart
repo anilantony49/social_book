@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
@@ -37,6 +37,7 @@ class UserProfileDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         UserHeadingWidget(
           isCurrentUser: false,
@@ -79,68 +80,55 @@ class UserProfileDetailsWidget extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
           child: Stack(
             clipBehavior: Clip.none,
-            alignment: Alignment.center,
+            // alignment: Alignment.center,
             children: [
               Container(
+                // height: 270,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.lLightGrey4,
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 40,
+                        blurRadius: 35,
                         color: Colors.black.withOpacity(0.05),
                       )
                     ]),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 30, 0, 70),
+                  padding: const EdgeInsets.fromLTRB(20, 30, 0, 30),
                   child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: userModel.profilePicture == ""
+                            ? Image.asset(profilePlaceholder).image
+                            : NetworkImage(
+                                userModel.profilePicture!,
+                              ),
+                      ),
+                      kHeight(10),
+                      Text(
+                        userModel.fullName!,
+                        style: const TextStyle(fontSize: 17),
+                      ),
+                      kHeight(10),
+                      userModel.bio != '' ? Text(userModel.bio!) : Container(),
+                      // Spacer(),
+                      kHeight(10),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(
-                            radius: 50,
-                            backgroundImage: userModel.profilePicture == ""
-                                ? Image.asset(profilePlaceholder).image
-                                : NetworkImage(
-                                    userModel.profilePicture!,
-                                  ),
+                          SizedBox(
+                            height: 35,
+                            child: FollowButton(
+                              userModel: userModel,
+                              onFollowUnfollow: followUnfollowFunction,
+                            ),
                           ),
                           kWidth(20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                userModel.fullName!,
-                                style: const TextStyle(fontSize: 17),
-                              ),
-                              kHeight(5),
-                              Text(
-                                '${userModel.accountType} profile'.capitalize(),
-                                style: TextStyle(
-                                    fontSize: 12, color: Colors.white),
-                              ),
-                              kHeight(10),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    height: 35,
-                                    child: FollowButton(
-                                      userModel: userModel,
-                                      onFollowUnfollow: followUnfollowFunction,
-                                    ),
-                                  ),
-                                  kWidth(10),
-                                  _messageBtn(context, userModel),
-                                ],
-                              ),
-                              kHeight(15),
-                              userModel.bio != ''
-                                  ? Text(userModel.bio!)
-                                  : Container(),
-                            ],
-                          ),
+                          _messageBtn(context, userModel),
                         ],
                       )
                     ],
@@ -148,7 +136,9 @@ class UserProfileDetailsWidget extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: -40,
+                top: 40,
+                // bottom: 40,
+                right: 10,
                 child: BlocBuilder<ProfileBloc, ProfileState>(
                   builder: (context, state) {
                     if (state is ProfileFetchingSucessState) {

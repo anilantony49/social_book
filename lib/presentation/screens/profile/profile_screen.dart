@@ -76,7 +76,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                 const UserSigninScreen(),
               );
             }
-          ], profileImage: '',
+          ],
+          profileImage: '',
         );
       },
     );
@@ -114,7 +115,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                     },
                     builder: (context, state) {
                       if (state is ProfileFetchingSucessState) {
-                      
                         return Column(
                           children: [
                             const SizedBox(height: 15),
@@ -155,7 +155,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               ],
                             ),
                             SizedBox(
-                               height: MediaQuery.of(context).size.height - 200,
+                              height: MediaQuery.of(context).size.height - 200,
                               child: ListView(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,

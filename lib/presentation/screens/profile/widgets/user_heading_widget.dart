@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_icons.dart';
-import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 
 class UserHeadingWidget extends StatelessWidget {
@@ -36,7 +35,7 @@ class UserHeadingWidget extends StatelessWidget {
               ),
             ),
           ),
-          kWidth(10),
+          const Spacer(),
           Text(
             userModel.username!.toLowerCase(),
             style: const TextStyle(fontWeight: FontWeight.w700),
@@ -48,7 +47,7 @@ class UserHeadingWidget extends StatelessWidget {
                 ? const SizedBox()
                 : onProfile
                     ? const Icon(AppIcons.settings)
-                    : const Icon(AppIcons.settings),
+                    : const Icon(Icons.more_vert),
           ),
         ],
       ),

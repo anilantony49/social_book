@@ -4,7 +4,7 @@ import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/data/model/post_model/post_model.dart';
 import 'package:social_book/data/model/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
-
+import 'package:social_book/presentation/screens/profile/connection_list/connection_list_page.dart';
 
 class PostFollowCountWidget extends StatelessWidget {
   const PostFollowCountWidget({
@@ -20,24 +20,12 @@ class PostFollowCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    // var theme = Theme.of(context);
 
     return BlocBuilder<FollowUnfollowUserBloc, FollowUnfollowUserState>(
       builder: (context, state) {
-        return Container(
-          height: 90,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primaryContainer,
-            border: Border.all(
-                width: 1, color: theme.colorScheme.outline),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 40,
-                color: Colors.black.withOpacity(0.05),
-              )
-            ],
-          ),
+        return SizedBox(
+          height: 50,
           child: Row(
             children: [
               _userPostFollowCountCard(
@@ -46,44 +34,43 @@ class PostFollowCountWidget extends StatelessWidget {
                 onTap: () {},
               ),
               Container(
-                height: double.infinity,
+                // height: double.infinity,
                 width: 1,
-                color: theme.colorScheme.outline,
+                color: Colors.black,
               ),
               _userPostFollowCountCard(
                 count: '${userModel.followers!.length}',
                 title: 'FOLLOWERS',
                 onTap: () {
-                 
-                  // nextScreen(
-                  //   context,
-                  //   ConnectionListPage(
-                  //     selectedPage: 0,
-                  //     followers: userModel.followers!,
-                  //     following: userModel.following!,
-                  //     userId: userId,
-                  //   ),
-                  // );
+                  nextScreen(
+                    context,
+                    ConnectionListPage(
+                      selectedPage: 0,
+                      followers: userModel.followers!,
+                      following: userModel.following!,
+                      userId: userId,
+                    ),
+                  );
                 },
               ),
               Container(
                 height: double.infinity,
                 width: 1,
-                color: theme.colorScheme.outline,
+                color: Colors.black,
               ),
               _userPostFollowCountCard(
                 count: '${userModel.following!.length}',
                 title: 'FOLLOWING',
                 onTap: () {
-                  // nextScreen(
-                  //   context,
-                  //   ConnectionListPage(
-                  //     selectedPage: 1,
-                  //     followers: userModel.followers!,
-                  //     following: userModel.following!,
-                  //     userId: userId,
-                  //   ),
-                  // );
+                  nextScreen(
+                    context,
+                    ConnectionListPage(
+                      selectedPage: 1,
+                      followers: userModel.followers!,
+                      following: userModel.following!,
+                      userId: userId,
+                    ),
+                  );
                 },
               ),
             ],
@@ -101,7 +88,7 @@ class PostFollowCountWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
         ),
-        width: 100,
+        width: 80,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
