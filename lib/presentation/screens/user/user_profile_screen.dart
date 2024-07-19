@@ -1,10 +1,23 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_detail_widget.dart';
+import 'package:social_book/presentation/screens/user/widgets/post_button.dart';
+import 'package:social_book/presentation/screens/user/widgets/post_grid_view.dart';
+import 'package:social_book/presentation/screens/user/widgets/user_profile_detail_widget.dart';
+import 'package:social_book/presentation/widgets/refresh_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  const UserProfileScreen({
+    super.key,
+    required this.userId,
+    required this.isCurrentUser,
+  });
+
+  final String userId;
+  final bool isCurrentUser;
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
@@ -12,70 +25,65 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<UserByIdBloc, UserByIdState>(
-        builder: (context, state) {
-          // if(state is FetchUserByIdLoadingState){
-          //   return UserProfilePageLoading()
-          // }
+  void initState() {
+    context.read<UserByIdBloc>().add(FetchUserByIdEvent(userId: widget.userId));
+    super.initState();
+  }
 
-          if (state is FetchUserByIdSuccessState) {
-            return Column(
-              children: [
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Future<void> _handleRefresh() async {
+    await Future.delayed(const Duration(seconds: 2));
+    context.read<UserByIdBloc>().add(FetchUserByIdEvent(userId: widget.userId));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ColorfulSafeArea(
+      child: RefreshWidget(
+        onRefresh: _handleRefresh,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: BlocBuilder<UserByIdBloc, UserByIdState>(
+            builder: (context, state) {
+              // if(state is FetchUserByIdLoadingState){
+              //   return UserProfilePageLoading()
+              // }
+
+              if (state is FetchUserByIdSuccessState) {
+                return ListView(
                   children: [
-                    const Expanded(
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 60),
-                          child: Text(
-                            'My Profile',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
+                    widget.isCurrentUser
+                        ? ProfileDetailWidget(
+                            userModel: state.userModel,
+                            postsList: state.posts,
+                            isCurrentUser: widget.isCurrentUser,
+                          )
+                        : UserProfileDetailsWidget(
+                            userModel: state.userModel,
+                            postsList: state.posts,
+                            userId: widget.userId,
                           ),
-                        ),
-                      ),
-                    ),
-                    PopupMenuButton<String>(onSelected: (String value) {
-                      if (value == 'Log Out') {
-                        // showLogoutDialog();
-                      }
-                    }, itemBuilder: (BuildContext context) {
-                      return [
-                        const PopupMenuItem<String>(
-                            value: 'Send Message', child: Text('Send Message')),
-                        const PopupMenuItem<String>(
-                            value: 'Report Account',
-                            child: Text('Report Account')),
-                        const PopupMenuItem<String>(
-                            value: 'Cancel', child: Text('Cancel'))
-                      ];
-                    })
+                    kHeight(55),
+                    accountDetails(state),
                   ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height - 200,
-                  child: ListView(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    children: [
-                      ProfileDetailWidget(
-                        userModel: state.userModel,
-                        postsList: state.posts,
-                        isCurrentUser: widget.isCurrentUser,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            );
-          }
-          return Container();
-        },
+                );
+              }
+              return const Center(
+                child: Text('No data'),
+              );
+            },
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget accountDetails(FetchUserByIdSuccessState state) {
+    return Column(
+      children: [
+        if (state.posts.isNotEmpty) const PostButton(),
+        kHeight(20),
+        PostGridView(state: state),
+      ],
     );
   }
 }

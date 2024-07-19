@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                 const UserSigninScreen(),
               );
             }
-          ],
+          ], profileImage: '',
         );
       },
     );

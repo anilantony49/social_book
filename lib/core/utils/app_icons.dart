@@ -53,6 +53,9 @@ class AppIcons {
       IconData(0xe800, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData settings =
       IconData(0xe858, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData settings_2 =
+      IconData(0xe85a, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+
   static const IconData arrow_left =
       IconData(0xe80b, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData danger =
@@ -63,4 +66,6 @@ class AppIcons {
       IconData(0xe818, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData unbookmark =
       IconData(0xe864, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData send =
+      IconData(0xe857, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

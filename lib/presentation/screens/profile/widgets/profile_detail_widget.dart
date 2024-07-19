@@ -150,7 +150,7 @@ class ProfileDetailWidget extends StatelessWidget {
               //   const UserSigninScreen(),
               // );
             }
-          ],
+          ], profileImage: '',
         );
       },
     );

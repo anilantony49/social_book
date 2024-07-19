@@ -5,11 +5,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:social_book/core/utils/constants.dart';
 
 class ProfileMenu extends StatelessWidget {
+  final String profileImage;
   final List<void Function()?> ontap;
   final List<String> buttonLabel;
   final List<IconData> leading;
   const ProfileMenu({
     super.key,
+    required this.profileImage,
     required this.ontap,
     required this.buttonLabel,
     required this.leading,
