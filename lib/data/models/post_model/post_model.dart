@@ -1,4 +1,4 @@
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 
 class PostModel {
   final String? id;

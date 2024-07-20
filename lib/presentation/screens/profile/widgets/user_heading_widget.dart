@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_icons.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 
 class UserHeadingWidget extends StatelessWidget {
   const UserHeadingWidget({

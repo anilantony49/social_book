@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bloc_builder/builders/multi_bloc_builder.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/screens/user/widgets/custom_outlined_button.dart';

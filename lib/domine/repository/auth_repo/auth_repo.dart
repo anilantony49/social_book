@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:social_book/core/utils/api_endpoints.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 
 class AuthRepo {

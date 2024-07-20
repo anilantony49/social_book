@@ -18,6 +18,7 @@ import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc
 import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
 import 'package:social_book/presentation/bloc/search_follower/search_follower_bloc.dart';
 import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
+import 'package:social_book/presentation/bloc/story/story_bloc.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
@@ -26,6 +27,7 @@ import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
 import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_index.dart';
 import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
+import 'package:social_book/presentation/cubit/story_index/story_index_cubit.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 import 'package:social_book/splash_screen.dart';
@@ -74,6 +76,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => SavedPostsBloc()),
         BlocProvider(create: (context) => OnSearchCubit()),
         BlocProvider(create: (context) => SearchBloc()),
+        BlocProvider(create: (context) => StoryBloc()),
+        BlocProvider(create: (context) => StoryIndexCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

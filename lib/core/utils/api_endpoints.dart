@@ -30,4 +30,7 @@ class ApiEndPoints {
   static String allSavedPosts = "/saved-post";
   static String savePost = "/save-post/";
   static String unsavePost = "/unsave-post/";
+
+  static String allStories = "/stories";
+  static String addStory = "/story/add";
 }

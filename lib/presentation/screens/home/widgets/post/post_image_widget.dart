@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/data/model/post_model/post_model.dart';
+import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/presentation/widgets/fadein_animate.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_preview.dart';
 

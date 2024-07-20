@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/data/model/post_model/post_model.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/post_model/post_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
 import 'package:social_book/presentation/screens/profile/connection_list/connection_list_page.dart';
 

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/domine/repository/auth_repo/auth_repo.dart';
 
 part 'sign_up_event.dart';

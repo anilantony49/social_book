@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bloc_builder/builders/multi_bloc_builder.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:social_book/core/utils/app_icons.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
 import 'package:social_book/presentation/screens/profile/edit_profile/edit_profile_sreen.dart';

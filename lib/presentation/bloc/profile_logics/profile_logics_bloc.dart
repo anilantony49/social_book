@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:photo_manager/photo_manager.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/domine/repository/cloud_repo/cloud_repo.dart';
 import 'package:social_book/domine/repository/profile_repo/profile_repo.dart';
 

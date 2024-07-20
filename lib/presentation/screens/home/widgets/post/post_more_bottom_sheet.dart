@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
-import 'package:social_book/data/model/post_model/post_model.dart';
+import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';

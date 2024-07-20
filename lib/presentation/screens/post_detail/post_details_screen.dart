@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/constants.dart';
-import 'package:social_book/data/model/post_model/post_model.dart';
-import 'package:social_book/data/model/user_model/user_model.dart';
+import 'package:social_book/data/models/post_model/post_model.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_action_button_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';

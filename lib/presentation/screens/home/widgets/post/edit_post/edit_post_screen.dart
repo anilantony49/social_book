@@ -5,7 +5,7 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
-import 'package:social_book/data/model/post_model/post_model.dart';
+import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';

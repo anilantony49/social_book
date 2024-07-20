@@ -1,82 +1,142 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/app_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
+
+import 'package:social_book/data/models/story_model/story_model.dart';
+import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
+import 'package:social_book/presentation/bloc/story/story_bloc.dart';
+import 'package:social_book/presentation/screens/home/widgets/story/story_card.dart';
+import 'package:social_book/presentation/screens/home/widgets/story/story_heading_widget.dart';
+import 'package:social_book/presentation/screens/home/widgets/story/story_utils.dart';
+import 'package:social_book/presentation/screens/home/widgets/story/story_view.dart';
 
 class StoryWidget extends StatelessWidget {
   const StoryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-            10,
-            (index) => const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: StoryList(),
-                )), // Generate 10 StoryWidgets
+    return Container(
+      margin: const EdgeInsets.fromLTRB(15, 0, 0, 20),
+      decoration: BoxDecoration(
+        // color: Colors.blue,
+        boxShadow: kBoxShadow,
+        // borderRadius: const BorderRadius.only(
+        //   topLeft: Radius.circular(12),
+        //   bottomLeft: Radius.circular(12),
+        // ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const StoryHeadingWidget(),
+          kHeight(15),
+          _stoiesListview(context),
+        ],
       ),
     );
   }
-}
 
-class StoryList extends StatelessWidget {
-  const StoryList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              width: 70,
-              height: 110,
-              decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    image: AssetImage('assets/images/snaps at home (155).JPG'),
-                    fit: BoxFit.cover,
-                  ),
-                  color: const Color(0xFFF2F2F2),
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(color: AppColors.blackColor, width: 1)),
-            ),
-            Positioned(
-              bottom: -14,
-              left: 21,
-              child: Container(
-                width: 28,
-                height: 40,
-                decoration: BoxDecoration(
-                  // color: Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.black, // Border color
-                    width: 1, // Border width
-                  ),
-                ),
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/myself.jpg'),
-                  backgroundColor: Color(0xFFF2F2F2),
-                  radius: 14,
-                ),
-              ),
-            ),
-          ],
-        ),
-        kHeight(10),
-        const Text(
-          'Anil',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
+  Widget _stoiesListview(BuildContext context) {
+    String userId = '';
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 15, left: 10, right: 10),
+        child: BlocListener<ProfileBloc, ProfileState>(
+          listener: (context, state) {
+            if (state is ProfileFetchingSucessState) {
+              userId = state.userDetails.id!;
+              debugPrint('Story Success User Id: $userId');
+            }
+          },
+          child: BlocConsumer<StoryBloc, StoryState>(
+            listener: (context, state) {
+              if (state is AddStorySucessState) {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                context.read<StoryBloc>().add(FetchAllStoriesEvent());
+                // mySystemTheme(context);
+              }
+            },
+            builder: (context, state) {
+              if (state is StoryInitialState) {
+                context.read<StoryBloc>().add(FetchAllStoriesEvent());
+              }
+              if (state is FetchStoriesLoadingState) {
+                return Row(
+                  children: List.generate(
+                      10, (index) => StoryUtils.loadingStoryCard(context)),
+                );
+              }
+              if (state is FetchStoriesSuccessState) {
+                Map<String, List<StoryModel>> userStories =
+                    eachUserStory(state.storiesList);
+                List<Widget> storyCards = [];
+                userStories.forEach((userId, stories) {
+                  if (stories.length > 1) {
+                    List<String> images = [];
+                    List<String> createdDates = [];
+                    for (var story in stories) {
+                      images.add(story.image);
+                      createdDates.add(story.createdDate);
+                    }
+                    storyCards.add(
+                      GestureDetector(
+                        onTap: () {
+                          nextScreen(
+                            context,
+                            StoryViewPage(
+                              imageUrlList: images,
+                              dateList: createdDates,
+                              story: stories.first,
+                            ),
+                          );
+                        },
+                        child: StoryCard(
+                          storyModel: stories.first, // Show first story
+                        ),
+                      ),
+                    );
+                  } else {
+                    storyCards.add(
+                      GestureDetector(
+                        onTap: () {
+                          nextScreen(
+                            context,
+                            StoryViewPage(
+                              imageUrlList: [stories.first.image],
+                              dateList: [stories.first.createdDate],
+                              story: stories.first,
+                            ),
+                          );
+                        },
+                        child: StoryCard(storyModel: stories.first),
+                      ),
+                    );
+                  }
+                });
+                return Row(
+                  children: storyCards,
+                );
+              }
+              return StoryUtils.emptyStoryView(context, userId);
+            },
           ),
-        )
-      ],
+        ),
+      ),
     );
+  }
+
+  Map<String, List<StoryModel>> eachUserStory(List<StoryModel> storiesList) {
+    Map<String, List<StoryModel>> userStories = {};
+    for (var story in storiesList) {
+      String userId = story.user['_id'];
+      if (!userStories.containsKey(userId)) {
+        userStories[userId] = [];
+      }
+      userStories[userId]!.add(story);
+    }
+    return userStories;
   }
 }
