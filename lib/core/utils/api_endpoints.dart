@@ -8,6 +8,7 @@ class ApiEndPoints {
   static String socketUrl = 'http://tweel.online';
   static String changeAccountType = "/account/type";
   static String allPosts = "/posts";
+  static String getPostById = "/post/";
   static String createPost = "/createpost";
   static String editPost = "/post/";
   static String removePost = "/post/";
@@ -33,4 +34,7 @@ class ApiEndPoints {
 
   static String allStories = "/stories";
   static String addStory = "/story/add";
+
+  static String allNotification = '/activity';
+  static String clearNotification = '/activity';
 }

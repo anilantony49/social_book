@@ -68,4 +68,10 @@ class AppIcons {
       IconData(0xe864, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData send =
       IconData(0xe857, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData comment =
+      IconData(0xe81e, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData send_2 =
+      IconData(0xe856, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData like =
+      IconData(0xe835, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }
