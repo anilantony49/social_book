@@ -56,7 +56,6 @@ class StoryWidget extends StatelessWidget {
                 Navigator.of(context).pop();
                 Navigator.of(context).pop();
                 context.read<StoryBloc>().add(FetchAllStoriesEvent());
-                // mySystemTheme(context);
               }
             },
             builder: (context, state) {
@@ -94,11 +93,17 @@ class StoryWidget extends StatelessWidget {
                           );
                         },
                         child: StoryCard(
+                          imageUrlList: images,
                           storyModel: stories.first, // Show first story
                         ),
                       ),
                     );
                   } else {
+                    List<String> images = [];
+                    for (var story in stories) {
+                      images.add(story.image);
+                      // createdDates.add(story.createdDate);
+                    }
                     storyCards.add(
                       GestureDetector(
                         onTap: () {
@@ -111,9 +116,12 @@ class StoryWidget extends StatelessWidget {
                             ),
                           );
                         },
-                        child: StoryCard(storyModel: stories.first),
+                        child: StoryCard(
+                            imageUrlList: images, storyModel: stories.first),
                       ),
                     );
+                    // Adding a SizedBox for spacing between cards
+                    storyCards.add(const SizedBox(width: 15));
                   }
                 });
                 return Row(

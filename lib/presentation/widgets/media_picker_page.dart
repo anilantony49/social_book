@@ -2,10 +2,12 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/image_preview_theme.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
+import 'package:social_book/presentation/screens/home/widgets/story/story_image_preview_page.dart';
 import 'package:social_book/presentation/widgets/media_picker_appbar.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
@@ -66,15 +68,20 @@ class _MediaPickerState extends State<MediaPicker> {
                     },
                     onPressed: () {
                       if (widget.screenType == ScreenType.post) {
-                      Navigator.of(context).pop(selectedAssetList);
+                        Navigator.of(context).pop(selectedAssetList);
                         // nextScreen(context, const CreatePostScreen());
                       } else if (widget.screenType == ScreenType.profile) {
                         context
-                          .read<SetProfileImageCubit>()
-                          .setProfileImage(selectedAssetList);
+                            .read<SetProfileImageCubit>()
+                            .setProfileImage(selectedAssetList);
                         Navigator.of(context).pop(selectedAssetList);
                       } else if (widget.screenType == ScreenType.story) {
-                        // nextScreen(context, StoryImagePreviewPage());
+                        nextScreen(
+                            context,
+                            StoryImagePreviewPage(
+                              mediaUrl: selectedAssetList,
+                              userId: widget.userId!,
+                            ));
                       }
                     });
               }
@@ -91,8 +98,8 @@ class _MediaPickerState extends State<MediaPicker> {
                 return GridView.builder(
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(horizontal: 2),
-                      physics: const BouncingScrollPhysics(),
-                        itemCount: state.assetList.length,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: state.assetList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3),
