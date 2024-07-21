@@ -7,6 +7,7 @@ import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
+import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/screens/post/create_post/widgets/image_listview.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
 import 'package:social_book/presentation/widgets/media_picker_page.dart';
@@ -26,6 +27,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   List<AssetEntity> selectedAssetList = [];
   final formKey = GlobalKey<FormState>();
 
+ 
+
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -33,18 +36,20 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       child: Scaffold(
         body: BlocListener<PostLogicsBloc, PostLogicsState>(
           listener: (context, state) {
+
+
             if (state is CreatePostSuccessState) {
               customSnackbar(
                 context,
                 'New post uploaded successfully',
               );
               context.read<PostBloc>().add(PostInitialFetchEvent());
+              context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
               locationController.clear();
               descriptionController.clear();
               setState(() {
                 selectedAssetList.clear();
               });
-              // context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
             }
           },
           child: ListView(
@@ -202,6 +207,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                       description: descriptionController.text,
                                       selectedAssets: selectedAssetList,
                                     ));
+                                    
                               }
                             },
                           );

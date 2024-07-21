@@ -52,7 +52,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 return ListView(
                   children: [
                     widget.isCurrentUser
-                        ? ProfileDetailWidget(
+                        ? ProfileDetailsWidget(
                             userModel: state.userModel,
                             postsList: state.posts,
                             isCurrentUser: widget.isCurrentUser,

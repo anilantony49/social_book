@@ -33,54 +33,16 @@ class _ProfileScreenState extends State<ProfileScreen>
   late TabController tabController;
   @override
   void initState() {
-    // context.read<PostBloc>().add(FetchAllUserEvent());
     context.read<SavedPostsBloc>().add(FetchAllSavedPostEvent());
-    tabController = TabController(length: 2, vsync: this);
     context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
+    tabController = TabController(length: 2, vsync: this);
+
     super.initState();
   }
 
   Future<void> _handleRefresh() async {
     await Future.delayed(const Duration(seconds: 2));
     context.read<ProfileBloc>().add(ProfileInitialFetchEvent());
-  }
-
-  void showLogoutDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return ProfileMenu(
-          leading: const [
-            AppIcons.settings,
-            AppIcons.about,
-            AppIcons.logout_2,
-          ],
-          buttonLabel: const ["Settings", "About Us", "Logout"],
-          ontap: [
-            () {
-              // nextScreen(
-              //   context,
-              //   SettingsPage(accountType: userModel.accountType!),
-              // ).then((value) => Navigator.pop(context));
-            },
-            () {
-              // nextScreen(context, const AboutUsPage()).then(
-              //   (value) => Navigator.pop(context),
-              // );
-            },
-            () async {
-              UserAuthStatus.saveUserStatus(false);
-              SocketServices().disconnectSocket();
-              await nextScreenRemoveUntil(
-                context,
-                const UserSigninScreen(),
-              );
-            }
-          ],
-          profileImage: '',
-        );
-      },
-    );
   }
 
   @override
@@ -106,6 +68,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   BlocConsumer<ProfileBloc, ProfileState>(
                     listener: (context, state) {
                       if (state is ProfileFetchingSucessState) {
+                       
                         // ============ Connecting user to socket.io server ============
                         String currentUsername = state.userDetails.username!;
                         log('Current User After SignIn $currentUsername');
@@ -114,66 +77,23 @@ class _ProfileScreenState extends State<ProfileScreen>
                       }
                     },
                     builder: (context, state) {
+                     
                       if (state is ProfileFetchingSucessState) {
-                        return Column(
+                        return ListView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
                           children: [
-                            const SizedBox(height: 15),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Expanded(
-                                  child: Center(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(left: 60),
-                                      child: Text(
-                                        'My Profile',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                PopupMenuButton<String>(
-                                    onSelected: (String value) {
-                                  if (value == 'Log Out') {
-                                    showLogoutDialog();
-                                  }
-                                }, itemBuilder: (BuildContext context) {
-                                  return [
-                                    const PopupMenuItem<String>(
-                                        value: 'Settings',
-                                        child: Text('Settings')),
-                                    const PopupMenuItem<String>(
-                                        value: 'About Us',
-                                        child: Text('About Us')),
-                                    const PopupMenuItem<String>(
-                                        value: 'Log Out',
-                                        child: Text('Log Out'))
-                                  ];
-                                })
-                              ],
+                            ProfileDetailsWidget(
+                              userModel: state.userDetails,
+                              postsList: state.posts,
+                              isCurrentUser: false,
                             ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height - 200,
-                              child: ListView(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                children: [
-                                  ProfileDetailWidget(
-                                    userModel: state.userDetails,
-                                    postsList: state.posts,
-                                    isCurrentUser: false,
-                                  ),
-                                  CustomTabBarWidget(
-                                      tabController: tabController),
-                                  kHeight(15),
-                                  CustomTabviewWidget(
-                                    profileState: state,
-                                    tabController: tabController,
-                                  ),
-                                ],
-                              ),
+                            kHeight(50),
+                            CustomTabBarWidget(tabController: tabController),
+                            kHeight(15),
+                            CustomTabviewWidget(
+                              profileState: state,
+                              tabController: tabController,
                             ),
                           ],
                         );

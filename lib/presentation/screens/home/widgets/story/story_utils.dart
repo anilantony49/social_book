@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/screens/explore/widget/shimmer_animate.dart';
@@ -13,9 +14,14 @@ class StoryUtils {
         padding: const EdgeInsets.only(right: 5, left: 5),
         child: Column(
           children: [
-            CircleAvatar(
-                radius: 30,
-                backgroundColor: Theme.of(context).colorScheme.onSurface),
+            Container(
+              width: 70,
+              height: 110,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFF2F2F2),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: AppColors.blackColor, width: 1)),
+            ),
             kHeight(10),
             // const Skelton(width: 50),
           ],
@@ -24,10 +30,9 @@ class StoryUtils {
     );
   }
 
-    static Widget emptyStoryView(BuildContext context, String? userId) {
+  static Widget emptyStoryView(BuildContext context, String? userId) {
     return GestureDetector(
       onTap: () {
-      
         nextScreen(
           context,
           MediaPicker(
@@ -43,12 +48,11 @@ class StoryUtils {
         child: Column(
           children: [
             Container(
-              height: 60,
-              width: 60,
+              width: 70,
+              height: 110,
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                    width: 1, color: Theme.of(context).colorScheme.outline),
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 1, color: Colors.black),
               ),
               child: const Icon(AppIcons.add),
             ),

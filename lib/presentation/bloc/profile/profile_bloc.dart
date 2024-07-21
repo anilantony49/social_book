@@ -17,6 +17,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emit(ProfileFetchingLoadingState());
     ProfileDetailsModel? userDetails = await ProfileRepo.fetchUserDetails();
     if (userDetails != null) {
+       print('Fetched Posts: ${userDetails.posts}'); // Debug print
       emit(ProfileFetchingSucessState(
         userDetails: userDetails.user,
         posts: userDetails.posts,
