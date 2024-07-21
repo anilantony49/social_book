@@ -68,7 +68,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                   BlocConsumer<ProfileBloc, ProfileState>(
                     listener: (context, state) {
                       if (state is ProfileFetchingSucessState) {
-                       
+                        print('User Details: ${state.userDetails}');
+                        print('Posts List: ${state.posts}'); // Debug print
                         // ============ Connecting user to socket.io server ============
                         String currentUsername = state.userDetails.username!;
                         log('Current User After SignIn $currentUsername');
@@ -77,7 +78,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                       }
                     },
                     builder: (context, state) {
-                     
                       if (state is ProfileFetchingSucessState) {
                         return ListView(
                           physics: const NeverScrollableScrollPhysics(),

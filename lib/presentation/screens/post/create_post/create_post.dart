@@ -27,8 +27,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   List<AssetEntity> selectedAssetList = [];
   final formKey = GlobalKey<FormState>();
 
- 
-
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
@@ -36,8 +34,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       child: Scaffold(
         body: BlocListener<PostLogicsBloc, PostLogicsState>(
           listener: (context, state) {
-
-
             if (state is CreatePostSuccessState) {
               customSnackbar(
                 context,
@@ -207,7 +203,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                       description: descriptionController.text,
                                       selectedAssets: selectedAssetList,
                                     ));
-                                    
                               }
                             },
                           );

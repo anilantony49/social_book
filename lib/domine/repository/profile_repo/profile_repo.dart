@@ -25,6 +25,13 @@ class ProfileRepo {
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = jsonDecode(response.body);
         UserModel user = UserModel.fromJson(responseData['user']);
+         final List postsList = responseData['posts'];
+          for (int i = 0; i < postsList.length; i++) {
+          PostModel post = PostModel.fromJson(postsList[i]);
+          if (!post.isBlocked) {
+            posts.add(post);
+          }
+        }
         return ProfileDetailsModel(user: user, posts: posts);
       }
       return null;
