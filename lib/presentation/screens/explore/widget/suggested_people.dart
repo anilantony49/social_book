@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
-import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/screens/explore/widget/all_suggested_user_page.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people_grid_view.dart';

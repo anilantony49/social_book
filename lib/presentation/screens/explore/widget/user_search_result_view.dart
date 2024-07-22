@@ -22,7 +22,9 @@ class UserSearchResultView extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: UserListTile(
-            onTap: () {},
+            onTap: () {
+              
+            },
             profileUrl: state2.users[index].profilePicture!,
             fullname: state2.users[index].fullName!,
             username: state2.users[index].username!,

@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/api_endpoints.dart';
+import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketServices {
@@ -30,5 +32,28 @@ class SocketServices {
     socket.close();
     socket.dispose();
     log('Is Socket Active: ${socket.active}');
+  }
+
+  sendMessage({
+    required String message,
+    required UserModel currentUser,
+    required UserModel chatUser,
+  }) {
+    debugPrint('How many times is it calling');
+    var body = {
+      "message": message,
+      "sender": {
+        "username": "${currentUser.username}",
+        "_id": "${currentUser.id}"
+      },
+      "receiver": {
+        "username": "${chatUser.username}",
+        "_id": "${chatUser.id}",
+      }
+    };
+    socket.emit(
+      'message',
+      jsonEncode(body),
+    );
   }
 }

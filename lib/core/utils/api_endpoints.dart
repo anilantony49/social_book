@@ -37,4 +37,6 @@ class ApiEndPoints {
 
   static String allNotification = '/activity';
   static String clearNotification = '/activity';
+
+  static String currentUserChats = "/chat/me";
 }

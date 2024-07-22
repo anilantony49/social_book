@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/theme/app_theme.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 
@@ -21,7 +22,6 @@ class CustomSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme = Theme.of(context);
     return Column(
       children: [
         kHeight(20),
@@ -37,26 +37,26 @@ class CustomSearchField extends StatelessWidget {
           backgroundColor: const Color.fromARGB(255, 220, 215, 215),
           prefixInsets: const EdgeInsetsDirectional.only(start: 10),
           suffixInsets: const EdgeInsetsDirectional.only(end: 10),
-          prefixIcon: Icon(
+          prefixIcon: const Icon(
             AppIcons.search_2,
-            color: theme.colorScheme.primary,
+            color: AppColors.lGray,
             size: 20,
           ),
-          suffixIcon: Icon(
+          suffixIcon: const Icon(
             AppIcons.close,
             size: 24,
-            color: theme.colorScheme.secondary,
+            color: AppColors.lGray,
           ),
           placeholder: hintText ?? 'Search here...',
           placeholderStyle: TextStyle(
-            color: theme.colorScheme.secondary,
+            color: Colors.black,
             fontSize: 14,
             fontFamily: mainFont,
             fontWeight: FontWeight.w400,
             letterSpacing: 0.2,
           ),
           style: TextStyle(
-            color: theme.colorScheme.primary,
+            color: Colors.black,
             fontSize: 14,
             fontFamily: mainFont,
             fontWeight: FontWeight.w400,

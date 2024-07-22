@@ -6,6 +6,7 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
+import 'package:social_book/presentation/screens/message/chat_page/user_chat_page.dart';
 import 'package:social_book/presentation/screens/user/widgets/follow_button_widget.dart';
 import 'package:social_book/presentation/screens/user/widgets/post_follow_count_card.dart';
 import 'package:social_book/presentation/screens/user/widgets/user_profile_heading_widget.dart';

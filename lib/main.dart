@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/theme/app_theme.dart';
 import 'package:social_book/main_screen.dart';
+import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
 import 'package:social_book/presentation/bloc/comment/comment_bloc.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
 import 'package:social_book/presentation/bloc/forget_password/forget_password_bloc.dart';
+import 'package:social_book/presentation/bloc/get_chat/get_chat_bloc.dart';
 import 'package:social_book/presentation/bloc/like_unlike/like_unlike_bloc.dart';
 import 'package:social_book/presentation/bloc/like_unlike_post/like_unlike_post_bloc.dart';
 import 'package:social_book/presentation/bloc/media_picker/media_picker_bloc.dart';
@@ -27,6 +29,7 @@ import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
+import 'package:social_book/presentation/cubit/online_users/online_users_cubit.dart';
 import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_index.dart';
 import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
@@ -84,6 +87,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => NotificationBloc()),
         BlocProvider(create: (context) => LikeUnlikePostBloc()),
         BlocProvider(create: (context) => PostByIdBloc()),
+        BlocProvider(create: (context) => ChatBloc()),
+        BlocProvider(create: (context) => GetChatBloc()),
+        BlocProvider(create: (context) => OnlineUsersCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
