@@ -38,7 +38,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
-      child: RefreshWidget(
+      child: RefreshIndicator(
         onRefresh: _handleRefresh,
         child: Scaffold(
           backgroundColor: Colors.white,

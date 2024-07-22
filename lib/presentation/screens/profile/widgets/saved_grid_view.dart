@@ -13,21 +13,21 @@ class SavedGridViewWidget extends StatelessWidget {
     return BlocBuilder<SavedPostsBloc, SavedPostsState>(
       builder: (context, state) {
         if (state is FetchAllSavedPostSuccessState) {
-          return StaggeredGridView.countBuilder(
+          return GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 8),
-            mainAxisSpacing: 8.0,
-            crossAxisSpacing: 8.0,
-            crossAxisCount: 3,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 8.0,
+              crossAxisSpacing: 8.0,
+              childAspectRatio: 1,
+            ),
+            
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.savedPosts.length,
             itemBuilder: (context, index) {
               return savedImageCard(savedPostState: state, index: index);
             },
-            staggeredTileBuilder: (index) => StaggeredTile.count(
-                (index % 7 == 3) ? 2 : 1, (index % 7 == 3) ? 2 : 1),
-                
-                
           );
         }
 

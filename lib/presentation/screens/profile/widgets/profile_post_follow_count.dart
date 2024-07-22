@@ -17,21 +17,8 @@ class ProfilePostFollowCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
-    return Container(
-      height: 90,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.primaryContainer,
-        border: Border.all(width: 1, color: theme.colorScheme.outline),
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 40,
-            color: Colors.black.withOpacity(0.05),
-          )
-        ],
-      ),
+    return SizedBox(
+      height: 50,
       child: Row(
         children: [
           _userPostFollowCountCard(
@@ -40,9 +27,9 @@ class ProfilePostFollowCountWidget extends StatelessWidget {
             onTap: () {},
           ),
           Container(
-            height: double.infinity,
+            // height: double.infinity,
             width: 1,
-            color: theme.colorScheme.outline,
+            color: Colors.black,
           ),
           _userPostFollowCountCard(
             count: '${userModel.followers!.length}',
@@ -63,7 +50,7 @@ class ProfilePostFollowCountWidget extends StatelessWidget {
           Container(
             height: double.infinity,
             width: 1,
-            color: theme.colorScheme.outline,
+            color: Colors.black,
           ),
           _userPostFollowCountCard(
             count: '${userModel.following!.length}',
@@ -93,10 +80,9 @@ Widget _userPostFollowCountCard(
     onTap: onTap,
     child: Container(
       decoration: BoxDecoration(
-        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12),
       ),
-      width: 100,
+      width: 80,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,

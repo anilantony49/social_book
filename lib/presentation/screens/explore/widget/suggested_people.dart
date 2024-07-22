@@ -6,8 +6,7 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/screens/explore/widget/all_suggested_user_page.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people_grid_view.dart';
-import 'package:social_book/presentation/widgets/follow_botton.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 
 class SuggestedPeople extends StatelessWidget {
   const SuggestedPeople({super.key});

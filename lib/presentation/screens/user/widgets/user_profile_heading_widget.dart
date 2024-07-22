@@ -8,8 +8,8 @@ import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/screens/settings/settings.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
-class UserHeadingWidget extends StatelessWidget {
-  const UserHeadingWidget({
+class UserProfileHeadingWidget extends StatelessWidget {
+  const UserProfileHeadingWidget({
     super.key,
     required this.userModel,
     required this.onProfile,
@@ -50,15 +50,15 @@ class UserHeadingWidget extends StatelessWidget {
     return PopupMenuButton(
       onSelected: (String result) {
         switch (result) {
-          case 'Settings':
+          case 'Send message':
             nextScreen(
               context,
               SettingsPage(accountType: userModel.accountType!),
             ).then((value) => Navigator.pop(context));
             break;
-          case 'About Us':
+          case 'Report':
             break;
-          case 'Logout':
+          case 'Cancel':
             () async {
               UserAuthStatus.saveUserStatus(false);
               SocketServices().disconnectSocket();
@@ -73,16 +73,16 @@ class UserHeadingWidget extends StatelessWidget {
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
         const PopupMenuItem<String>(
-          value: 'Settings',
-          child: Text('Settings'),
+          value: 'Send message',
+          child: Text('Send message'),
         ),
         const PopupMenuItem<String>(
-          value: 'About Us',
-          child: Text('About Us'),
+          value: 'Report',
+          child: Text('Report'),
         ),
         const PopupMenuItem<String>(
-          value: 'Logout',
-          child: Text('Logout'),
+          value: 'Cancel',
+          child: Text('Cancel'),
         ),
       ],
     );

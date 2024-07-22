@@ -4,22 +4,14 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/bottom_navigation.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
-import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
-import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/profile_logics/profile_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
-import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tab_bar_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/custom_tabview_widget.dart';
 import 'package:social_book/presentation/screens/profile/widgets/profile_detail_widget.dart';
-import 'package:social_book/presentation/screens/profile/widgets/profile_menu.dart';
-import 'package:social_book/presentation/screens/settings/settings.dart';
-import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -68,8 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen>
                   BlocConsumer<ProfileBloc, ProfileState>(
                     listener: (context, state) {
                       if (state is ProfileFetchingSucessState) {
-                        print('User Details: ${state.userDetails}');
-                        print('Posts List: ${state.posts}'); // Debug print
                         // ============ Connecting user to socket.io server ============
                         String currentUsername = state.userDetails.username!;
                         log('Current User After SignIn $currentUsername');
@@ -88,7 +78,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                               postsList: state.posts,
                               isCurrentUser: false,
                             ),
-                            kHeight(50),
+                            kHeight(30),
                             CustomTabBarWidget(tabController: tabController),
                             kHeight(15),
                             CustomTabviewWidget(

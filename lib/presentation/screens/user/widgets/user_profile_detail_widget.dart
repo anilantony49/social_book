@@ -10,6 +10,7 @@ import 'package:social_book/presentation/screens/profile/widgets/profile_menu.da
 import 'package:social_book/presentation/screens/profile/widgets/user_heading_widget.dart';
 import 'package:social_book/presentation/screens/user/widgets/follow_button_widget.dart';
 import 'package:social_book/presentation/screens/user/widgets/post_follow_count_card.dart';
+import 'package:social_book/presentation/screens/user/widgets/user_profile_heading_widget.dart';
 import 'package:social_book/presentation/widgets/custom_outlined_button.dart';
 
 class UserProfileDetailsWidget extends StatelessWidget {
@@ -39,41 +40,10 @@ class UserProfileDetailsWidget extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        UserHeadingWidget(
+        UserProfileHeadingWidget(
           isCurrentUser: false,
           userModel: userModel,
           onProfile: false,
-          onTap: () {
-            showDialog(
-                context: context,
-                builder: (context) {
-                  return ProfileMenu(
-                    leading: const [
-                      AppIcons.send,
-                      AppIcons.danger,
-                      AppIcons.close
-                    ],
-                    profileImage: userModel.profilePicture!,
-                    buttonLabel: const [
-                      "Sent Message",
-                      "Report Account",
-                      "Cancel"
-                    ],
-                    ontap: [
-                      () {},
-                      () {
-                        //    nextScreen(
-                        //   context,
-                        //   ReportPage(userId: userModel.id!),
-                        // );
-                      },
-                      () {
-                        Navigator.pop(context);
-                      }
-                    ],
-                  );
-                });
-          },
         ),
         kHeight(10),
         Padding(
