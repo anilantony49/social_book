@@ -19,6 +19,12 @@ class NotificationPage extends StatefulWidget {
 }
 
 class _NotificationPageState extends State<NotificationPage> {
+  @override
+  void initState() {
+    context.read<NotificationBloc>().add(FetchAllNotificationEvent());
+    super.initState();
+  }
+
   Future<void> _handleRefresh() async {
     await Future.delayed(const Duration(seconds: 2));
     context.read<NotificationBloc>().add(FetchAllNotificationEvent());
@@ -48,9 +54,9 @@ class _NotificationPageState extends State<NotificationPage> {
                 builder: (context, state) {
                   var state1 = state[0];
                   var state2 = state[1];
-                  // if(state is FetchAllNotificationLoadingState){
-                  //     return const NotificationLoadingWidget();
-                  // }
+                  if (state1 is FetchAllNotificationLoadingState) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
 
                   if (state1 is FetchAllNotificationSuccessState) {
                     if (state2 is ProfileFetchingSucessState) {

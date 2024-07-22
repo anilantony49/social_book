@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/presentation/bloc/notification/notification_bloc.dart';
+import 'package:social_book/presentation/screens/profile/edit_profile/widgets/custom_text_button.dart';
 import 'package:social_book/presentation/widgets/custom_outlined_button.dart';
 
 class NotifyAppbar extends StatelessWidget {
@@ -27,16 +28,14 @@ class NotifyAppbar extends StatelessWidget {
           ),
           const Spacer(),
           SizedBox(
-            height: 35,
-            child: CustomOutlinedBtn(
-              onPressed: () {
-                context
-                    .read<NotificationBloc>()
-                    .add(ClearAllNotificationEvent());
-              },
-              btnText: 'MARK AS READ',
-            ),
-          )
+              height: 25,
+              child: CustomTextButton(
+                  onTap: () {
+                    context
+                        .read<NotificationBloc>()
+                        .add(ClearAllNotificationEvent());
+                  },
+                  buttonText: 'CLEAR ALL'))
         ],
       ),
     );

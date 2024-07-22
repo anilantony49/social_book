@@ -58,7 +58,7 @@ class StoryUtils {
             ),
             kHeight(5),
             const Text(
-              'Create Story',
+              'Add Story',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,

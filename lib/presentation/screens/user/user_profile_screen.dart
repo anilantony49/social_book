@@ -7,7 +7,6 @@ import 'package:social_book/presentation/screens/profile/widgets/profile_detail_
 import 'package:social_book/presentation/screens/user/widgets/post_button.dart';
 import 'package:social_book/presentation/screens/user/widgets/post_grid_view.dart';
 import 'package:social_book/presentation/screens/user/widgets/user_profile_detail_widget.dart';
-import 'package:social_book/presentation/widgets/refresh_widget.dart';
 
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({
@@ -38,15 +37,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return ColorfulSafeArea(
+       color: Colors.white,
       child: RefreshIndicator(
         onRefresh: _handleRefresh,
         child: Scaffold(
           backgroundColor: Colors.white,
           body: BlocBuilder<UserByIdBloc, UserByIdState>(
             builder: (context, state) {
-              // if(state is FetchUserByIdLoadingState){
-              //   return UserProfilePageLoading()
-              // }
+              if (state is FetchUserByIdLoadingState) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
               if (state is FetchUserByIdSuccessState) {
                 return ListView(

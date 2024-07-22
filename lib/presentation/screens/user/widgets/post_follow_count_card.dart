@@ -20,8 +20,6 @@ class PostFollowCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Theme.of(context);
-
     return BlocBuilder<FollowUnfollowUserBloc, FollowUnfollowUserState>(
       builder: (context, state) {
         return SizedBox(

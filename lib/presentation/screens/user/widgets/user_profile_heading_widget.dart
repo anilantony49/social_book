@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
@@ -5,7 +6,6 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
-import 'package:social_book/presentation/screens/settings/settings.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class UserProfileHeadingWidget extends StatelessWidget {
@@ -25,6 +25,16 @@ class UserProfileHeadingWidget extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 0, 15, 0),
       child: Row(
         children: [
+          InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              AppIcons.arrowleftios,
+              size: 20,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ),
           const Spacer(),
           kWidth(70),
           Text(
@@ -34,7 +44,7 @@ class UserProfileHeadingWidget extends StatelessWidget {
           const Spacer(),
           popupmenuItems(context),
           // InkWell(
-
+    
           //   child: isCurrentUser
           //       ? const SizedBox()
           //       : onProfile
@@ -51,10 +61,10 @@ class UserProfileHeadingWidget extends StatelessWidget {
       onSelected: (String result) {
         switch (result) {
           case 'Send message':
-            nextScreen(
-              context,
-              SettingsPage(accountType: userModel.accountType!),
-            ).then((value) => Navigator.pop(context));
+            // nextScreen(
+            //   context,
+            //   SettingsPage(accountType: userModel.accountType!),
+            // ).then((value) => Navigator.pop(context));
             break;
           case 'Report':
             break;

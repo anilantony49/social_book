@@ -7,7 +7,9 @@ import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
+import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/edit_post/edit_post_screen.dart';
+import 'package:social_book/presentation/screens/user/user_profile_screen.dart';
 
 class PostMoreBottomSheet extends StatefulWidget {
   final PostModel postModel;
@@ -43,7 +45,7 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
           (widget.postModel.user!.id ?? widget.postId) == widget.userId
               ? Column(
                   children: [
-                    editPostWidget(),
+                    editPostWidget(context),
                     removePostWidget(context),
                   ],
                 )
@@ -68,12 +70,20 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
       title: const Text('View account'),
       onTap: () {
         debugPrint('Go to profile');
-        // nextScreen(
-        //     context,
-        //     UserProfileScreen(
-        //       userId: widget.postModel.user!.id!,
-        //       isCurrentUser: false,
-        //     ));
+        nextScreen(
+            context,
+            UserProfileScreen(
+              userId: widget.postModel.user!.id!,
+              isCurrentUser: false,
+            )).then(
+          (value) {
+            // mySystemTheme(context);
+            Navigator.pop(context);
+          },
+        );
+        context
+            .read<UserByIdBloc>()
+            .add(FetchUserByIdEvent(userId: widget.postModel.user!.id!));
       },
     );
   }
@@ -87,12 +97,7 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
         size: 22,
       ),
       title: const Text('Report'),
-      onTap: () {
-        //  nextScreen(
-        //   context,
-        //   ReportPage(postId: widget.postModel.id!),
-        // );
-      },
+      onTap: () {},
     );
   }
 
@@ -161,7 +166,7 @@ class _PostMoreBottomSheetState extends State<PostMoreBottomSheet> {
 
   // =========== Edit Post Button ===========
 
-  Widget editPostWidget() {
+  Widget editPostWidget(BuildContext context) {
     return ListTile(
       leading: const Icon(AppIcons.edit),
       title: const Text('Edit post'),

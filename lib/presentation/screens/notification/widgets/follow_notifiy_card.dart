@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/notificatoin_model/notification_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
@@ -18,7 +19,7 @@ class FollowNotifyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+   
 
     void followUnfollowFunction(
         UserModel currentUserModel, UserModel user, bool? isUnfollowing) {
@@ -32,21 +33,21 @@ class FollowNotifyCard extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: () {
-        nextScreen(
-            context,
-            UserProfileScreen(
-              userId: notificationModel.user.id!,
-              isCurrentUser: false,
-            ));
-        context
-            .read<UserByIdBloc>()
-            .add(FetchUserByIdEvent(userId: notificationModel.user.id!));
-      },
+      // onTap: () {
+      //   nextScreen(
+      //       context,
+      //       UserProfileScreen(
+      //         userId: notificationModel.user.id!,
+      //         isCurrentUser: false,
+      //       ));
+      //   context
+      //       .read<UserByIdBloc>()
+      //       .add(FetchUserByIdEvent(userId: notificationModel.user.id!));
+      // },
       child: Container(
         padding: const EdgeInsets.fromLTRB(15, 15, 15, 14),
         decoration: BoxDecoration(
-          color: theme.colorScheme.primaryContainer,
+          color: AppColors.lLightGrey,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
@@ -67,7 +68,7 @@ class FollowNotifyCard extends StatelessWidget {
                   },
                   child: CircleAvatar(
                     radius: 25,
-                    backgroundColor: theme.colorScheme.onSurface,
+                    backgroundColor: Colors.black,
                     backgroundImage: notificationModel.user.profilePicture == ""
                         ? Image.asset(profilePlaceholder).image
                         : NetworkImage(notificationModel.user.profilePicture!),
@@ -104,7 +105,7 @@ class FollowNotifyCard extends StatelessWidget {
                 timeAgo(DateTime.parse(notificationModel.updatedAt)),
                 style: TextStyle(
                   fontSize: 11,
-                  color: theme.colorScheme.onSecondary,
+                  color: Colors.black,
                 ),
               ),
             )

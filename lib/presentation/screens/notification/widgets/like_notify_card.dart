@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
+import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/data/models/notificatoin_model/notification_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/screens/notification/widgets/post_detail_notify.dart';
@@ -18,21 +19,20 @@ class LikeNotifyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return InkWell(
-      onTap: () {
-        nextScreen(
-          context,
-          PostDetailNotify(
-            postId: notificationModel.postId,
-            currentUser: currentUser,
-          ),
-        );
-      },
+      // onTap: () {
+      //   nextScreen(
+      //     context,
+      //     PostDetailNotify(
+      //       postId: notificationModel.postId,
+      //       currentUser: currentUser,
+      //     ),
+      //   );
+      // },
       child: Container(
         padding: const EdgeInsets.fromLTRB(15, 15, 15, 14),
         decoration: BoxDecoration(
-          color: theme.colorScheme.primaryContainer,
+          color: AppColors.lLightGrey,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
@@ -43,7 +43,7 @@ class LikeNotifyCard extends StatelessWidget {
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.onSurface,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(3),
                     image: DecorationImage(
                       image: NetworkImage(notificationModel.postMedia),
@@ -71,9 +71,9 @@ class LikeNotifyCard extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Text(
                 timeAgo(DateTime.parse(notificationModel.updatedAt)),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 11,
-                  color: theme.colorScheme.onSecondary,
+                  color: Colors.black,
                 ),
               ),
             )

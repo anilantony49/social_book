@@ -48,7 +48,7 @@ class UserHeadingWidget extends StatelessWidget {
 
   Widget popupmenuItems(BuildContext context) {
     return PopupMenuButton(
-      onSelected: (String result) {
+      onSelected: (String result) async {
         switch (result) {
           case 'Settings':
             nextScreen(
@@ -59,15 +59,14 @@ class UserHeadingWidget extends StatelessWidget {
           case 'About Us':
             break;
           case 'Logout':
-            () async {
-              UserAuthStatus.saveUserStatus(false);
-              SocketServices().disconnectSocket();
+            UserAuthStatus.saveUserStatus(false);
+            SocketServices().disconnectSocket();
 
-              await nextScreenRemoveUntil(
-                context,
-                const UserSigninScreen(),
-              );
-            };
+            await nextScreenRemoveUntil(
+              context,
+              const UserSigninScreen(),
+            );
+
             break;
         }
       },
