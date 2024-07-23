@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 const fontWeightW600 = <FontVariation>[FontVariation('wght', 600.0)];
 
@@ -50,6 +51,24 @@ String timeAgo(DateTime dateTime) {
   } else {
     return 'Just now';
   }
+}
+
+bool isToday(DateTime date) {
+  final now = DateTime.now();
+  final today = DateTime(now.year, now.month, now.day);
+  final messageDate = DateTime(date.year, date.month, date.day);
+  return today == messageDate;
+}
+
+bool isYesterday(DateTime date) {
+  final now = DateTime.now();
+  final yesterday = DateTime(now.year, now.month, now.day - 1);
+  final messageDate = DateTime(date.year, date.month, date.day);
+  return yesterday == messageDate;
+}
+
+String formatTime(DateTime time) {
+  return DateFormat('h:mm a').format(time);
 }
 
 String filterPostTime(DateTime dateTime) {

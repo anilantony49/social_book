@@ -29,6 +29,7 @@ import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/cubit/drop_down/drop_down_cubit.dart';
+import 'package:social_book/presentation/cubit/on_search_message/on_search_cubit.dart';
 import 'package:social_book/presentation/cubit/online_users/online_users_cubit.dart';
 import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_index.dart';
 import 'package:social_book/presentation/cubit/search/search_cubit.dart';
@@ -90,6 +91,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ChatBloc()),
         BlocProvider(create: (context) => GetChatBloc()),
         BlocProvider(create: (context) => OnlineUsersCubit()),
+        BlocProvider(create: (context) => OnSearchMessageCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

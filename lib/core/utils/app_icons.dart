@@ -74,4 +74,6 @@ class AppIcons {
       IconData(0xe856, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData like =
       IconData(0xe835, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData message_text =
+      IconData(0xe83a, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }
