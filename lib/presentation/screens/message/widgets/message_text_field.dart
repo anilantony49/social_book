@@ -11,10 +11,9 @@ class MessageTextField extends StatefulWidget {
 class _MessageTextFieldState extends State<MessageTextField> {
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      color: theme.colorScheme.surface,
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -28,7 +27,8 @@ class _MessageTextFieldState extends State<MessageTextField> {
                     child: CustomSearchField(
                       heading: 'Chats',
                       searchController: widget.searchController,
-                      hintText: 'Search chat here...', onChanged: (String ) {  },
+                      hintText: 'Search chat here...',
+                      onChanged: (String) {},
                     ))
               ],
             ),

@@ -21,7 +21,6 @@ class UserChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return ColorfulSafeArea(
       color: Colors.white,
       child: Scaffold(
@@ -48,11 +47,8 @@ class UserChatPage extends StatelessWidget {
                               state.messageList,
                             );
                             if (!hasMessages) {
-                              // ============= Chat Empty View =============
                               return ChatEmptyView(chatUser: chatUser);
-                            } 
-                            else {
-                              // ============= Chat View =============
+                            } else {
                               return ChatView(
                                 messageList: state.messageList,
                                 currentUser: currentUser,
@@ -65,10 +61,7 @@ class UserChatPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // ============= Message Input Field =============
                   ChatBottomWidget(
-                  
                     chatUser: chatUser,
                     currentUser: profileState.userDetails,
                   ),

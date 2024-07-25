@@ -40,7 +40,7 @@ class ChatAppbar extends StatelessWidget {
               BlocBuilder<OnlineUsersCubit, List<String>>(
                 builder: (context, state) {
                   return state.contains(user.username)
-                      ? Text(
+                      ? const Text(
                           'Active now',
                           style: TextStyle(
                             color: Colors.black,

@@ -6,7 +6,6 @@ import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
 import 'package:social_book/presentation/screens/explore/widget/all_suggested_user_page.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people_grid_view.dart';
 
-
 class SuggestedPeople extends StatelessWidget {
   const SuggestedPeople({super.key});
 
@@ -20,9 +19,9 @@ class SuggestedPeople extends StatelessWidget {
 
         if (state is UserDetailFetchingLoadingState) {
           return Column(
-            children: [suggestedHeading(context),
-            //  SuggestedPeopleLoading()
-             ],
+            children: [
+              suggestedHeading(context),
+            ],
           );
         }
         if (state is UserDetailFetchingSuccessState) {
@@ -30,9 +29,10 @@ class SuggestedPeople extends StatelessWidget {
             children: [
               suggestedHeading(state: state, context),
               SuggestedPeopleGridView(
-                 state: state,
+                state: state,
                 maxCount: 4,
-                reverse: true,),
+                reverse: true,
+              ),
             ],
           );
         }
@@ -78,4 +78,3 @@ Widget suggestedHeading(BuildContext context,
     ),
   );
 }
-

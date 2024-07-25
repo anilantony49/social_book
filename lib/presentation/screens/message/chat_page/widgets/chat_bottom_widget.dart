@@ -6,7 +6,6 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/chat_model/chat_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
@@ -136,7 +135,7 @@ class _ChatBottomWidgetState extends State<ChatBottomWidget> {
                                           .add(FetchAllUserChatsEvent());
                                     }
                                   }
-                                  // ============ Send message function ============
+                               
                                   SchedulerBinding.instance
                                       .addPostFrameCallback((_) {
                                     SocketServices().sendMessage(
@@ -182,13 +181,13 @@ class _ChatBottomWidgetState extends State<ChatBottomWidget> {
 
   Widget emojiWidget() {
     return EmojiPicker(
-      config: Config(
-        categoryViewConfig: const CategoryViewConfig(
+      config: const Config(
+        categoryViewConfig: CategoryViewConfig(
           tabBarHeight: 40,
           tabIndicatorAnimDuration: Duration(milliseconds: 500),
           backgroundColor: Colors.white,
         ),
-        bottomActionBarConfig: const BottomActionBarConfig(
+        bottomActionBarConfig: BottomActionBarConfig(
           showBackspaceButton: false,
           showSearchViewButton: false,
         ),
@@ -200,7 +199,7 @@ class _ChatBottomWidgetState extends State<ChatBottomWidget> {
             'No Recents',
             style: TextStyle(
               fontSize: 16,
-              color: Theme.of(context).colorScheme.onSecondary,
+              color: Colors.black,
             ),
           ),
         ),

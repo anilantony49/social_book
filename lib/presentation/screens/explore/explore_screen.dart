@@ -1,3 +1,4 @@
+import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidable/hidable.dart';
@@ -27,68 +28,71 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: Hidable(
-        controller: scrollController,
-        preferredWidgetSize: const Size.fromHeight(120),
-        child: Container(
-          margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: CustomSearchField(
-            heading: 'Explore',
-            searchController: searchController,
-            onChanged: (value) {
-                if (value.isNotEmpty) {
-                  debouncer.run(() {
-                    context
-                        .read<SearchUserBloc>()
-                        .add(SearchUserEvent(query: value));
-                  });
-                  context.read<OnSearchCubit>().onSearchChange(true);
-                } else {
-                  context.read<OnSearchCubit>().onSearchChange(false);
-                }
-              },
+    return ColorfulSafeArea(
+      color: Colors.white,
+      child: Scaffold(
+        appBar: Hidable(
+          controller: scrollController,
+          preferredWidgetSize: const Size.fromHeight(120),
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: CustomSearchField(
+              heading: 'Explore',
+              searchController: searchController,
+              onChanged: (value) {
+                  if (value.isNotEmpty) {
+                    debouncer.run(() {
+                      context
+                          .read<SearchUserBloc>()
+                          .add(SearchUserEvent(query: value));
+                    });
+                    context.read<OnSearchCubit>().onSearchChange(true);
+                  } else {
+                    context.read<OnSearchCubit>().onSearchChange(false);
+                  }
+                },
+              ),
             ),
           ),
-        ),
-        body: MultiBlocBuilder(
-          blocs: [
-            context.watch<OnSearchCubit>(),
-            context.watch<SearchUserBloc>()
-          ],
-          builder: (context, state) {
-            var state1 = state[0];
-            var state2 = state[1];
-
-            if (state1 == false) {
-              return ListView(
-                controller: explorePageController,
-                keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                children: const [
-                  SuggestedPeople(),
-                  ExplorePost(),
-                ],
-              );
-            } else {
-              if (state2 is SearchResultLoadingState) {
+          body: MultiBlocBuilder(
+            blocs: [
+              context.watch<OnSearchCubit>(),
+              context.watch<SearchUserBloc>()
+            ],
+            builder: (context, state) {
+              var state1 = state[0];
+              var state2 = state[1];
+      
+              if (state1 == false) {
+                return ListView(
+                  controller: explorePageController,
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  children: const [
+                    SuggestedPeople(),
+                    ExplorePost(),
+                  ],
+                );
+              } else {
+                if (state2 is SearchResultLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                      strokeWidth: 2,
+                    ),
+                  );
+                }
+      
+                if (state2 is SearchResultSuccessState) {
+                  return UserSearchResultView(state2: state2);
+                }
+      
                 return const Center(
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 2,
-                  ),
+                  child: Text('User Not Found!'),
                 );
               }
-
-              if (state2 is SearchResultSuccessState) {
-                return UserSearchResultView(state2: state2);
-              }
-
-              return const Center(
-                child: Text('User Not Found!'),
-              );
-            }
-          },
-        ),
+            },
+          ),
+      ),
     );
   }
 }

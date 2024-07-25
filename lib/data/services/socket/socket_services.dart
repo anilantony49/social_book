@@ -2,8 +2,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/api_endpoints.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
+import 'package:social_book/presentation/bloc/get_chat/get_chat_bloc.dart';
+import 'package:social_book/presentation/cubit/online_users/online_users_cubit.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketServices {
@@ -20,6 +23,7 @@ class SocketServices {
         IO.OptionBuilder().setTransports(['websocket']).build());
     if (_context != null) {
       log('From here it is calling');
+      _context!.read<GetChatBloc>().add(FetchAllUserChatsEvent());
     }
   }
 
@@ -32,6 +36,27 @@ class SocketServices {
     socket.close();
     socket.dispose();
     log('Is Socket Active: ${socket.active}');
+  }
+
+  _makeUserActive(String username) {
+    socket.connect();
+    socket.onConnect((data) {
+      socket.emit('newUser', username);
+      log('Is socket connected ${socket.connected}');
+      log('$username has been connected');
+    });
+  }
+
+  _getOnlineUsers(BuildContext? context) {
+    socket.emit('getOnlineUsers');
+    socket.on('onlineUsers', (data) {
+      debugPrint('Getting online users');
+      for (int i = 0; i < data.length; i++) {
+        String username = data[i]['username'];
+        context!.read<OnlineUsersCubit>().getOnlineUsers(username);
+        debugPrint(username);
+      }
+    });
   }
 
   sendMessage({

@@ -22,7 +22,10 @@ class StoryRepo {
         ),
       );
       debugPrint('Fetch Stories Status: ${response.statusCode}');
+
+
       if (response.statusCode == 200) {
+        print(response.data.toString());
         final List storyList = response.data;
         for (int i = 0; i < storyList.length; i++) {
           StoryModel post = StoryModel.fromJson(storyList[i]);

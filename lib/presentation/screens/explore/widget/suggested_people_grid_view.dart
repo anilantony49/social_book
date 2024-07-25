@@ -111,7 +111,7 @@ class SuggestedPeopleGridView extends StatelessWidget {
             ),
           );
         }
-        return LoadingFollowBtn();
+        return const LoadingFollowBtn();
       },
     );
   }

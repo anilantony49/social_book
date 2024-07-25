@@ -5,7 +5,6 @@ import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart'
 import 'package:social_book/presentation/cubit/on_search_message/on_search_cubit.dart';
 import 'package:social_book/presentation/screens/explore/widget/custom_search_field.dart';
 
-
 class MessageAppbar extends StatefulWidget {
   const MessageAppbar({
     super.key,
@@ -24,7 +23,6 @@ class _MessageAppbarState extends State<MessageAppbar> {
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       color: Colors.white,
@@ -32,13 +30,6 @@ class _MessageAppbarState extends State<MessageAppbar> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 30),
-          //   child: Text(
-          //     'Chats',
-          //     style: TextStyle(fontSize: 24),
-          //   ),
-          // ),
           Container(
             margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Row(
@@ -62,21 +53,22 @@ class _MessageAppbarState extends State<MessageAppbar> {
                             .read<OnSearchMessageCubit>()
                             .onSearchChange(false);
                       }
-                    }, heading: 'Chats',
+                    },
+                    heading: 'Chats',
                   ),
                 ),
               ],
             ),
           ),
-          // const Padding(
-          //   padding: EdgeInsets.only(left: 20, top: 10),
-          //   child: Text(
-          //     'All Inbox',
-          //     style: TextStyle(
-          //       fontSize: 15,
-          //     ),
-          //   ),
-          // )
+           const Padding(
+            padding: EdgeInsets.only(left: 20, top: 10),
+            child: Text(
+              'All messages',
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+          )
         ],
       ),
     );

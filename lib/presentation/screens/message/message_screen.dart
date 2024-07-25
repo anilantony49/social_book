@@ -17,8 +17,6 @@ import 'package:social_book/presentation/screens/message/widgets/message_empty_v
 import 'package:social_book/presentation/screens/message/widgets/message_function.dart';
 import 'package:social_book/presentation/screens/message/widgets/message_list_view.dart';
 import 'package:social_book/presentation/screens/message/widgets/message_search_view.dart';
-import 'package:social_book/presentation/screens/message/widgets/message_text_field.dart';
-import 'package:social_book/presentation/widgets/refresh_widget.dart';
 
 class MessageScreen extends StatefulWidget {
   const MessageScreen({super.key});
@@ -58,9 +56,6 @@ class _MessageScreenState extends State<MessageScreen> {
                 listener: (context, state) {
                   var chatState = state[0];
                   if (chatState is UserChatsFetchingSuccessState) {
-                    // ============ Adding all the previous chats ============
-                    debugPrint('Chat Added State 44');
-                    log('Chat added state 44');
                     context.read<ChatBloc>().add(
                         AddInitialMessageEvent(messageList: chatState.chats));
                   }
@@ -84,10 +79,8 @@ class _MessageScreenState extends State<MessageScreen> {
                           var state2 = states[1];
                           if (state2 is ProfileFetchingSucessState) {
                             if (state1 is ChatAddedState) {
-                              // ============ Search Idle View ============
                               UserModel currentUser = state2.userDetails;
 
-                              // ============ Sorting users based on last messsage time ============
                               log('From chat added state');
                               List<UserModel> chatUsersList =
                                   MessageFunctions.sortChatUserList(
@@ -96,7 +89,7 @@ class _MessageScreenState extends State<MessageScreen> {
                                 messageList: state1.messageList,
                               );
                               return Expanded(
-                                child: RefreshWidget(
+                                child: RefreshIndicator(
                                   onRefresh: _handleRefresh,
                                   child: MessageListView(
                                     messagePageController:
@@ -114,7 +107,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       );
                     }
                     return Expanded(
-                      child: RefreshWidget(
+                      child: RefreshIndicator(
                         onRefresh: _handleRefresh,
                         child: const MessageEmtpyViewWidget(),
                       ),

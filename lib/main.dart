@@ -92,6 +92,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => GetChatBloc()),
         BlocProvider(create: (context) => OnlineUsersCubit()),
         BlocProvider(create: (context) => OnSearchMessageCubit()),
+        // BlocProvider(create: (context) => ConnectivityStatusCubit()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

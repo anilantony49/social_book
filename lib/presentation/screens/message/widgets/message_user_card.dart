@@ -28,26 +28,22 @@ class _MessageUserCardState extends State<MessageUserCard> {
   bool isReplyMessage = false;
   @override
   Widget build(BuildContext context) {
-    // var theme = Theme.of(context);
-    return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (context, state) {
-        if (state is ProfileFetchingSucessState) {
-          String lastMessgeTime = '';
+    return BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+      if (state is ProfileFetchingSucessState) {
+        String lastMessgeTime = '';
 
-          if (widget.lastMessage != null) {
-            isOwnMessage =
-                isOwnMessageFn(widget.lastMessage!, state.userDetails);
+        if (widget.lastMessage != null) {
+          isOwnMessage = isOwnMessageFn(widget.lastMessage!, state.userDetails);
 
-            isReplyMessage =
-                isReplyMessageFn(widget.lastMessage!, state.userDetails);
-            lastMessgeTime = isToday(widget.lastMessage!.sendAt)
-                ? formatTime(widget.lastMessage!.sendAt.toLocal())
-                : isYesterday(widget.lastMessage!.sendAt)
-                    ? 'Yesterday'
-                    : DateFormat('dd-MM-yyyy')
-                        .format(widget.lastMessage!.sendAt);
-          }
-        
+          isReplyMessage =
+              isReplyMessageFn(widget.lastMessage!, state.userDetails);
+          lastMessgeTime = isToday(widget.lastMessage!.sendAt)
+              ? formatTime(widget.lastMessage!.sendAt.toLocal())
+              : isYesterday(widget.lastMessage!.sendAt)
+                  ? 'Yesterday'
+                  : DateFormat('dd-MM-yyyy').format(widget.lastMessage!.sendAt);
+        }
+
         return InkWell(
           onTap: () {
             nextScreen(
@@ -70,13 +66,15 @@ class _MessageUserCardState extends State<MessageUserCard> {
                     ),
                     BlocBuilder<OnlineUsersCubit, List<String>>(
                       builder: (context, state) {
-                        return  state.contains(widget.chatUser.username)? const Positioned(
-                            bottom: 4,
-                            right: 2,
-                            child: CircleAvatar(
-                              radius: 6,
-                              backgroundColor: Colors.green,
-                            )):const SizedBox();
+                        return state.contains(widget.chatUser.username)
+                            ? const Positioned(
+                                bottom: 4,
+                                right: 2,
+                                child: CircleAvatar(
+                                  radius: 6,
+                                  backgroundColor: Colors.green,
+                                ))
+                            : const SizedBox();
                       },
                     )
                   ],
@@ -85,65 +83,63 @@ class _MessageUserCardState extends State<MessageUserCard> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     Text(
+                    Text(
                       widget.chatUser.fullName!,
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                     kHeight(5),
-                    if(isOwnMessage)
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 250,
-                      child: Text(
-                         widget.lastMessage!.message,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    if(isReplyMessage)
-                    SizedBox(
-                          width: MediaQuery.of(context).size.width - 250,
-                          child: Text(
-                            widget.lastMessage!.message,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
+                    if (isOwnMessage)
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 250,
+                        child: Text(
+                          widget.lastMessage!.message,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white,
                           ),
                         ),
-
+                      ),
+                    if (isReplyMessage)
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width - 250,
+                        child: Text(
+                          widget.lastMessage!.message,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
+                      ),
                   ],
                 ),
                 const Spacer(),
-                if(isOwnMessage)
-                Text(
+                if (isOwnMessage)
+                  Text(
                     lastMessgeTime,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color:Colors.black,
-                  ),
-                ),
-                 if (isReplyMessage)
-                    Text(
-                      lastMessgeTime,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                      ),
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
                     ),
+                  ),
+                if (isReplyMessage)
+                  Text(
+                    lastMessgeTime,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                    ),
+                  ),
               ],
             ),
           ),
         );
       }
-       return Container();
-      }
-    );
+      return Container();
+    });
   }
 
   bool isOwnMessageFn(ChatModel message, UserModel currentUser) {

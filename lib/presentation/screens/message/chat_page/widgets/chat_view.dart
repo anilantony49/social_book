@@ -3,8 +3,8 @@ import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
 import 'package:social_book/data/models/chat_model/chat_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/presentation/screens/message/chat_page/widgets/own_message_card.dart';
-import 'package:social_book/presentation/screens/message/chat_page/widgets/reply_card.dart';
+import 'package:social_book/presentation/screens/message/chat_page/widgets/current_user_message_card.dart';
+import 'package:social_book/presentation/screens/message/chat_page/widgets/other_user_message_card.dart';
 
 class ChatView extends StatelessWidget {
   const ChatView({
@@ -55,9 +55,9 @@ class ChatView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 formattedDate,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 13,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Colors.black,
                 ),
               ),
             ),
@@ -66,9 +66,9 @@ class ChatView extends StatelessWidget {
               final isReplyMessage = isReplyMessageFn(message);
 
               if (isOwnMessage) {
-                return OwnMessageCard(message: message);
+                return CurrentUserMessageCard(message: message);
               } else if (isReplyMessage) {
-                return ReplyCard(message: message);
+                return OtherUserMessageCard(message: message);
               } else {
                 return const SizedBox();
               }

@@ -20,15 +20,6 @@ class LikeNotifyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // onTap: () {
-      //   nextScreen(
-      //     context,
-      //     PostDetailNotify(
-      //       postId: notificationModel.postId,
-      //       currentUser: currentUser,
-      //     ),
-      //   );
-      // },
       child: Container(
         padding: const EdgeInsets.fromLTRB(15, 15, 15, 14),
         decoration: BoxDecoration(

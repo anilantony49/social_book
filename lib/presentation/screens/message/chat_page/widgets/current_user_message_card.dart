@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/chat_model/chat_model.dart';
 
-class OwnMessageCard extends StatelessWidget {
-  const OwnMessageCard({
+class CurrentUserMessageCard extends StatelessWidget {
+  const CurrentUserMessageCard({
     super.key,
     required this.message,
   });
@@ -19,17 +18,6 @@ class OwnMessageCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 6),
-            child: Text(
-              DateFormat('h:mm:a').format(message.sendAt.toLocal()),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.secondary,
-                fontSize: 11,
-              ),
-            ),
-          ),
-          kWidth(8),
           Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width - 110,
@@ -40,7 +28,7 @@ class OwnMessageCard extends StatelessWidget {
               horizontal: 20,
             ),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Colors.blue,
               boxShadow: kBoxShadow,
               borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(10),

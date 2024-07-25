@@ -23,7 +23,7 @@ class MessageListView extends StatelessWidget {
     return ListView.builder(
       controller: messagePageController,
       padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
-      itemCount:  chatUsersList.length,
+      itemCount: chatUsersList.length,
       shrinkWrap: true,
       physics: const AlwaysScrollableScrollPhysics(),
       itemBuilder: (context, index) {
@@ -33,8 +33,10 @@ class MessageListView extends StatelessWidget {
           messageList,
           chatUser,
         );
-        return  MessageUserCard(  chatUser: chatUser,
-          lastMessage: lastMessage,);
+        return MessageUserCard(
+          chatUser: chatUser,
+          lastMessage: lastMessage,
+        );
       },
     );
   }
