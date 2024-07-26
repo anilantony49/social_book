@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
@@ -54,7 +53,7 @@ class UserHeadingWidget extends StatelessWidget {
             nextScreen(
               context,
               SettingsPage(accountType: userModel.accountType!),
-            ).then((value) => Navigator.pop(context));
+            );
             break;
           case 'About Us':
             break;

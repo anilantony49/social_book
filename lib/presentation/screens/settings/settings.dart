@@ -1,6 +1,8 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_icons.dart';
+import 'package:social_book/core/utils/constants.dart';
+import 'package:social_book/presentation/screens/settings/widgets/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key, required this.accountType});
@@ -9,11 +11,11 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    // var theme = Theme.of(context);
     return ColorfulSafeArea(
-      color: theme.colorScheme.surface,
+      color: Colors.white,
       child: Scaffold(
-        backgroundColor: theme.colorScheme.surface,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           title: const Text('Settings'),
@@ -33,17 +35,15 @@ class SettingsPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
               shrinkWrap: true,
               children: [
-                // SettingsWidgets.changeThemeTile(context),
-                // kHeight(15),
-                // SettingsWidgets.changeAccountTypeTile(context, accountType),
-                // kHeight(15),
-                // SettingsWidgets.privacyPolicyTile(context),
-                // kHeight(15),
-                // SettingsWidgets.termsConditionsTile(context),
-                // kHeight(15),
-                // SettingsWidgets.aboutUsListTile(context),
-                // kHeight(15),
-                // SettingsWidgets.logoutTile(context),
+                SettingsWidgets.changeThemeTile(context),
+                kHeight(15),
+                SettingsWidgets.privacyPolicyTile(context),
+                kHeight(15),
+                SettingsWidgets.termsConditionsTile(context),
+                kHeight(15),
+                SettingsWidgets.aboutUsListTile(context),
+                kHeight(15),
+                SettingsWidgets.logoutTile(context),
               ],
             ),
             // SettingsWidgets.appVersion(context)

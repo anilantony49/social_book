@@ -76,4 +76,10 @@ class AppIcons {
       IconData(0xe835, fontFamily: _fontFamily, fontPackage: _kFontPkg);
   static const IconData message_text =
       IconData(0xe83a, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData arrow_circle_right =
+      IconData(0xe806, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData text_file =
+      IconData(0xe85f, fontFamily: _fontFamily, fontPackage: _kFontPkg);
+  static const IconData moon =
+      IconData(0xe840, fontFamily: _fontFamily, fontPackage: _kFontPkg);
 }

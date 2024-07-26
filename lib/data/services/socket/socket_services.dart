@@ -4,7 +4,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/api_endpoints.dart';
+import 'package:social_book/data/models/chat_model/chat_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
+import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
 import 'package:social_book/presentation/bloc/get_chat/get_chat_bloc.dart';
 import 'package:social_book/presentation/cubit/online_users/online_users_cubit.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -24,6 +26,9 @@ class SocketServices {
     if (_context != null) {
       log('From here it is calling');
       _context!.read<GetChatBloc>().add(FetchAllUserChatsEvent());
+      _listenMessage(_context);
+      _getOnlineUsers(_context);
+      _makeUserActive(username);
     }
   }
 
@@ -36,6 +41,15 @@ class SocketServices {
     socket.close();
     socket.dispose();
     log('Is Socket Active: ${socket.active}');
+  }
+
+    _listenMessage(BuildContext? context) {
+    socket.on('message', (data) {
+      debugPrint('Message Event Called ${data['message']}');
+      BlocProvider.of<ChatBloc>(context!).add(AddNewMessageEvent(
+        chatModel: ChatModel.fromJson(data),
+      ));
+    });
   }
 
   _makeUserActive(String username) {
