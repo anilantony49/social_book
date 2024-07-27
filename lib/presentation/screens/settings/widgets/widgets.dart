@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/presentation/screens/settings/widgets/setting_listtile.dart';
+import 'package:social_book/presentation/screens/settings/widgets/theme_page.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class SettingsWidgets {
@@ -57,7 +58,7 @@ class SettingsWidgets {
       title: 'Change theme',
       // trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
-        // nextScreen(context, const ThemeSwitchPage());
+        nextScreen(context, const ThemeSwitchPage());
       },
     );
   }

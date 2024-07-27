@@ -35,6 +35,7 @@ import 'package:social_book/presentation/cubit/post_image_index.dart/post_image_
 import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
 import 'package:social_book/presentation/cubit/story_index/story_index_cubit.dart';
+import 'package:social_book/presentation/cubit/theme/theme_cubit.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
 import 'package:social_book/splash_screen.dart';
@@ -92,6 +93,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => GetChatBloc()),
         BlocProvider(create: (context) => OnlineUsersCubit()),
         BlocProvider(create: (context) => OnSearchMessageCubit()),
+        BlocProvider(create: (context) => ThemeCubit()),
+
         // BlocProvider(create: (context) => ConnectivityStatusCubit()),
       ],
       child: MaterialApp(

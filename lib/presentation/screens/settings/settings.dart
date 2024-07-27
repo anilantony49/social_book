@@ -46,7 +46,7 @@ class SettingsPage extends StatelessWidget {
                 SettingsWidgets.logoutTile(context),
               ],
             ),
-            // SettingsWidgets.appVersion(context)
+            SettingsWidgets.appVersion(context)
           ],
         ),
       ),
