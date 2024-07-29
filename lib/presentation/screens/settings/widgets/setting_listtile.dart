@@ -6,13 +6,13 @@ class SettingListTile extends StatelessWidget {
     super.key,
     required this.leadingIcon,
     required this.title,
-    // required this.trailing,
+    required this.trailing,
     required this.onTap,
   });
 
   final IconData leadingIcon;
   final String title;
-  // final Widget trailing;
+  final Widget trailing;
   final void Function() onTap;
 
   @override
@@ -21,7 +21,7 @@ class SettingListTile extends StatelessWidget {
       contentPadding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
       tileColor: AppColors.lLightGrey,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      // leading: Icon(leadingIcon),
+      leading: Icon(leadingIcon),
       title: Text(title),
       onTap: onTap,
     );

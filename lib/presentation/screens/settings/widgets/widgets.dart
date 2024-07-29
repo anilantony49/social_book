@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
+import 'package:social_book/data/services/shared_preference/shared_preference.dart';
+import 'package:social_book/data/services/socket/socket_services.dart';
+import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
 import 'package:social_book/presentation/screens/settings/widgets/setting_listtile.dart';
-import 'package:social_book/presentation/screens/settings/widgets/theme_page.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class SettingsWidgets {
@@ -23,7 +25,7 @@ class SettingsWidgets {
     return SettingListTile(
       leadingIcon: AppIcons.about,
       title: 'About us',
-      // trailing: const Icon(AppIcons.arrow_circle_right),
+      trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
         // nextScreen(context, const AboutUsPage());
       },
@@ -34,7 +36,7 @@ class SettingsWidgets {
     return SettingListTile(
       leadingIcon: AppIcons.text_file,
       title: 'Privacy & policy',
-      // trailing: const Icon(AppIcons.arrow_circle_right),
+      trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
         // nextScreen(context, const PrivacyAndPolicyPage());
       },
@@ -45,7 +47,7 @@ class SettingsWidgets {
     return SettingListTile(
       leadingIcon: AppIcons.text_file,
       title: 'Terms & Conditions',
-      // trailing: const Icon(AppIcons.arrow_circle_right),
+      trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
         // nextScreen(context, const TermsAndConditionsPage());
       },
@@ -56,9 +58,9 @@ class SettingsWidgets {
     return SettingListTile(
       leadingIcon: AppIcons.moon,
       title: 'Change theme',
-      // trailing: const Icon(AppIcons.arrow_circle_right),
+      trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
-        nextScreen(context, const ThemeSwitchPage());
+        // nextScreen(context, const ThemeSwitchPage());
       },
     );
   }
@@ -67,7 +69,7 @@ class SettingsWidgets {
     return SettingListTile(
       leadingIcon: AppIcons.logout_2,
       title: 'Logout',
-      // trailing: const SizedBox(),
+      trailing: const SizedBox(),
       onTap: () async {
         showDialog(
           context: context,
@@ -77,10 +79,9 @@ class SettingsWidgets {
             popBtnText: 'Cancel',
             actionBtnTxt: 'Logout',
             onTap: () async {
-              // context.read<ChatBloc>().add(ClearAllMessageEvent());
-              // UserAuthStatus.saveUserStatus(false);
-              // SocketServices().disconnectSocket();
-
+              context.read<ChatBloc>().add(ClearAllMessageEvent());
+              UserAuthStatus.saveUserStatus(false);
+              SocketServices().disconnectSocket();
               await nextScreenRemoveUntil(
                 context,
                 const UserSigninScreen(),
