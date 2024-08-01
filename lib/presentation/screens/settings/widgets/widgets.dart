@@ -5,7 +5,10 @@ import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
+import 'package:social_book/presentation/screens/settings/widgets/about_us_page.dart';
+import 'package:social_book/presentation/screens/settings/widgets/privacy_and_policy_page.dart';
 import 'package:social_book/presentation/screens/settings/widgets/setting_listtile.dart';
+import 'package:social_book/presentation/screens/settings/widgets/terms_conditions_page.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class SettingsWidgets {
@@ -14,7 +17,7 @@ class SettingsWidgets {
       bottom: 50,
       child: Center(
         child: Text(
-          'v 1.2.0',
+          'v 1.0.0',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
         ),
       ),
@@ -23,40 +26,39 @@ class SettingsWidgets {
 
   static SettingListTile aboutUsListTile(context) {
     return SettingListTile(
-      leadingIcon: AppIcons.about,
       title: 'About us',
       trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
-        // nextScreen(context, const AboutUsPage());
+        nextScreen(context, const AboutUsPage());
       },
     );
   }
 
   static SettingListTile privacyPolicyTile(context) {
     return SettingListTile(
-      leadingIcon: AppIcons.text_file,
+      // leadingIcon: AppIcons.text_file,
       title: 'Privacy & policy',
       trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
-        // nextScreen(context, const PrivacyAndPolicyPage());
+        nextScreen(context, const PrivacyAndPolicyPage());
       },
     );
   }
 
   static SettingListTile termsConditionsTile(context) {
     return SettingListTile(
-      leadingIcon: AppIcons.text_file,
+      // leadingIcon: AppIcons.text_file,
       title: 'Terms & Conditions',
       trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
-        // nextScreen(context, const TermsAndConditionsPage());
+        nextScreen(context, const TermsAndConditionsPage());
       },
     );
   }
 
   static SettingListTile changeThemeTile(BuildContext context) {
     return SettingListTile(
-      leadingIcon: AppIcons.moon,
+      // leadingIcon: AppIcons.moon,
       title: 'Change theme',
       trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
@@ -67,7 +69,7 @@ class SettingsWidgets {
 
   static SettingListTile logoutTile(BuildContext context) {
     return SettingListTile(
-      leadingIcon: AppIcons.logout_2,
+      // leadingIcon: AppIcons.logout_2,
       title: 'Logout',
       trailing: const SizedBox(),
       onTap: () async {

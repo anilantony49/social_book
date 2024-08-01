@@ -11,7 +11,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var theme = Theme.of(context);
     return ColorfulSafeArea(
       color: Colors.white,
       child: Scaffold(
@@ -35,8 +34,6 @@ class SettingsPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
               shrinkWrap: true,
               children: [
-                SettingsWidgets.changeThemeTile(context),
-                kHeight(15),
                 SettingsWidgets.privacyPolicyTile(context),
                 kHeight(15),
                 SettingsWidgets.termsConditionsTile(context),

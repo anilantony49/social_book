@@ -4,11 +4,11 @@ import 'package:social_book/core/utils/app_icons.dart';
 class SettingsAppbar extends StatelessWidget {
   const SettingsAppbar({
     super.key,
-    required this.theme,
+    // required this.theme,
     required this.title,
   });
 
-  final ThemeData theme;
+  // final ThemeData theme;
   final String title;
 
   @override
@@ -31,7 +31,7 @@ class SettingsAppbar extends StatelessWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(
+          icon: const Icon(
             AppIcons.arrow_left,
             size: 24,
           )),
