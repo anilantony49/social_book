@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/presentation/bloc/notification/notification_bloc.dart';
 import 'package:social_book/presentation/screens/profile/edit_profile/widgets/custom_text_button.dart';
-import 'package:social_book/presentation/widgets/custom_outlined_button.dart';
 
 class NotifyAppbar extends StatelessWidget {
   const NotifyAppbar({

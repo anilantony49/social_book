@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/bottom_navigation.dart';
+import 'package:social_book/presentation/screens/main/bottom_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/data/models/notificatoin_model/notification_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/presentation/screens/notification/widgets/post_detail_notify.dart';
 
 import '../../../../core/utils/constants.dart';
 

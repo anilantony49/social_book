@@ -2,12 +2,11 @@ import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
-import 'package:social_book/main_screen.dart';
+import 'package:social_book/presentation/screens/main/main_screen.dart';
 import 'package:social_book/presentation/bloc/user_sign_in/sign_in_bloc.dart';
 import 'package:social_book/presentation/screens/forgot_password/forgot_password_screen.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';
@@ -35,7 +34,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       builder: (context, state) {
         return FadeInDown(
           delay: const Duration(milliseconds: 400),
-          // duration: const Duration(milliseconds: 500),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(40, 40, 40, 30),
             child: Form(
@@ -197,11 +195,11 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   }
 
   _signInWithGoogle() async {
-    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
       final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
+          await googleSignIn.signIn();
       if (googleSignInAccount != null) {
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;

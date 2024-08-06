@@ -1,7 +1,6 @@
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:photo_manager/photo_manager.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
@@ -9,11 +8,8 @@ import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/presentation/bloc/post/post_bloc.dart';
 import 'package:social_book/presentation/bloc/post_edit/post_edit_bloc.dart';
 import 'package:social_book/presentation/bloc/post_logics/post_logics_bloc.dart';
-import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/edit_post/widgets/edit_post_widget.dart';
-import 'package:social_book/presentation/screens/post/create_post/widgets/image_listview.dart';
 import 'package:social_book/presentation/widgets/custom_button.dart';
-import 'package:social_book/presentation/widgets/media_picker_page.dart';
 
 class EditPostScreen extends StatefulWidget {
   final String location;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 
 class MessageEmtpyViewWidget extends StatelessWidget {

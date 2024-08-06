@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/app_icons.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
 class EditImageListview extends StatefulWidget {
   final List imageUrlList;

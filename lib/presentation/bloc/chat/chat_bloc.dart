@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+// import 'package:meta/meta.dart';
 import 'package:social_book/data/models/chat_model/chat_model.dart';
 
 part 'chat_event.dart';

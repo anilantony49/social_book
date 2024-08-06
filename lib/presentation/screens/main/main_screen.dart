@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:social_book/bottom_navigation.dart';
+import 'package:social_book/presentation/screens/main/bottom_navigation.dart';
 import 'package:social_book/presentation/screens/message/message_screen.dart';
 import 'package:social_book/presentation/screens/explore/explore_screen.dart';
 import 'package:social_book/presentation/screens/home/home_screen.dart';

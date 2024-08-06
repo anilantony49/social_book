@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:social_book/core/utils/api_endpoints.dart';
@@ -78,7 +76,7 @@ class AuthRepo {
   static Future<SignInResult> userSignIn(
       {required String username, required String password}) async {
     var client = http.Client();
-    String signUpUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.userSignIn}";    
+    String signUpUrl = "${ApiEndPoints.baseUrl}${ApiEndPoints.userSignIn}";
     try {
       var user = {
         "username": username,
@@ -90,7 +88,7 @@ class AuthRepo {
         headers: {'Content-Type': 'application/json'},
       );
       var jsonResponse = jsonDecode(response.body);
-     print(response.body);
+
       debugPrint('User Sign In Status: ${response.statusCode}');
       if (response.statusCode == 201) {
         await UserAuthStatus.saveUserStatus(true);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:social_book/presentation/bloc/user_bloc/user_bloc.dart';
-import 'package:social_book/presentation/screens/explore/widget/suggested_people.dart';
 import 'package:social_book/presentation/screens/explore/widget/suggested_people_grid_view.dart';
 import 'package:social_book/presentation/widgets/custom_appbar.dart';
 

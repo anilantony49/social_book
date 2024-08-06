@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
 import 'package:social_book/presentation/widgets/fadein_animate.dart';
 

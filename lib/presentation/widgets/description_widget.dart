@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 
 class DescriptionWidget extends StatelessWidget {
   const DescriptionWidget({

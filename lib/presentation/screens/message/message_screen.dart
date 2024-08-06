@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_bloc_builder/builders/multi_bloc_builder.dart';
 import 'package:multi_bloc_builder/builders/multi_bloc_consumer.dart';
-import 'package:social_book/bottom_navigation.dart';
+import 'package:social_book/presentation/screens/main/bottom_navigation.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
 import 'package:social_book/presentation/bloc/get_chat/get_chat_bloc.dart';

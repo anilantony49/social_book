@@ -56,23 +56,22 @@ class SettingsWidgets {
     );
   }
 
-  static SettingListTile changeThemeTile(BuildContext context) {
-    return SettingListTile(
-      // leadingIcon: AppIcons.moon,
-      title: 'Change theme',
-      trailing: const Icon(AppIcons.arrow_circle_right),
-      onTap: () {
-        // nextScreen(context, const ThemeSwitchPage());
-      },
-    );
-  }
+  // static SettingListTile changeThemeTile(BuildContext context) {
+  //   return SettingListTile(
+  //     // leadingIcon: AppIcons.moon,
+  //     title: 'Change theme',
+  //     trailing: const Icon(AppIcons.arrow_circle_right),
+  //     onTap: () {
+  //       // nextScreen(context, const ThemeSwitchPage());
+  //     },
+  //   );
+  // }
 
   static SettingListTile logoutTile(BuildContext context) {
     return SettingListTile(
-      // leadingIcon: AppIcons.logout_2,
       title: 'Logout',
       trailing: const SizedBox(),
-      onTap: () async {
+      onTap: ()  {
         showDialog(
           context: context,
           builder: (context) => CustomAlertDialog(
@@ -88,7 +87,6 @@ class SettingsWidgets {
                 context,
                 const UserSigninScreen(),
               );
-              // mySystemTheme(context);
             },
           ),
         );

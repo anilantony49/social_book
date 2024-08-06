@@ -1,10 +1,11 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:social_book/core/theme/app_theme.dart';
-import 'package:social_book/main_screen.dart';
 import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
 import 'package:social_book/presentation/bloc/comment/comment_bloc.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
@@ -36,12 +37,16 @@ import 'package:social_book/presentation/cubit/search/search_cubit.dart';
 import 'package:social_book/presentation/cubit/set_profile_image/cubit/set_profile_image_cubit.dart';
 import 'package:social_book/presentation/cubit/story_index/story_index_cubit.dart';
 import 'package:social_book/presentation/cubit/theme/theme_cubit.dart';
-import 'package:social_book/presentation/screens/home/home_screen.dart';
 import 'package:social_book/presentation/screens/user_signup/widgets/user_name_create_field_widget.dart';
-import 'package:social_book/splash_screen.dart';
+import 'package:social_book/presentation/screens/splash_screen/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationDocumentsDirectory(),
+  );
 
   Platform.isAndroid
       ? await Firebase.initializeApp(

@@ -40,6 +40,11 @@ class UserAuthStatus {
     return status ?? false;
   }
 
+  static saveUserinitialStatus(bool status) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setBool('ON_INITIAL', status);
+  }
+
   static saveUserStatus(bool status) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setBool('SIGNIN', status);

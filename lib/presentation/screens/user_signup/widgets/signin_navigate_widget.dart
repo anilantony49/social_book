@@ -5,7 +5,7 @@ import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_colors.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/main_screen.dart';
+import 'package:social_book/presentation/screens/main/main_screen.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/user_sign_up/sign_up_bloc.dart';
 import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';

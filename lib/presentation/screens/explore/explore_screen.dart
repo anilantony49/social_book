@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hidable/hidable.dart';
 import 'package:multi_bloc_builder/builders/multi_bloc_builder.dart';
-import 'package:social_book/bottom_navigation.dart';
+import 'package:social_book/presentation/screens/main/bottom_navigation.dart';
 import 'package:social_book/data/services/search_debouncer/debouncer.dart';
 import 'package:social_book/presentation/bloc/search_user/search_user_bloc.dart';
 import 'package:social_book/presentation/cubit/search/search_cubit.dart';

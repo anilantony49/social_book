@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
-import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 import 'package:social_book/presentation/screens/user/widgets/post_grid_image_tile.dart';
-import 'package:social_book/presentation/widgets/media_picker_page.dart';
-import 'package:wechat_assets_picker/wechat_assets_picker.dart';
+
 
 class PostsGridViewWidget extends StatelessWidget {
   const PostsGridViewWidget({

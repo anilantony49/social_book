@@ -1,4 +1,3 @@
-import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/app_icons.dart';
@@ -44,7 +43,7 @@ class UserProfileHeadingWidget extends StatelessWidget {
           const Spacer(),
           popupmenuItems(context),
           // InkWell(
-    
+
           //   child: isCurrentUser
           //       ? const SizedBox()
           //       : onProfile
