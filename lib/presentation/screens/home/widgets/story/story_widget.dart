@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
-
 import 'package:social_book/data/models/story_model/story_model.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/bloc/story/story_bloc.dart';
@@ -19,12 +18,7 @@ class StoryWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(15, 0, 0, 20),
       decoration: BoxDecoration(
-        // color: Colors.blue,
         boxShadow: kBoxShadow,
-        // borderRadius: const BorderRadius.only(
-        //   topLeft: Radius.circular(12),
-        //   bottomLeft: Radius.circular(12),
-        // ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +115,7 @@ class StoryWidget extends StatelessWidget {
                       ),
                     );
                     // Adding a SizedBox for spacing between cards
-                    storyCards.add(const SizedBox(width: 15));
+                    // storyCards.add(const SizedBox(width: 15));
                   }
                 });
                 return Row(

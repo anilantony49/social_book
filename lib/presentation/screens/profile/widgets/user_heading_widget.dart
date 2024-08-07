@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/data/services/shared_preference/shared_preference.dart';
-import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/screens/settings/settings.dart';
-import 'package:social_book/presentation/screens/user_signin/user_signin_screen.dart';
 
 class UserHeadingWidget extends StatelessWidget {
   const UserHeadingWidget({
@@ -54,19 +51,19 @@ class UserHeadingWidget extends StatelessWidget {
               context,
               SettingsPage(accountType: userModel.accountType!),
             );
-            break;
-          case 'About Us':
-            break;
-          case 'Logout':
-            UserAuthStatus.saveUserStatus(false);
-            SocketServices().disconnectSocket();
+          //   break;
+          // case 'About Us':
+          //   break;
+          // case 'Logout':
+            // UserAuthStatus.saveUserStatus(false);
+            // SocketServices().disconnectSocket();
 
-            await nextScreenRemoveUntil(
-              context,
-              const UserSigninScreen(),
-            );
+            // await nextScreenRemoveUntil(
+            //   context,
+            //   const UserSigninScreen(),
+            // );
 
-            break;
+            // break;
         }
       },
       itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -74,14 +71,14 @@ class UserHeadingWidget extends StatelessWidget {
           value: 'Settings',
           child: Text('Settings'),
         ),
-        const PopupMenuItem<String>(
-          value: 'About Us',
-          child: Text('About Us'),
-        ),
-        const PopupMenuItem<String>(
-          value: 'Logout',
-          child: Text('Logout'),
-        ),
+        // const PopupMenuItem<String>(
+        //   value: 'About Us',
+        //   child: Text('About Us'),
+        // ),
+        // const PopupMenuItem<String>(
+        //   value: 'Logout',
+        //   child: Text('Logout'),
+        // ),
       ],
     );
   }

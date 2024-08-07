@@ -22,7 +22,7 @@ class HeaderWidget extends StatelessWidget {
             nextScreen(context, const NotificationPage());
           },
           child: const Icon(EneftyIcons.notification_bing_outline,
-              color: AppColors.blueColor),
+              color: AppColors.blackColor),
         ),
       ],
     );

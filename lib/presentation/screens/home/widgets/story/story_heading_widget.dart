@@ -28,7 +28,7 @@ class _StoryHeadingWidgetState extends State<StoryHeadingWidget> {
         children: [
           const Text(
             'Stories',
-            style: TextStyle(fontSize: 15),
+            style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
           ),
           const Spacer(),
           MultiBlocBuilder(

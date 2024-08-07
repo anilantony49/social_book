@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/post_model/post_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
@@ -8,7 +7,6 @@ import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart'
 import 'package:social_book/presentation/screens/home/widgets/post/post_action_button_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_image_widget.dart';
 import 'package:social_book/presentation/screens/home/widgets/post/post_user_widget.dart';
-import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 import 'package:social_book/presentation/widgets/description_widget.dart';
 
 class PostListWidget extends StatelessWidget {
@@ -76,59 +74,6 @@ class PostListWidget extends StatelessWidget {
                   savedPostList: savedPostList);
             },
           ),
-
-          kHeight(10),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: RichText(
-              text: TextSpan(
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                ),
-                children: <TextSpan>[
-                  const TextSpan(
-                    text: 'Liked by ',
-                    style: TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                  TextSpan(
-                    text: '${userModel.username}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const TextSpan(
-                    text: ' and ',
-                    style: TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                  const TextSpan(
-                    text: '100',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const TextSpan(
-                    text: ' Others',
-                    style: TextStyle(fontWeight: FontWeight.normal),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          kHeight(10),
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: GestureDetector(
-                onTap: () {
-                  debugPrint('Comment pressed');
-                  nextScreen(
-                    context,
-                    PostDetailsScreen(
-                      postModel: postModel,
-                      userModel: userModel,
-                    ),
-                  );
-                },
-                child:
-                    Text('View all ${postModel.comments!.length} commenets')),
-          )
         ],
       ),
     );

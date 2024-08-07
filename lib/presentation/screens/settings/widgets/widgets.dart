@@ -5,6 +5,7 @@ import 'package:social_book/core/utils/app_icons.dart';
 import 'package:social_book/data/services/shared_preference/shared_preference.dart';
 import 'package:social_book/data/services/socket/socket_services.dart';
 import 'package:social_book/presentation/bloc/chat/chat_bloc.dart';
+import 'package:social_book/presentation/screens/main/bottom_navigation.dart';
 import 'package:social_book/presentation/screens/settings/widgets/about_us_page.dart';
 import 'package:social_book/presentation/screens/settings/widgets/privacy_and_policy_page.dart';
 import 'package:social_book/presentation/screens/settings/widgets/setting_listtile.dart';
@@ -47,7 +48,6 @@ class SettingsWidgets {
 
   static SettingListTile termsConditionsTile(context) {
     return SettingListTile(
-      // leadingIcon: AppIcons.text_file,
       title: 'Terms & Conditions',
       trailing: const Icon(AppIcons.arrow_circle_right),
       onTap: () {
@@ -56,22 +56,11 @@ class SettingsWidgets {
     );
   }
 
-  // static SettingListTile changeThemeTile(BuildContext context) {
-  //   return SettingListTile(
-  //     // leadingIcon: AppIcons.moon,
-  //     title: 'Change theme',
-  //     trailing: const Icon(AppIcons.arrow_circle_right),
-  //     onTap: () {
-  //       // nextScreen(context, const ThemeSwitchPage());
-  //     },
-  //   );
-  // }
-
   static SettingListTile logoutTile(BuildContext context) {
     return SettingListTile(
       title: 'Logout',
       trailing: const SizedBox(),
-      onTap: ()  {
+      onTap: () {
         showDialog(
           context: context,
           builder: (context) => CustomAlertDialog(
@@ -83,6 +72,8 @@ class SettingsWidgets {
               context.read<ChatBloc>().add(ClearAllMessageEvent());
               UserAuthStatus.saveUserStatus(false);
               SocketServices().disconnectSocket();
+              indexChangeNotifier.value = 0;
+
               await nextScreenRemoveUntil(
                 context,
                 const UserSigninScreen(),
