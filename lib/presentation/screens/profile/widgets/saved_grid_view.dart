@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/presentation/bloc/saved_posts/saved_posts_bloc.dart';
+import 'package:social_book/presentation/screens/post_detail/post_details_screen.dart';
 import 'package:social_book/presentation/widgets/fadein_animate.dart';
 
 class SavedGridViewWidget extends StatelessWidget {
@@ -24,7 +26,17 @@ class SavedGridViewWidget extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: state.savedPosts.length,
             itemBuilder: (context, index) {
-              return savedImageCard(savedPostState: state, index: index);
+              return GestureDetector(
+                onTap: (){
+                   nextScreen(
+                    context,
+                    PostDetailsScreen(
+                      postModel: state.savedPosts[index],
+                      userModel: state.savedPosts[index].user,
+                    ),
+                  );
+                },
+                child: savedImageCard(savedPostState: state, index: index));
             },
           );
         }

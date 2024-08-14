@@ -7,7 +7,7 @@ import 'package:social_book/data/models/chat_model/chat_model.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/profile/profile_bloc.dart';
 import 'package:social_book/presentation/cubit/online_users/online_users_cubit.dart';
-import 'package:social_book/presentation/screens/message/chat_page/user_chat_page.dart';
+import 'package:social_book/presentation/screens/message/chat_page/user_chat_screen.dart';
 
 class MessageUserCard extends StatefulWidget {
   const MessageUserCard({
@@ -95,7 +95,7 @@ class _MessageUserCardState extends State<MessageUserCard> {
                           widget.lastMessage!.message,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Colors.white,
                           ),
@@ -120,7 +120,7 @@ class _MessageUserCardState extends State<MessageUserCard> {
                 if (isOwnMessage)
                   Text(
                     lastMessgeTime,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),
@@ -128,7 +128,7 @@ class _MessageUserCardState extends State<MessageUserCard> {
                 if (isReplyMessage)
                   Text(
                     lastMessgeTime,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
                       color: Colors.black,
                     ),

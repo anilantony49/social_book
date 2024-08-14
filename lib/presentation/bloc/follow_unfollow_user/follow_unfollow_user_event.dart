@@ -6,6 +6,7 @@ sealed class FollowUnfollowUserEvent {}
 class FollowUserEvent extends FollowUnfollowUserEvent {
   final String userId;
   final String name;
+  
 
   FollowUserEvent({
     required this.userId,

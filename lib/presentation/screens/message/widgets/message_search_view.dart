@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:social_book/core/utils/alerts_and_navigation.dart';
 import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
-import 'package:social_book/presentation/screens/message/chat_page/user_chat_page.dart';
+import 'package:social_book/presentation/screens/message/chat_page/user_chat_screen.dart';
 
 
 class MessageSearchView extends StatelessWidget {

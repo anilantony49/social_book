@@ -5,9 +5,8 @@ import 'package:social_book/core/utils/constants.dart';
 import 'package:social_book/data/models/user_model/user_model.dart';
 import 'package:social_book/presentation/bloc/follow_unfollow_user/follow_unfollow_user_bloc.dart';
 import 'package:social_book/presentation/bloc/user_by_id/user_by_id_bloc.dart';
+import 'package:social_book/presentation/screens/profile/connection_list/widgets/follow_button.dart';
 import 'package:social_book/presentation/screens/user/user_profile_screen.dart';
-import 'package:social_book/presentation/widgets/custom_outlined_button.dart';
-
 
 class FollowingSearchIdle extends StatefulWidget {
   const FollowingSearchIdle({
@@ -24,9 +23,6 @@ class FollowingSearchIdle extends StatefulWidget {
 }
 
 class _FollowingSearchIdleState extends State<FollowingSearchIdle> {
-  bool isFollowing = false;
-  Set<String> userIds = {};
-
   @override
   Widget build(BuildContext context) {
     return widget.following.isNotEmpty
@@ -36,6 +32,8 @@ class _FollowingSearchIdleState extends State<FollowingSearchIdle> {
             itemCount: widget.following.length,
             itemBuilder: (context, index) {
               final following = widget.following[index];
+              final userModel = UserModel.fromJson(following);
+
               return InkWell(
                 onTap: () {
                   context
@@ -44,7 +42,7 @@ class _FollowingSearchIdleState extends State<FollowingSearchIdle> {
                   nextScreen(
                       context,
                       UserProfileScreen(
-                        userId: widget.following[index]['_id'],
+                        userId: following['_id'],
                         isCurrentUser: false,
                       ));
                 },
@@ -68,40 +66,32 @@ class _FollowingSearchIdleState extends State<FollowingSearchIdle> {
                   minVerticalPadding: 18,
                   subtitle: Text(
                     following['username'],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context).colorScheme.secondary,
+                      color: Colors.black,
                     ),
                   ),
                   trailing: SizedBox(
                     width: 94,
                     height: 30,
-                    child: BlocConsumer<FollowUnfollowUserBloc,
-                        FollowUnfollowUserState>(
-                      listener: (context, state) {
-                        if (state is UnfollowedUserState) {
-                          // print('unfollowd state');
-                          isFollowing = false;
+                    child: FollowButtonConnectionList(
+                      userModel: userModel,
+                      onFollowUnfollow: (user, model, isUnfollowed) {
+                        if (isUnfollowed) {
+                          context.read<FollowUnfollowUserBloc>().add(
+                                UnfollowUserEvent(
+                                  userId: model.id!,
+                                  name: model.fullName!,
+                                ),
+                              );
+                        } else {
+                          context.read<FollowUnfollowUserBloc>().add(
+                                FollowUserEvent(
+                                  userId: model.id!,
+                                  name: model.fullName!,
+                                ),
+                              );
                         }
-                      },
-                      builder: (context, state) {
-                        return CustomOutlinedBtn(
-                          onPressed: () {
-                            UserModel user =
-                                UserModel.fromJson(widget.following[index]);
-                            context.read<FollowUnfollowUserBloc>().add(
-                                  UnfollowUserEvent(
-                                    userId: user.id ?? '',
-                                    name: user.fullName ?? '',
-                                  ),
-                                );
-                          },
-                          btnText: state is UnfollowedUserState
-                              ? isFollowing
-                                  ? 'UNFOLLOW'
-                                  : 'FOLLOW'
-                              : 'UNFOLLOW',
-                        );
                       },
                     ),
                   ),

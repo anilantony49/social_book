@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => OnSearchMessageCubit()),
         BlocProvider(create: (context) => ThemeCubit()),
 
-        // BlocProvider(create: (context) => ConnectivityStatusCubit()),
+        // BlocProvider(create: (context) => ConnectivityStatusCubit()), 
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

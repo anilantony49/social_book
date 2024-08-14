@@ -13,7 +13,7 @@ class FollowUnfollowUserBloc
     on<UnfollowUserEvent>(_unfollowUserEvent);
   }
 
-    Future<void> _followUserEvent(
+  Future<void> _followUserEvent(
       FollowUserEvent event, Emitter<FollowUnfollowUserState> emit) async {
     FollowUnfollowModel response = await UserRepo.followUser(event.userId);
     if (response.message == 'success') {
@@ -37,5 +37,3 @@ class FollowUnfollowUserBloc
     }
   }
 }
-
-
